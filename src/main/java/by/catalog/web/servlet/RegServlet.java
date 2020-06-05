@@ -33,8 +33,7 @@ public class RegServlet extends HttpServlet {
         String password = req.getParameter("password");
         String phone = req.getParameter("password");
         String role = req.getParameter("role");
-        List<Car> userCarList = new ArrayList<Car>();
-        userList.add(new User(name, lastName, login, password, phone, role, userCarList));
+        userList.add(new User(name, lastName, login, password, phone, role));
             String message = "User " + login + "added!";
             req.getSession().setAttribute("message", message);
             resp.sendRedirect("/");

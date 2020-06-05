@@ -19,15 +19,13 @@ public class User {
     String password;
     String phone;
     String role;
-    List <Car> car;
 
-    public User(String name, String lastName, String login, String password, String phone, String role, List<Car> car) {
+    public User(String name, String lastName, String login, String password, String phone, String role) {
         this.name = name;
         this.lastName = lastName;
         this.login = login;
         this.password = password;
         this.phone = phone;
         this.role = role;
-        this.car = car;
     }
 }
