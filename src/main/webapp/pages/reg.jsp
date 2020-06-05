@@ -1,0 +1,21 @@
+
+
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Registration</title>
+</head>
+<body>
+
+<form action="/reg" method="post">
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="Last Name" placeholder="Last name">
+    <input type="text" name="login" placeholder="Login">
+    <input type="text" name="password" placeholder="Password">
+    <input type="text" name="phone" placeholder="Phone">
+    <button>Submit</button>
+</form>
+
+</body>
+</html>

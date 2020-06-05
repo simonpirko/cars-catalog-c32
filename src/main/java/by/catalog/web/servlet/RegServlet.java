@@ -1,6 +1,6 @@
 package by.catalog.web.servlet;
 
-import by.catalog.domain.Car;
+import by.catalog.domain.Advert;
 import by.catalog.domain.User;
 import by.catalog.service.UserService;
 
@@ -32,7 +32,7 @@ public class RegServlet extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         String phone = req.getParameter("password");
-        String role = req.getParameter("role");
+        String role = "1";
         userList.add(new User(name, lastName, login, password, phone, role));
             String message = "User " + login + "added!";
             req.getSession().setAttribute("message", message);
