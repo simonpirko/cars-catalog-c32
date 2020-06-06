@@ -1,6 +1,7 @@
 package by.catalog.web.servlet;
 
 import by.catalog.domain.Advert;
+import by.catalog.domain.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,9 @@ public class ChangeAdvertServlet extends HttpServlet {
         List<Advert> currentUserAdverts = (List<Advert>) req.getSession().getAttribute("currentUserAdverts");
         Advert advert = currentUserAdverts.get(advertNumber);
         req.getSession().setAttribute("currentAdvert", advert);
+        User currentUser = (User) req.getSession().getAttribute("currentUser");
+        String currentUserName = currentUser.getName();
+        req.getSession().setAttribute("currentUserName", currentUserName);
         req.getServletContext().getRequestDispatcher("/pages/changeAdvert").forward(req, resp);
     }
 
