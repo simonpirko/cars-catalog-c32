@@ -1,5 +1,7 @@
 package by.catalog.web.listener;
 
+import by.catalog.domain.User;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import javax.servlet.http.HttpSessionBindingEvent;
+import java.util.ArrayList;
 
 @WebListener()
 public class Listener implements ServletContextListener,
@@ -37,7 +40,7 @@ public class Listener implements ServletContextListener,
     // HttpSessionListener implementation
     // -------------------------------------------------------
     public void sessionCreated(HttpSessionEvent se) {
-        /* Session is created. */
+        se.getSession().setAttribute("userList", new ArrayList<User>());
     }
 
     public void sessionDestroyed(HttpSessionEvent se) {

@@ -15,4 +15,12 @@ public class UserService {
         }
         else return null;
     }
+
+    public boolean checkUserByLogin (String login) {
+        User userForCheck = userStorage.checkByLogin(login);
+        if (login.equals(userForCheck.getLogin())) {
+            return true;
+        }
+        return false;
+    }
 }
