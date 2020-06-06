@@ -19,5 +19,5 @@ public class User {
     String password;
     String phone;
     String role;
-    List <Car> car;
+    List <Advert> car;
 }
