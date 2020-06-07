@@ -7,7 +7,7 @@
 <body>
 <h3>Change user's data</h3>
 
-<h3>"Present user's data:"</h3>
+<h3>"${requestScope.currentUserName} data:"</h3>
 <ul>
     <c:forEach items="${sessionScope.currentUser}" var="item">
         <li>${item}</li>
