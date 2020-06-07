@@ -31,3 +31,8 @@ public class AdvertStorage {
             }
         }
     }
+
+    public List<Advert> findAllAdvertsByUser(String login) {
+        return null;
+    }
+}
