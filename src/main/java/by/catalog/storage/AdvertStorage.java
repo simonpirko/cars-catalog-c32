@@ -30,4 +30,4 @@ public class AdvertStorage {
                 e.printStackTrace();
             }
         }
-    }
+}
