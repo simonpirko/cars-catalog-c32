@@ -12,23 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet (name = "getAllAdvertsServlet", urlPatterns = "/getAllAdverts")
-public class GetAllUserAdverts extends HttpServlet {
+@WebServlet (name = "getAllAdvertsServlet", urlPatterns = "/getAllUserAdverts")
+public class GetAllUserAdvertsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User currentUser = (User) req.getSession().getAttribute("currentUser");
         String currentUserLogin = currentUser.getLogin();
         AdvertStorage advertStorage = new AdvertStorage();
-        List<Advert> advertsList = (List<Advert>) advertStorage.findAllAdvertsByUser(currentUserLogin);
-        req.getSession().setAttribute("currentUserAdvertsList", advertsList);
+        List<Advert> advertsList = advertStorage.findAllAdvertsByUser(currentUserLogin);
+        req.setAttribute("currentUserAdvertsList", advertsList);
         long advertsListLength = advertsList.size();
-        req.getSession().setAttribute("curretAdvertsListLength", advertsListLength);
-        getServletContext().getRequestDispatcher("/pages/changeAdvert.jsp").forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        req.getSession().setAttribute("currentAdvertsListLength", advertsListLength);
+        getServletContext().getRequestDispatcher("/pages/changeCurrentAdvert.jsp").forward(req, resp);
     }
 }

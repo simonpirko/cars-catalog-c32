@@ -11,34 +11,46 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet (name = "ChangeAdvertServlet", urlPatterns = "/changeAdvert")
+@WebServlet (name = "ChangeCurrentAdvertServlet", urlPatterns = "/changeCurrentAdvert")
 public class ChangeAdvertServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int advertNumber = (int) req.getSession().getAttribute("advertNumber");
+        int advertNumber = (int) req.getAttribute("advertNumber");
         List<Advert> currentUserAdverts = (List<Advert>) req.getSession().getAttribute("currentUserAdverts");
         Advert advert = currentUserAdverts.get(advertNumber);
-        req.getSession().setAttribute("currentAdvert", advert);
+        req.setAttribute("currentAdvert", advert);
         User currentUser = (User) req.getSession().getAttribute("currentUser");
         String currentUserName = currentUser.getName();
-        req.getSession().setAttribute("currentUserName", currentUserName);
-        req.getServletContext().getRequestDispatcher("/pages/changeAdvert").forward(req, resp);
+        req.setAttribute("currentUserName", currentUserName);
+        req.getServletContext().getRequestDispatcher("/pages/changeCurrentAdvert.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Advert> currentUserAdverts = (List<Advert>) req.getSession().getAttribute("currentUserAdverts");
-        int advertNumber = (int) req.getSession().getAttribute("advertNumber");
-        Advert advert = currentUserAdverts.get(advertNumber);
-        int paramForChange = (int) req.getSession().getAttribute("name");
-        switch (paramForChange) {
-            case 1:
-                advert.setModelCar("");
-            case 2:
-            case 3:
-            case 4:
-            case 5:
+        Advert currentAdvert = (Advert) req.getAttribute("currentAdvert");
+        String newModel = req.getParameter("newModel");
+        String newColor = req.getParameter("newColor");
+        String newYear = req.getParameter("newYear");
+        String newPrice = req.getParameter("newPrice");
+        String newDescription = req.getParameter("newDescription");
+        if (newModel != null) {
+            currentAdvert.setModelCar(newModel);
+        }
+        if (newColor != null) {
+            currentAdvert.setModelCar(newColor);
+        }
+        if (newYear != null) {
+            currentAdvert.setModelCar(newYear);
+        }
+        if (newPrice != null) {
+            currentAdvert.setModelCar(newPrice);
+        }
+        if (newDescription != null) {
+            currentAdvert.setModelCar(newDescription);
+        }
 
+        List<Advert> currentUserAdverts = (List<Advert>) req.getSession().getAttribute("currentUserAdverts");
+        req.setAttribute("currentAdvert", currentAdvert);
+        getServletContext().getRequestDispatcher("/pages/chooseAdvertToChange.jsp").forward(req, resp);
         }
     }
-}
