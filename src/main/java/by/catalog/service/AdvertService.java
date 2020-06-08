@@ -8,8 +8,8 @@ import javax.swing.*;
 import java.util.List;
 
 public class AdvertService {
-    public void saveAdvert (String madel, String color, int year, double price, User user, List <String> message){
+    public void saveAdvert (String model, String color, int year, double price, long id_user){
         AdvertStorage advertStorage = new AdvertStorage();
-        advertStorage.addAdvert(new Advert(madel, color, year, price, user, message));
+        advertStorage.addAdvert(new Advert(model, color, year, price, id_user));
     }
 }

@@ -20,12 +20,11 @@ public class Advert {
     long id_user;
     List <String> message;
 
-    public Advert(String modelCar, String colorCar, int yearCar, double priceCar, long id_user, List<String> message) {
+    public Advert(String modelCar, String colorCar, int yearCar, double priceCar, long id_user) {
         this.modelCar = modelCar;
         this.colorCar = colorCar;
         this.yearCar = yearCar;
         this.priceCar = priceCar;
         this.id_user = id_user;
-        this.message = message;
     }
 }
