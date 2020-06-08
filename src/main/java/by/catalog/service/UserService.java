@@ -23,4 +23,8 @@ public class UserService {
         }
         return false;
     }
+
+    public void updateUser (User user) {
+
+    }
 }
