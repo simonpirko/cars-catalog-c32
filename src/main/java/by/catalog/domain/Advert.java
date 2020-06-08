@@ -17,14 +17,15 @@ public class Advert {
     String colorCar;
     int yearCar;
     double priceCar;
-    long id_user;
-    List <String> message;
+    long idUser;
+    List<String> message;
 
-    public Advert(String modelCar, String colorCar, int yearCar, double priceCar, long id_user) {
+    public Advert(String modelCar, String colorCar, int yearCar, double priceCar, long idUser, List<String> message) {
         this.modelCar = modelCar;
         this.colorCar = colorCar;
         this.yearCar = yearCar;
         this.priceCar = priceCar;
-        this.id_user = id_user;
+        this.idUser = idUser;
+        this.message = message;
     }
 }
