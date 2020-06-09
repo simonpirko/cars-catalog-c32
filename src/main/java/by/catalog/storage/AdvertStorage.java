@@ -6,17 +6,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
 public class AdvertStorage {
-
-    {
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 
     Connection connection = null;
     private final static String URL_TABLES = "jdbc:postgresql://localhost:5432/postgres";
@@ -39,9 +30,4 @@ public class AdvertStorage {
                 e.printStackTrace();
             }
         }
-    }
-
-    public List<Advert> findAllAdvertsByUser(String login) {
-        return null;
-    }
 }
