@@ -14,13 +14,7 @@ import java.io.IOException;
 
 public class AddAdvertServlet extends HttpServlet {
 
-    {
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
