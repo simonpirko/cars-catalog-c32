@@ -28,4 +28,14 @@ public class Advert {
         this.idUser = idUser;
         this.message = message;
     }
+
+    public Advert( String modelCar, String colorCar, int yearCar, double priceCar, long idUser) {
+        this.modelCar = modelCar;
+        this.colorCar = colorCar;
+        this.yearCar = yearCar;
+        this.priceCar = priceCar;
+        this.idUser = idUser;
+    }
+
+
 }
