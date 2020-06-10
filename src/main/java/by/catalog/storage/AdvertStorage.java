@@ -24,4 +24,8 @@ public class AdvertStorage {
 
     public void addMessageToAdvertById (int advertId, String addMessage) {
     }
+
+    public List<Advert> findAllAdverts () {
+        return null;
+    }
 }

@@ -29,4 +29,8 @@ public class AdvertService {
         advertStorage.addMessageToAdvertById(advertId, addMessage);
     }
 
+    public List<Advert> findAllAdverts () {
+        return advertStorage.findAllAdverts();
+    }
+
 }
