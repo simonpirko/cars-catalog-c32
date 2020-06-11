@@ -31,7 +31,7 @@ import java.util.GregorianCalendar;
             System.out.println(df);
 
             req.setAttribute("calendar", df + "  " + data);
-            req.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+            req.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(req, resp);
         }
     }
 
