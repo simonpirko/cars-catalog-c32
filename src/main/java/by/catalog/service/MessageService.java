@@ -18,6 +18,7 @@ public class MessageService {
     }
 
     public List<Message> getMessage(long idAdvert){
+
         return messageStorage.returnMessageByIdAdvert(idAdvert);
     }
 }
