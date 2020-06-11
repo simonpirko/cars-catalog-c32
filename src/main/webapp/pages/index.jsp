@@ -6,6 +6,13 @@
     <h1>Hello${sessionScope.currentUser.name}!
         It's Cars Catalog ver.1</h1>
 
+
+    <ul>
+        <c:forEach items="{requestScope.allAdverts}" var="item">
+            <li>${item}</li>
+        </c:forEach>
+    </ul>
+
     <c:if test="${!sessionScope.checkAuth}">
         <a href="/reg">Registration  |</a>
         <a href="/auth">Authorisation  |</a>

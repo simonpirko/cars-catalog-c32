@@ -13,9 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @WebServlet (urlPatterns = "/reg", name = "RegServlet")
-
 public class RegServlet extends HttpServlet {
 
     @Override
