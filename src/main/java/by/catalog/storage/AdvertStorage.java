@@ -23,7 +23,7 @@ public class AdvertStorage {
                 preparedStatement.setString(2, advert.getColorCar());
                 preparedStatement.setInt(3, advert.getYearCar());
                 preparedStatement.setDouble(4, advert.getPriceCar());
-                preparedStatement.setLong(5, advert.getIdUser());
+                preparedStatement.setLong(5, advert.getId_user());
                 preparedStatement.executeQuery();
                 connection.close();
             } catch (SQLException e) {
