@@ -1,5 +1,6 @@
 package by.catalog.domain;
 
+import by.catalog.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,4 +26,9 @@ public class Message {
         this.date = date;
     }
 
+    @Override
+    public String toString() {
+        UserService userService = new UserService();
+        return userService.returnUserById(idUser).name + " / " + date + " / " + body;
+    }
 }

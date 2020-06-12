@@ -24,6 +24,10 @@ public class UserService {
         return false;
     }
 
+    public User returnUserById ( long id) {
+        return null;
+    }
+
     public void updateUser (User user) {
 
     }

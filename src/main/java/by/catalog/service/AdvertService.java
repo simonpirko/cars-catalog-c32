@@ -17,6 +17,7 @@ public class AdvertService {
     }
 
     public Advert getAdvert ( long idAdvert ){
+
         return advertStorage.returnAdvertById(idAdvert);
     }
 
