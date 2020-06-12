@@ -1,11 +1,11 @@
 package by.catalog.storage;
 
 import by.catalog.domain.Advert;
+import by.catalog.domain.Message;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdvertStorage {
 
@@ -30,4 +30,29 @@ public class AdvertStorage {
                 e.printStackTrace();
             }
         }
+
+    public Advert returnAdvertById(long idAdvert) {
+        MessageStorage messageStorage = new MessageStorage();
+             try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement( "select * from advert s where s.idadvert = ?");
+            preparedStatement.setLong(1, idAdvert);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+             long id = resultSet.getLong(1);
+             String model = resultSet.getString(2);
+             String color = resultSet.getString(3);
+             int yearCar = resultSet.getInt(4);
+             double price = resultSet.getDouble(5);
+             long idUser = resultSet.getLong(6);
+             List<Message> messages = messageStorage.returnMessageByIdAdvert(idAdvert);
+             return new Advert(id, model, color, yearCar, price, idUser, messages);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
 }

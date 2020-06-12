@@ -1,11 +1,9 @@
 package by.catalog.storage;
 
-import by.catalog.domain.Advert;
 import by.catalog.domain.Message;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MessageStorage {
 
@@ -32,8 +30,8 @@ public class MessageStorage {
     }
 
 
-    public List <Message> returnMessageByIdAdvert( long idAdvert) {
-        List <Message> listMessage = new ArrayList();
+    public ArrayList returnMessageByIdAdvert(long idAdvert) {
+        ArrayList listMessage = new ArrayList();
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
             PreparedStatement preparedStatement = connection.prepareStatement( "select * from messageforadvert s where s.idadvert = ?");

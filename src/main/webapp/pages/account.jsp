@@ -14,7 +14,6 @@
         </c:forEach>
     </ul>
 
-
     <a href="/changeUserData">Change User Data</a>
     <a href="/showAllAdverts">Sort All Adverts</a>
     <a href="/showMyAdverts">Change my Adverts</a>
