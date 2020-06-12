@@ -12,15 +12,15 @@ import java.util.List;
 
 public class Advert {
 
-    long id;
-    String modelCar;
-    String colorCar;
-    int yearCar;
-    double priceCar;
-    long idUser;
-    List<String> message;
+    private long id;
+    private String modelCar;
+    private String colorCar;
+    private int yearCar;
+    private double priceCar;
+    private long idUser;
+    private List <Message> message;
 
-    public Advert(String modelCar, String colorCar, int yearCar, double priceCar, long idUser, List<String> message) {
+    public Advert ( String modelCar, String colorCar, int yearCar, double priceCar, long idUser, List <Message> message ) {
         this.modelCar = modelCar;
         this.colorCar = colorCar;
         this.yearCar = yearCar;
@@ -28,4 +28,13 @@ public class Advert {
         this.idUser = idUser;
         this.message = message;
     }
+
+    public Advert( String modelCar, String colorCar, int yearCar, double priceCar, long idUser) {
+        this.modelCar = modelCar;
+        this.colorCar = colorCar;
+        this.yearCar = yearCar;
+        this.priceCar = priceCar;
+        this.idUser = idUser;
+    }
+
 }
