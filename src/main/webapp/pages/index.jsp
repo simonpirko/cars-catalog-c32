@@ -30,14 +30,11 @@
 
 <p>Today: <c:out value="<%=new java.util.Date()%>"/></p>
 
-<p>Today:${requestScope.calendar}</p>
-
-
-<ul style="list-style: decimal">
-    <c:forEach items="${requestScope.adsList}" var="adsList">
-        <li>${adsList}</li>
-    </c:forEach>
-</ul>
+<%--<ul style="list-style: decimal">--%>
+<%--    <c:forEach items="${requestScope.adsList}" var="adsList">--%>
+<%--        <li>${adsList}</li>--%>
+<%--    </c:forEach>--%>
+<%--</ul>--%>
 
 </body>
 
