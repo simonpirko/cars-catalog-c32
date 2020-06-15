@@ -8,17 +8,18 @@ public class UserService {
 
     private final UserStorage userStorage = new UserStorage();
 
+    public void saveUser (String name, String lastName, String login, String password, String phone, String role){
+        userStorage.addUser(new User(name, lastName, login, password, phone, role));
+    }
+
+
     public User checkPasswordByLogin(String login, String password) {
-        User userForCheck = userStorage.passwordByLogin(login);
+        User userForCheck = userStorage.getUserByLogin(login);
         if (password.equals(userForCheck.getPassword())) {
             return userForCheck;
         } else return null;
     }
 
-    public boolean checkUserByLogin(String login) {
-        User userForCheck = userStorage.checkByLogin(login);
-        return login.equals(userForCheck.getLogin());
-    }
 
     public void updateUser(User user) {
 

@@ -4,6 +4,7 @@ import by.catalog.domain.Advert;
 import by.catalog.domain.Message;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdvertStorage {
@@ -46,6 +47,37 @@ public class AdvertStorage {
             long idUser = resultSet.getLong(6);
             List<Message> messages = messageStorage.returnMessageByIdAdvert(idAdvert);
             return new Advert(id, model, color, yearCar, price, idUser, messages);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void addIdUserIdAdvert( long idUser, long idAdvert){
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into useradvertlist (iduser, idadvert) values (?, ?)");
+            preparedStatement.setLong(1, idUser);
+            preparedStatement.setLong(2, idAdvert);
+            preparedStatement.executeQuery();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List getAllIdAdvertByIdUser (long idUser){
+        ArrayList<Long> list = new ArrayList<>();
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from useradvertlist s where s.iduser = ?");
+            preparedStatement.setLong(1, idUser);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                long idAdvert = resultSet.getLong(2);
+                list.add(idAdvert);
+            }
+            return list;
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -21,7 +21,6 @@ public class RegServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<User> userList = (List) req.getSession().getAttribute("userList");
         UserService userService = new UserService();
         String name = req.getParameter("name");
         String lastName = req.getParameter("lastName");
@@ -29,7 +28,7 @@ public class RegServlet extends HttpServlet {
         String password = req.getParameter("password");
         String phone = req.getParameter("password");
         String role = "1";
-        userList.add(new User(name, lastName, login, password, phone, role));
+        userService.saveUser(name, lastName, login, password, phone, role);
         String message = "User " + login + "added!";
         req.getSession().setAttribute("message", message);
         resp.sendRedirect("/");

@@ -32,4 +32,32 @@ alter table messageforadvert
 create unique index messageforadvert_id_uindex
     on messageforadvert (id);
 
+create table userscarcatalog
+(
+    id       serial not null
+        constraint userscarcatalog_pk
+            primary key,
+    name     varchar,
+    lastname varchar,
+    login    varchar,
+    password varchar,
+    phone    varchar,
+    role     varchar
+);
+
+alter table userscarcatalog
+    owner to postgres;
+
+create unique index userscarcatalog_column_1_uindex
+    on userscarcatalog (id);
+
+create table useradvertlist
+(
+    iduser   integer,
+    idadvert integer
+);
+
+alter table useradvertlist
+    owner to postgres;
+
 
