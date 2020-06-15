@@ -23,4 +23,12 @@ public class Message {
         this.date = date;
     }
 
+    @Override
+    public String toString() {
+        return "Message{" +
+
+                ", body='" + body + '\'' +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }
