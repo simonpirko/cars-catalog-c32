@@ -6,25 +6,21 @@ import by.catalog.storage.UserStorage;
 
 public class UserService {
 
-    private UserStorage userStorage = new UserStorage();
+    private final UserStorage userStorage = new UserStorage();
 
-    public User checkPasswordByLogin(String login, String password){
-       User userForCheck = userStorage.passwordByLogin(login);
+    public User checkPasswordByLogin(String login, String password) {
+        User userForCheck = userStorage.passwordByLogin(login);
         if (password.equals(userForCheck.getPassword())) {
             return userForCheck;
-        }
-        else return null;
+        } else return null;
     }
 
-    public boolean checkUserByLogin (String login) {
+    public boolean checkUserByLogin(String login) {
         User userForCheck = userStorage.checkByLogin(login);
-        if (login.equals(userForCheck.getLogin())) {
-            return true;
-        }
-        return false;
+        return login.equals(userForCheck.getLogin());
     }
 
-    public void updateUser (User user) {
+    public void updateUser(User user) {
 
     }
 }

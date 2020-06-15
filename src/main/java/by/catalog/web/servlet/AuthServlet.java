@@ -23,9 +23,9 @@ public class AuthServlet extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         UserService userService = new UserService();
-        User user = (User) userService.checkPasswordByLogin(login, password);
+        User user = userService.checkPasswordByLogin(login, password);
         if (user != null) {
-            req.getSession().setAttribute("currentUser", user );
+            req.getSession().setAttribute("currentUser", user);
             resp.sendRedirect("/");
         }
     }

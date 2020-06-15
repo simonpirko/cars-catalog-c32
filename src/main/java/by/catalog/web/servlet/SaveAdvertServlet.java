@@ -2,8 +2,6 @@ package by.catalog.web.servlet;
 
 import by.catalog.domain.Advert;
 import by.catalog.service.AdvertService;
-import by.catalog.service.UserService;
-import by.catalog.storage.AdvertStorage;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet (name = "SaveAdvertToServlet", urlPatterns = "/saveAdvert")
+@WebServlet(name = "SaveAdvertToServlet", urlPatterns = "/saveAdvert")
 public class SaveAdvertServlet extends HttpServlet {
 
     @Override
