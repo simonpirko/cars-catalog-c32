@@ -2,7 +2,9 @@ package by.catalog.service;
 
 import by.catalog.domain.Advert;
 import by.catalog.domain.Message;
+import by.catalog.domain.User;
 import by.catalog.storage.AdvertStorage;
+import by.catalog.storage.UserStorage;
 
 import java.util.List;
 
@@ -16,6 +18,52 @@ public class AdvertService {
 
     public Advert getAdvert(long idAdvert) {
         return advertStorage.returnAdvertById(idAdvert);
+    }
+
+    public String getModelFromAdvert(long idAdvert){
+        Advert advert = advertStorage.returnAdvertById(idAdvert);
+        return advert.getModelCar();
+    }
+
+    public String getColorFromAdvert(long idAdvert){
+        Advert advert = advertStorage.returnAdvertById(idAdvert);
+        return advert.getColorCar();
+    }
+    public int getYearFromAdvert(long idAdvert){
+        Advert advert = advertStorage.returnAdvertById(idAdvert);
+        return advert.getYearCar();
+    }
+    public double getPriceFromAdvert(long idAdvert){
+        Advert advert = advertStorage.returnAdvertById(idAdvert);
+        return advert.getPriceCar();
+    }
+    public String getUserNameFromAdvert (long idAdvert){
+        Advert advert = advertStorage.returnAdvertById(idAdvert);
+        long idUser = advert.getIdUser();
+        UserStorage userStorage = new UserStorage();
+        User userById = userStorage.getUserById(idUser);
+        return userById.getName();
+    }
+
+    public String getUserLastNameFromAdvert (long idAdvert){
+        Advert advert = advertStorage.returnAdvertById(idAdvert);
+        long idUser = advert.getIdUser();
+        UserStorage userStorage = new UserStorage();
+        User userById = userStorage.getUserById(idUser);
+        return userById.getLastName();
+    }
+
+    public String getUserPhoneFromAdvert (long idAdvert){
+        Advert advert = advertStorage.returnAdvertById(idAdvert);
+        long idUser = advert.getIdUser();
+        UserStorage userStorage = new UserStorage();
+        User userById = userStorage.getUserById(idUser);
+        return userById.getPhone();
+    }
+
+    public List getUserMessagesFromAdvert (long idAdvert){
+        Advert advert = advertStorage.returnAdvertById(idAdvert);
+        return advert.getMessage();
     }
 
     public void saveAdvertToUserAdvertList(long idAdvert, long idUser) {

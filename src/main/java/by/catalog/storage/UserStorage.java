@@ -12,4 +12,8 @@ public class UserStorage {
     public User checkByLogin(String login) {
         return null;
     }
+
+    public User getUserById (long id){
+        return null;
+    }
 }
