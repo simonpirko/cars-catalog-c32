@@ -11,9 +11,14 @@
     </c:forEach>
 </ul>
 
+<%--Добавить список всех доступных комментов--%>
+
+
+
 <h3>Add message</h3>
-<form name="addMessage" action="/addMessageServlet" method="post">
+<form name="addMessage" action="/MessageServlet" method="post">
     <input type="text" name="addMessage" placeholder="Add message">
+    <button>Submit</button>
 </form>
 
 
