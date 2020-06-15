@@ -20,6 +20,12 @@ public class AdvertService {
         return advertStorage.returnAdvertById(idAdvert);
     }
 
+    public List getAdvertMessage (long idAdvert){
+        Advert advert = advertStorage.returnAdvertById(idAdvert);
+        return advert.getMessage();
+    }
+
+
     public void saveAdvertToUserAdvertList (Advert advert, int userId) {
         advertStorage.addAdvertToUserAdvertList(advert, userId);
 

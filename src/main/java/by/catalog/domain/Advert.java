@@ -1,5 +1,6 @@
 package by.catalog.domain;
 
+import by.catalog.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,4 +38,18 @@ public class Advert {
         this.idUser = idUser;
     }
 
+    @Override
+    public String toString() {
+
+        UserService userService = new UserService();
+        return
+                "Advert{" +
+                "id=" + id +
+                ", modelCar='" + modelCar + '\'' +
+                ", colorCar='" + colorCar + '\'' +
+                ", yearCar=" + yearCar +
+                ", priceCar=" + priceCar +
+                ", idUser=" + idUser +
+                '}';
+    }
 }
