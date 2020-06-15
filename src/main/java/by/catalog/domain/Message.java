@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,7 +14,7 @@ public class Message {
     long idAdvert;
     long idUser;
     String body;
-    String  date;
+    String date;
 
     public Message(long idAdvert, long idUser, String body, String date) {
         this.idAdvert = idAdvert;

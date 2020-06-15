@@ -1,7 +1,5 @@
 package by.catalog.web.filter;
 
-import by.catalog.domain.User;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebFilter;

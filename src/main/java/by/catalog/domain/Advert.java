@@ -19,9 +19,9 @@ public class Advert {
     private int yearCar;
     private double priceCar;
     private long idUser;
-    private List <Message> message;
+    private List<Message> message;
 
-    public Advert ( String modelCar, String colorCar, int yearCar, double priceCar, long idUser, List <Message> message ) {
+    public Advert(String modelCar, String colorCar, int yearCar, double priceCar, long idUser, List<Message> message) {
         this.modelCar = modelCar;
         this.colorCar = colorCar;
         this.yearCar = yearCar;
@@ -30,7 +30,7 @@ public class Advert {
         this.message = message;
     }
 
-    public Advert( String modelCar, String colorCar, int yearCar, double priceCar, long idUser) {
+    public Advert(String modelCar, String colorCar, int yearCar, double priceCar, long idUser) {
         this.modelCar = modelCar;
         this.colorCar = colorCar;
         this.yearCar = yearCar;

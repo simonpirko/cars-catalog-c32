@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet (name = "ChangeUserDataServlet", urlPatterns = "/changeUserData")
+@WebServlet(name = "ChangeUserDataServlet", urlPatterns = "/changeUserData")
 public class ChangeUserDataServlet extends HttpServlet {
 
     UserService userService = new UserService();
@@ -49,6 +49,6 @@ public class ChangeUserDataServlet extends HttpServlet {
         userService.updateUser(currentUser);
         resp.sendRedirect("/changeUserData");
 //        getServletContext().getRequestDispatcher("/pages/changeUserData.jsp").forward(req, resp);
-        }
     }
+}
 

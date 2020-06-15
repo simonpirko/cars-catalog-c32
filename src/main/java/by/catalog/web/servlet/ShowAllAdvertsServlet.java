@@ -2,7 +2,6 @@ package by.catalog.web.servlet;
 
 import by.catalog.domain.Advert;
 import by.catalog.service.AdvertService;
-import by.catalog.storage.AdvertStorage;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

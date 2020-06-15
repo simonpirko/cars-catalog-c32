@@ -8,20 +8,20 @@ import java.util.ArrayList;
 public class MessageStorage {
 
 
-    Connection connection = null;
     private final static String URL_TABLES = "jdbc:postgresql://localhost:5432/postgres";
     private final static String LOGIN_TABLES = "postgres";
     private final static String PASS_TABLES = "1987Roll";
+    Connection connection = null;
 
-    public void addMessage(Message message){
+    public void addMessage(Message message) {
 
-         try {
+        try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
             PreparedStatement preparedStatement = connection.prepareStatement("insert into messageforadvert (id, idadvert, iduser, body, date) values (default , ? , ? , ? , ?)");
             preparedStatement.setLong(1, message.getIdAdvert());
             preparedStatement.setLong(2, message.getIdUser());
             preparedStatement.setString(3, message.getBody());
-             preparedStatement.setString(4, message.getDate());
+            preparedStatement.setString(4, message.getDate());
             preparedStatement.executeQuery();
             connection.close();
         } catch (SQLException e) {
@@ -34,7 +34,7 @@ public class MessageStorage {
         ArrayList listMessage = new ArrayList();
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement( "select * from messageforadvert s where s.idadvert = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from messageforadvert s where s.idadvert = ?");
             preparedStatement.setLong(1, idAdvert);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
