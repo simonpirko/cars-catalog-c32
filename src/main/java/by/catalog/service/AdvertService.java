@@ -71,7 +71,7 @@ public class AdvertService {
         // FIXME: 6/13/20
     }
 
-    public Advert findAdvertById(int idAdvert) {
+    public Advert findAdvertById(long idAdvert) {
 //        advertStorage.findAdvertById(advertId);
         // FIXME: 6/13/20 
         return null;
@@ -86,6 +86,25 @@ public class AdvertService {
 //        return advertStorage.findAllAdverts();
         // FIXME: 6/13/20 
         return null;
+    }
+
+    public void makeChangesInAdvert (long idAdvert, String newModel, String newColor, String newYear, String newPrice,  String newDescription) {
+        Advert advertForChange = findAdvertById(idAdvert);
+        if (newModel != null) {
+            advertForChange.setModelCar(newModel);
+        }
+        if (newColor != null) {
+            advertForChange.setModelCar(newColor);
+        }
+        if (newYear != null) {
+            advertForChange.setModelCar(newYear);
+        }
+        if (newPrice != null) {
+            advertForChange.setModelCar(newPrice);
+        }
+        if (newDescription != null) {
+            advertForChange.setModelCar(newDescription);
+        }
     }
 
 }
