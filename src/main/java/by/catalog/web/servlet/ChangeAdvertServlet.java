@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet (name = "ChangeCurrentAdvertServlet", urlPatterns = "/changeCurrentAdvert")
+@WebServlet(name = "ChangeCurrentAdvertServlet", urlPatterns = "/changeCurrentAdvert")
 public class ChangeAdvertServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -52,5 +52,5 @@ public class ChangeAdvertServlet extends HttpServlet {
         List<Advert> currentUserAdverts = (List<Advert>) req.getSession().getAttribute("currentUserAdverts");
         req.setAttribute("currentAdvert", currentAdvert);
         getServletContext().getRequestDispatcher("/pages/chooseAdvertToChange.jsp").forward(req, resp);
-        }
     }
+}

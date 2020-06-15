@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -14,14 +14,14 @@
     </ul>
 
     <c:if test="${!sessionScope.checkAuth}">
-        <a href="/reg">Registration  |</a>
-        <a href="/auth">Authorisation  |</a>
+        <a href="/reg">Registration |</a>
+        <a href="/auth">Authorisation |</a>
     </c:if>
 
     <c:if test="${sessionScope.checkAuth}">
-        <a href="/ads">Ads  |</a>
-        <a href="/pers">PersonalAccount  |</a>
-        <a href="/logout">Logout  |</a>
+        <a href="/ads">Ads |</a>
+        <a href="/pers">PersonalAccount |</a>
+        <a href="/logout">Logout |</a>
     </c:if>
 
 
@@ -30,14 +30,11 @@
 
 <p>Today: <c:out value="<%=new java.util.Date()%>"/></p>
 
-<p>Today:${requestScope.calendar}</p>
-
-
-<ul style="list-style: decimal">
-    <c:forEach items="${requestScope.adsList}" var="adsList">
-        <li>${adsList}</li>
-    </c:forEach>
-</ul>
+<%--<ul style="list-style: decimal">--%>
+<%--    <c:forEach items="${requestScope.adsList}" var="adsList">--%>
+<%--        <li>${adsList}</li>--%>
+<%--    </c:forEach>--%>
+<%--</ul>--%>
 
 </body>
 
