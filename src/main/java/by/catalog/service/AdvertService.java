@@ -24,8 +24,8 @@ public class AdvertService {
 
 
 
-    public void saveAdvertToUserAdvertList(long idAdvert, long idUser) {
-        advertStorage.addIdUserIdAdvert(idUser, idAdvert);
+    public void saveAdvertToUserAdvertList(Advert advert, long idUser) {
+        advertStorage.addIdUserIdAdvert(idUser, advert.getId());
         // FIXME: 6/13/20
     }
 
@@ -34,7 +34,7 @@ public class AdvertService {
         List allIdAdvertByIdUser = advertStorage.getAllIdAdvertByIdUser(idUser);
         for (int i = 0; i < allIdAdvertByIdUser.size(); i++) {
             long idAdvert = (long) allIdAdvertByIdUser.get(i);
-            Advert advert = (Advert) advertStorage.returnAdvertById(idAdvert);
+            Advert advert = advertStorage.returnAdvertById(idAdvert);
             list.add(advert);
         }
         return list;

@@ -16,8 +16,8 @@ public class SaveAdvertServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //сюда приходит с главной страницы запрос на добавление объявления автотизованного юзера
-        int advertForSaveId = (Integer) req.getAttribute("advertId");
-        int userToSaveAdvert = (Integer) req.getAttribute("userToSaveAdvertId");
+        long advertForSaveId = (Long) req.getAttribute("advertId");
+        long userToSaveAdvert = (Long) req.getAttribute("userToSaveAdvertId");
         AdvertService advertService = new AdvertService();
         Advert advertById = advertService.findAdvertById(advertForSaveId);
         advertService.saveAdvertToUserAdvertList(advertById, userToSaveAdvert);

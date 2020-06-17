@@ -20,6 +20,10 @@ public class UserService {
         } else return null;
     }
 
+    public boolean checkUserByLogin (String login){
+       return userStorage.checkByLogin(login);
+    }
+
 
     public void updateUser(User user) {
 

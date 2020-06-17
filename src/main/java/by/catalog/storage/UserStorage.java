@@ -11,6 +11,16 @@ import java.util.List;
 
 public class UserStorage {
 
+    static {
+        try
+    {
+        Class.forName("org.postgresql.Driver");
+    }
+        catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+
     private final static String URL_TABLES = "jdbc:postgresql://localhost:5432/postgres";
     private final static String LOGIN_TABLES = "postgres";
     private final static String PASS_TABLES = "1987Roll";
@@ -52,6 +62,21 @@ public class UserStorage {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public boolean checkByLogin (String login) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from userscarcatalog s where s.login = ?");
+            preparedStatement.setString(1, login);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 

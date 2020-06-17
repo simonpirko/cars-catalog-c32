@@ -53,7 +53,7 @@ public class AdvertStorage {
         return null;
     }
 
-    public void addIdUserIdAdvert( long idUser, long idAdvert){
+    public void addIdUserIdAdvert(long idUser, long idAdvert){
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
             PreparedStatement preparedStatement = connection.prepareStatement("insert into useradvertlist (iduser, idadvert) values (?, ?)");
