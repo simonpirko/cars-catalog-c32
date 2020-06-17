@@ -28,6 +28,5 @@ public class AuthServlet extends HttpServlet {
             req.getSession().setAttribute("currentUser", user);
             resp.sendRedirect("/");
         }
-
     }
 }

@@ -20,7 +20,7 @@ public class AddMessageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String addMessage = req.getParameter("addMessage");
         Advert currentAdvert = (Advert) req.getAttribute("currentAdvert");
-        int currentMessageId = (int) req.getAttribute("currentAdvertId");
+        long currentMessageId = (long) req.getAttribute("currentAdvertId");
         // FIXME: 6/13/20
 //        advertService.addMessageToAdvertById(currentMessageId, addMessage);
         resp.sendRedirect("/advert");
