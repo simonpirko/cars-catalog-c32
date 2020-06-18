@@ -44,12 +44,12 @@ public class Advert {
         UserService userService = new UserService();
         return
                 "Advert{" +
-                "id=" + id +
-                ", modelCar='" + modelCar + '\'' +
-                ", colorCar='" + colorCar + '\'' +
-                ", yearCar=" + yearCar +
-                ", priceCar=" + priceCar +
-                ", idUser=" + idUser +
-                '}';
+                        "id=" + id +
+                        ", modelCar='" + modelCar + '\'' +
+                        ", colorCar='" + colorCar + '\'' +
+                        ", yearCar=" + yearCar +
+                        ", priceCar=" + priceCar +
+                        ", idUser=" + idUser +
+                        '}';
     }
 }

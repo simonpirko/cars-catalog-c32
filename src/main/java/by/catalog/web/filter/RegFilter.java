@@ -18,7 +18,9 @@ public class RegFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         String login = req.getParameter("login");
-        if (!userService.checkUserByLogin(login)) {
+        if (true
+//                !userService.checkUserByLogin(login)
+        ) {
             chain.doFilter(req, res);
         } else {
             String message = "User exists. Try another login";
