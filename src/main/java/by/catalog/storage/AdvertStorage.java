@@ -10,9 +10,17 @@ import java.util.List;
 public class AdvertStorage {
 
     private final static String URL_TABLES = "jdbc:postgresql://localhost:5432/postgres";
-    private final static String LOGIN_TABLES = "postgres";
-    private final static String PASS_TABLES = "1987Roll";
+    private final static String LOGIN_TABLES = "";
+    private final static String PASS_TABLES = "";
     Connection connection = null;
+
+    {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void addAdvert(Advert advert) {
 
@@ -53,7 +61,7 @@ public class AdvertStorage {
         return null;
     }
 
-    public void addIdUserIdAdvert(long idUser, long idAdvert){
+    public void addIdUserIdAdvert(long idUser, long idAdvert) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
             PreparedStatement preparedStatement = connection.prepareStatement("insert into useradvertlist (iduser, idadvert) values (?, ?)");
@@ -66,7 +74,7 @@ public class AdvertStorage {
         }
     }
 
-    public List getAllIdAdvertByIdUser (long idUser){
+    public List getAllIdAdvertByIdUser(long idUser) {
         ArrayList<Long> list = new ArrayList<>();
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);

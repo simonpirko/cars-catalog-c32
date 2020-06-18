@@ -1,13 +1,9 @@
 package by.catalog.storage;
 
 
-import by.catalog.domain.Advert;
-import by.catalog.domain.Message;
 import by.catalog.domain.User;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserStorage {
 
@@ -26,7 +22,15 @@ public class UserStorage {
     private final static String PASS_TABLES = "1987Roll";
     Connection connection = null;
 
-    public void addUser(User user){
+    {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addUser(User user) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
             PreparedStatement preparedStatement = connection.prepareStatement("insert into userscarcatalog (id, name, lastname, login, password, phone, role) values (default , ?, ?, ?, ?, ?, ?)");
@@ -55,9 +59,9 @@ public class UserStorage {
             String name = resultSet.getString(2);
             String lastName = resultSet.getString(3);
             String password = resultSet.getString(5);
-            String phone = resultSet.getString (6);
+            String phone = resultSet.getString(6);
             String role = resultSet.getString(7);
-            return new User(id, name, lastName, login, password, phone, role );
+            return new User(id, name, lastName, login, password, phone, role);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -78,9 +82,6 @@ public class UserStorage {
         }
         return false;
     }
-
-
-
 
 
 }

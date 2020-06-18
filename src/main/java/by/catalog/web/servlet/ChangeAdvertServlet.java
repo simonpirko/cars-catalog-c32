@@ -2,6 +2,7 @@ package by.catalog.web.servlet;
 
 import by.catalog.domain.Advert;
 import by.catalog.domain.User;
+import by.catalog.service.AdvertService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,8 @@ import java.util.List;
 
 @WebServlet(name = "ChangeCurrentAdvertServlet", urlPatterns = "/changeCurrentAdvert")
 public class ChangeAdvertServlet extends HttpServlet {
+    AdvertService advertService = new AdvertService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int advertNumber = (int) req.getAttribute("advertNumber");
@@ -33,21 +36,9 @@ public class ChangeAdvertServlet extends HttpServlet {
         String newYear = req.getParameter("newYear");
         String newPrice = req.getParameter("newPrice");
         String newDescription = req.getParameter("newDescription");
-        if (newModel != null) {
-            currentAdvert.setModelCar(newModel);
-        }
-        if (newColor != null) {
-            currentAdvert.setModelCar(newColor);
-        }
-        if (newYear != null) {
-            currentAdvert.setModelCar(newYear);
-        }
-        if (newPrice != null) {
-            currentAdvert.setModelCar(newPrice);
-        }
-        if (newDescription != null) {
-            currentAdvert.setModelCar(newDescription);
-        }
+        long idAdvert = currentAdvert.getId();
+//        advertService.makeChangesInAdvert(idAdvert, newModel, newColor, newYear, newPrice,  newDescription);
+
 
         List<Advert> currentUserAdverts = (List<Advert>) req.getSession().getAttribute("currentUserAdverts");
         req.setAttribute("currentAdvert", currentAdvert);
