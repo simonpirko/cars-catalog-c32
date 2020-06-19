@@ -15,6 +15,7 @@ import java.util.List;
 @WebServlet(name = "ChangeCurrentAdvertServlet", urlPatterns = "/changeCurrentAdvert")
 public class ChangeAdvertServlet extends HttpServlet {
     AdvertService advertService = new AdvertService();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int advertNumber = (int) req.getAttribute("advertNumber");
@@ -36,8 +37,7 @@ public class ChangeAdvertServlet extends HttpServlet {
         String newPrice = req.getParameter("newPrice");
         String newDescription = req.getParameter("newDescription");
         long idAdvert = currentAdvert.getId();
-        advertService.makeChangesInAdvert(idAdvert, newModel, newColor, newYear, newPrice,  newDescription);
-
+//        advertService.makeChangesInAdvert(idAdvert, newModel, newColor, newYear, newPrice,  newDescription);
 
 
         List<Advert> currentUserAdverts = (List<Advert>) req.getSession().getAttribute("currentUserAdverts");

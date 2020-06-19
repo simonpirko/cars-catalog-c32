@@ -7,11 +7,18 @@ import java.util.ArrayList;
 
 public class MessageStorage {
 
-
     private final static String URL_TABLES = "jdbc:postgresql://localhost:5432/postgres";
-    private final static String LOGIN_TABLES = "postgres";
-    private final static String PASS_TABLES = "1987Roll";
+    private final static String LOGIN_TABLES = "";
+    private final static String PASS_TABLES = "";
     Connection connection = null;
+
+    {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void addMessage(Message message) {
 

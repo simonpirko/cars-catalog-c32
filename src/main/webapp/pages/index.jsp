@@ -13,7 +13,7 @@
                 <form type="text" action="/messageServlet" method="get">
                         ${item}
 <%--                    Как передать айди объявления в сервлет?--%>
-                    <input type="text" name="${item.id}">
+<%--                    <input type="text" name="${item.id}">--%>
                     <button>Select</button>
                 </form>
             </li>
