@@ -43,6 +43,17 @@ public class AdvertService {
         return null;
     }
 
+    public List<Advert> getLastAdverts() {
+        List<Advert> list = new ArrayList<>();
+        List allAdverts = advertStorage.getAllAdverts();
+        for (int i = allAdverts.size()-1; i > allAdverts.size()-20 && i > -1; i--) {
+                Advert advert = (Advert) allAdverts.get(i);
+
+                list.add(advert);
+        }
+        return list;
+    }
+
 
     public Advert findAdvertById(long advertId) {
 //        advertStorage.findAdvertById(advertId);

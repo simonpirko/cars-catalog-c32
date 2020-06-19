@@ -23,7 +23,7 @@ public class AddAdvertServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AdvertService advertService = new AdvertService();
-        User currentUSer = (User) req.getSession().getAttribute("currentUSer");
+        User currentUSer = (User) req.getSession().getAttribute("currentUser");
         String model = req.getParameter("model");
         String color = req.getParameter("color");
         int year = Integer.parseInt(req.getParameter("year"));
@@ -31,6 +31,6 @@ public class AddAdvertServlet extends HttpServlet {
         long id_user = currentUSer.getId();
         advertService.saveAdvert(model, color, year, prise, id_user);
         req.setAttribute("messageAccount", "Advert successfully added");
-        getServletContext().getRequestDispatcher("pages/account.jsp").forward(req, resp);
+        resp.sendRedirect("/");
     }
 }
