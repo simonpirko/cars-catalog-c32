@@ -8,15 +8,8 @@
 
 
     <ul>
-        <c:forEach items="{requestScope.allAdverts}" var="item">
-            <li>
-                <form type="text" action="/messageServlet" method="get">
-                        ${item}
-<%--                    Как передать айди объявления в сервлет?--%>
-<%--                    <input type="text" name="${item.id}">--%>
-                    <button>Select</button>
-                </form>
-            </li>
+        <c:forEach items="${requestScope.advertList}" var="last">
+            <li>${last}</li>
         </c:forEach>
     </ul>
 
@@ -26,7 +19,7 @@
     </c:if>
 
     <c:if test="${sessionScope.checkAuth}">
-        <a href="/ads">Ads |</a>
+        <a href="/addAdvert">Add Advert |</a>
         <a href="/pers">PersonalAccount |</a>
         <a href="/logout">Logout |</a>
     </c:if>
