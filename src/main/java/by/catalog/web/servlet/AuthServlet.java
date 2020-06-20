@@ -29,5 +29,10 @@ public class AuthServlet extends HttpServlet {
             req.getSession().setAttribute("checkAuth", true);
             resp.sendRedirect("/");
         }
+        else {
+            String message = userService.authMessageService(login, password);
+            req.setAttribute("messageAuth", message);
+            getServletContext().getRequestDispatcher("/pages/auth.jsp").forward(req, resp);
+        }
     }
 }

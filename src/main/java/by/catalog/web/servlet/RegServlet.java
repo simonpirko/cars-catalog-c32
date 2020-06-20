@@ -27,8 +27,8 @@ public class RegServlet extends HttpServlet {
         String phone = req.getParameter("password");
         String role = "1";
         userService.saveUser(name, lastName, login, password, phone, role);
-        String message = "User " + login + "added!";
-        req.getSession().setAttribute("message", message);
+//        String message = "User " + login + "added!";
+//        req.getSession().setAttribute("message", message);
         resp.sendRedirect("/");
     }
 }
