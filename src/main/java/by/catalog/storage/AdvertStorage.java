@@ -121,5 +121,23 @@ public class AdvertStorage {
         return null;
     }
 
+    public List getModelByMark (String mark){
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from car s where s.mark = ?");
+            preparedStatement.setString(1, mark);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String model = resultSet.getString(2);
+                list.add(model);
+            }
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+            }
+
 
 }
