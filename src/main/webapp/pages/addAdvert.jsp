@@ -13,8 +13,8 @@
     <p>    <select name="mark">
         <option disabled>Enter model car</option>
         <option value="Audi"> Audi </option>
-        <option value="Mazda"> Audi A4 </option>
-        <option value="Mercedes"> Mazda MX-30 </option>
+        <option value="Mazda"> Mazda </option>
+        <option value="Mercedes"> Mercedes </option>
         </select></p>
     <button>Submit</button>
     </c:if>
