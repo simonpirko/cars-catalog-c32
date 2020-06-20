@@ -21,6 +21,15 @@ public class Advert {
     private long idUser;
     private List<Message> message;
 
+    public Advert(long id, String modelCar, String colorCar, int yearCar, double priceCar, long idUser) {
+        this.id = id;
+        this.modelCar = modelCar;
+        this.colorCar = colorCar;
+        this.yearCar = yearCar;
+        this.priceCar = priceCar;
+        this.idUser = idUser;
+    }
+
     public Advert(String modelCar, String colorCar, int yearCar, double priceCar, long idUser, List<Message> message) {
         this.modelCar = modelCar;
         this.colorCar = colorCar;

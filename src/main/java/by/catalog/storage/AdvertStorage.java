@@ -10,8 +10,8 @@ import java.util.List;
 public class AdvertStorage {
 
     private final static String URL_TABLES = "jdbc:postgresql://localhost:5432/postgres";
-    private final static String LOGIN_TABLES = "";
-    private final static String PASS_TABLES = "";
+    private final static String LOGIN_TABLES = "postgres";
+    private final static String PASS_TABLES = "1987Roll";
     Connection connection = null;
 
     {
@@ -86,6 +86,35 @@ public class AdvertStorage {
                 list.add(idAdvert);
             }
             return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List getAllAdverts() {
+        List<Advert> list= new ArrayList<>();
+        try {
+            long id = 0;
+            String model = "";
+            String color = "";
+            int year  = 0;
+            double price = 0;
+            long idUser = 0;
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from advert");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getLong(1);
+                model = resultSet.getString(2);
+                color = resultSet.getString(3);
+                year = resultSet.getInt(4);
+                price = resultSet.getDouble(5);
+                idUser = resultSet.getLong(6);
+                Advert advert = new Advert(id, model, color, year, price, idUser);
+                list.add(advert);
+            }
+            return  list;
         } catch (SQLException e) {
             e.printStackTrace();
         }
