@@ -92,13 +92,13 @@ public class AdvertStorage {
         return null;
     }
 
-    public List getAllAdverts() {
-        List<Advert> list= new ArrayList<>();
+    public List<Advert> getAllAdverts() {
+        List<Advert> list = new ArrayList<>();
         try {
             long id = 0;
             String model = "";
             String color = "";
-            int year  = 0;
+            int year = 0;
             double price = 0;
             long idUser = 0;
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
@@ -114,7 +114,7 @@ public class AdvertStorage {
                 Advert advert = new Advert(id, model, color, year, price, idUser);
                 list.add(advert);
             }
-            return  list;
+            return list;
         } catch (SQLException e) {
             e.printStackTrace();
         }
