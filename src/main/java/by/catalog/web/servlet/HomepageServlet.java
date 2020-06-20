@@ -1,6 +1,5 @@
 package by.catalog.web.servlet;
 
-import by.catalog.domain.Advert;
 import by.catalog.service.AdvertService;
 
 import javax.servlet.ServletException;
