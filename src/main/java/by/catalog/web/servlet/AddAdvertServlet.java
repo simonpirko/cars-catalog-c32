@@ -20,6 +20,10 @@ public class AddAdvertServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List listMark = advertService.returnSortMark();
+        req.setAttribute("listMark", listMark);
+        List<Integer> listYear = advertService.listYear();
+        req.setAttribute("listYear", listYear);
         String mark = req.getParameter("mark");
         if (mark != null){
         List listCar = (List) advertService.returnModelByMark(mark);

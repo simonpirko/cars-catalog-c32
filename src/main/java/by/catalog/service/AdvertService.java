@@ -65,5 +65,33 @@ public class AdvertService {
         return advertStorage.getModelByMark(mark);
     }
 
+    public List returnSortMark (){
+        List<String> listMark = new ArrayList<>();
+        boolean b = true;
+        List <String> allMark = advertStorage.getAllMark();
+        for (String mark :allMark) {
+            for (String mark1 : listMark) {
+                b = true;
+                if (mark.equals(mark1)){
+                    b = false;
+                    break;
+                }
+            }
+            if (b) {
+                listMark.add( mark);
+            }
+        }
+        return listMark;
+    }
+
+    public List<Integer> listYear (){
+        List<Integer> listYear = new ArrayList<>();
+        for (int i = 1980; i < 2021; i++) {
+            listYear.add(i);
+        }
+        return listYear;
+    }
+
+
 
 }
