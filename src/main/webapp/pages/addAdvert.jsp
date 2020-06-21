@@ -6,16 +6,18 @@
 </head>
 <body>
 
+<b><a href="/">Return</a></b>
 <h2>Create a new advert</h2>
 
 <c:if test="${!requestScope.checkModelCar}">
-<form action="/addAdvert" method="get">
-    <p>    <select name="mark">
-        <option disabled>Enter model car</option>
-        <option value="Audi"> Audi </option>
-        <option value="Mazda"> Mazda </option>
-        <option value="Mercedes"> Mercedes </option>
-        </select></p>
+    <ul>
+        <form action="/addAdvert" method="get">
+            Select mark car  <select name="mark">
+            <c:forEach items="${requestScope.listMark}" var="list">
+                <option value= "${list}"> ${list} </option>
+            </c:forEach>
+        </select>
+    </ul>
     <button>Submit</button>
     </c:if>
 
@@ -29,15 +31,18 @@
             </select>
     </ul>
     <p> Color car <input type="text" name="color" placeholder="Color"></p>
-    <p> Production year <input type="text" name="year" placeholder="Year"></p>
+    <ul>
+        <form action="/addAdvert" method="post">
+            Select production year  <select name="year">
+            <c:forEach items="${requestScope.listYear}" var="list">
+                <option value= "${list}"> ${list} </option>
+            </c:forEach>
+        </select>
+    </ul>
     <p> Prise in BYN <input type="text" name="prise" placeholder="Prise"></p>
     <button>Submit</button>
 </c:if>
-
-
 </form>
-
 <b>${requestScope.checkAdvert}</b>
-
 </body>
 </html>

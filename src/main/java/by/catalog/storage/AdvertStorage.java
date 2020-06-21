@@ -139,5 +139,22 @@ public class AdvertStorage {
         return null;
             }
 
+    public List getAllMark (){
+        ArrayList <String> listMark = new ArrayList<>();
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from car");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String mark = resultSet.getString(1);
+                listMark.add(mark);
+            }
+            return listMark;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }
