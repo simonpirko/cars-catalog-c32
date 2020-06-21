@@ -60,4 +60,13 @@ create table useradvertlist
 alter table useradvertlist
     owner to postgres;
 
+create table car
+(
+    mark  varchar,
+    model varchar
+);
+
+alter table car
+    owner to postgres;
+
 

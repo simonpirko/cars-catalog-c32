@@ -15,17 +15,37 @@ public class UserService {
 
     public User checkPasswordByLogin(String login, String password) {
         User userForCheck = userStorage.getUserByLogin(login);
-        if (password.equals(userForCheck.getPassword())) {
-            return userForCheck;
-        } else return null;
+        if (userForCheck == null){
+            return null;
+        }
+        else {
+            if (password.equals(userForCheck.getPassword())) {
+                return userForCheck;
+            } else return null;
+        }
     }
 
-    public boolean checkUserByLogin(String login) {
+    public boolean checkUserByLogin (String login){
         return userStorage.checkByLogin(login);
     }
 
 
     public void updateUser(User user) {
 
+    }
+
+    public String authMessageService(String login, String password) {
+        User user = userStorage.getUserByLogin(login);
+        String message = null;
+        if (user == null) {
+            message = "User " + login + " not found";
+
+        } else {
+            if (!user.getPassword().equals(password)) {
+                message = "Password not correct";
+
+            }
+        }
+        return message;
     }
 }

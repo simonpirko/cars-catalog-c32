@@ -7,6 +7,7 @@
         It's Cars Catalog ver.1</h1>
 
 
+
     <ul>
         <c:forEach items="${requestScope.advertList}" var="last">
             <li>${last}</li>

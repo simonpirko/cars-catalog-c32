@@ -17,15 +17,30 @@ public class RegFilter extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
+        String name = req.getParameter("name");
+        String lastName = req.getParameter("lastName");
         String login = req.getParameter("login");
-        if (true
-//                !userService.checkUserByLogin(login)
-        ) {
+        String password = req.getParameter("password");
+        String phone = req.getParameter("password");
+        if (req.getMethod().equals("GET")) {
             chain.doFilter(req, res);
-        } else {
-            String message = "User exists. Try another login";
-            req.setAttribute("message", message);
-            getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req, res);
+        }
+        if (req.getMethod().equals("POST")) {
+            boolean b1 = name.equals("") || lastName.equals("") || login.equals("") || password.equals("") || phone.equals("");
+            boolean b2 = userService.checkUserByLogin(login);
+            if (b1) {
+                String message = "Enter all required data";
+                req.setAttribute("messageReg", message);
+                getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req, res);
+            }
+            if (b2) {
+                String message = "Login exists. Try another login";
+                req.setAttribute("messageReg", message);
+                getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req, res);
+            }
+            if (b1 || !b2) {
+                chain.doFilter(req, res);
+            }
         }
     }
 }

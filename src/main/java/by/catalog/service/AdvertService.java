@@ -61,5 +61,9 @@ public class AdvertService {
         return null;
     }
 
+    public List returnModelByMark(String mark){
+        return advertStorage.getModelByMark(mark);
+    }
+
 
 }

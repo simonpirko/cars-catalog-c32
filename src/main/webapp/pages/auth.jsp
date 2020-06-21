@@ -18,6 +18,8 @@
     <input type="text" name="password" placeholder="Password">
     <button>Submit</button>
 </form>
+<p>${requestScope.messageAuth}</p>
+<a href="/">Return</a>
 
 
 </body>
