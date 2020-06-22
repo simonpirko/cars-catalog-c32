@@ -61,11 +61,11 @@ public class AdvertService {
         return null;
     }
 
-    public List returnModelByMark(String mark){
+    public List <String > returnModelByMark(String mark){
         return advertStorage.getModelByMark(mark);
     }
 
-    public List returnSortMark (){
+    public List <String> returnSortMark (){
         List<String> listMark = new ArrayList<>();
         boolean b = true;
         List <String> allMark = advertStorage.getAllMark();

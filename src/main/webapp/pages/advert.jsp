@@ -5,13 +5,9 @@
 </head>
 <body>
 
-<%--<ul>--%>
-<%--    <c:forEach items="${requestScope.currentAdvert}" var="item">--%>
-<%--        <li>${item}</li>--%>
-<%--    </c:forEach>--%>
-<%--</ul>--%>
 
-<h3>Имя владельца</h3> ${requestScope.name}
+<h3>Имя владельца</h3>
+${requestScope.name}
 <h3>Фамилия владельца</h3>
 ${requestScope.lastName}
 <h3>Телефон владельца</h3>
@@ -31,7 +27,7 @@ ${requestScope.price}
     </c:forEach>
 </ul>
 
-<%--Добавить список всех доступных комментов--%>
+Добавить список всех доступных комментов
 
 
 
