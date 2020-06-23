@@ -24,6 +24,7 @@ public class AdvertServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long idAdvert = Long.parseLong( req.getParameter("id"));
+        req.setAttribute("id", idAdvert);
         Advert advert = advertService.getAdvert(idAdvert);
         String modelFromAdvert = advert.getModelCar();
         req.setAttribute("model", modelFromAdvert);
@@ -41,7 +42,7 @@ public class AdvertServlet extends HttpServlet {
         double price = advert.getPriceCar();
         req.setAttribute("price", price);
         List<Message> userMessages = messageStorage.returnMessageByIdAdvert(idAdvert);
-        req.setAttribute("messges", userMessages);
+        req.setAttribute("messages", userMessages);
         req.getServletContext().getRequestDispatcher("/pages/advert.jsp").forward(req, resp);
     }
 }

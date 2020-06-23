@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -21,24 +22,27 @@ ${requestScope.year}
 <h3>Цена автомобиля</h3>
 ${requestScope.price}
 
+
+<c:if test="${sessionScope.checkAuth}">
+
+    <h3>Сообщения</h3>
 <ul>
-    <c:forEach items="${requestScope.message}" var="item">
+    <c:forEach items="${requestScope.messages}" var="item">
         <li>${item}</li>
     </c:forEach>
 </ul>
 
-Добавить список всех доступных комментов
-
 
 
 <h3>Add message</h3>
-<form name="addMessage" action="/MessageServlet" method="post">
+<form name="addMessage" action="/MessageServlet?id=${requestScope.id}" method="post">
     <input type="text" name="addMessage" placeholder="Add message">
     <button>Submit</button>
 </form>
-
+</c:if>
 
 <a href="/">Go to main page</a>
 
 </body>
 </html>
+

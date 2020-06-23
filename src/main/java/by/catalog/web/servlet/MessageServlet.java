@@ -19,21 +19,18 @@ public class MessageServlet extends HttpServlet {
     AdvertService advertService = new AdvertService();
     MessageService messageService = new MessageService();
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//
+//    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String addMessage = req.getParameter("addMessage");
-        Advert currentAdvert = (Advert) req.getAttribute("currentAdvert");
-        long idCurrentAdvert = currentAdvert.getId();
+        long idAdvert = Long.parseLong(req.getParameter("id"));
         User currentUser = (User) req.getSession().getAttribute("currentUser");
         long idCurrentUser = currentUser.getId();
-        messageService.saveMessage(idCurrentAdvert, idCurrentUser, addMessage);
-        // FIXME: 6/13/20
-//        advertService.addMessageToAdvertById(currentMessageId, addMessage);
-        resp.sendRedirect("/advert");
+        messageService.saveMessage(idAdvert, idCurrentUser, addMessage);
+        resp.sendRedirect("/advert?id=" + idAdvert);
     }
 }
