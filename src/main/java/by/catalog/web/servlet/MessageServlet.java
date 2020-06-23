@@ -4,6 +4,7 @@ import by.catalog.domain.Advert;
 import by.catalog.domain.User;
 import by.catalog.service.AdvertService;
 import by.catalog.service.MessageService;
+import by.catalog.service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

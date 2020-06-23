@@ -29,7 +29,6 @@ public class Message {
 
         UserService userService = new UserService();
         User user = userService.returnUserById(idUser);
-
         return user.getName() + " date " + date + " Text " + body;
     }
 }

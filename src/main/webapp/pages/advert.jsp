@@ -8,19 +8,19 @@
 
 
 <h3>Имя владельца</h3>
-${requestScope.name}
+${requestScope.user.name}
 <h3>Фамилия владельца</h3>
-${requestScope.lastName}
+${requestScope.user.lastName}
 <h3>Телефон владельца</h3>
-${requestScope.phone}
+${requestScope.user.phone}
 <h3>Модель автомобиля</h3>
-${requestScope.model}
+${requestScope.advert.modelCar}
 <h3>Цвет автомобиля</h3>
-${requestScope.color}
+${requestScope.advert.colorCar}
 <h3>Год автомобиля</h3>
-${requestScope.year}
+${requestScope.advert.yearCar}
 <h3>Цена автомобиля</h3>
-${requestScope.price}
+${requestScope.advert.priceCar}
 
 
 <c:if test="${sessionScope.checkAuth}">
@@ -28,7 +28,7 @@ ${requestScope.price}
     <h3>Сообщения</h3>
 <ul>
     <c:forEach items="${requestScope.messages}" var="item">
-        <li>${item}</li>
+        <li>${item.body}</li>
     </c:forEach>
 </ul>
 
