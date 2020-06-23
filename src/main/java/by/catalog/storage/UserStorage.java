@@ -21,13 +21,6 @@ public class UserStorage {
 
     Connection connection = null;
 
-    {
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void addUser(User user) {
         try {
@@ -57,6 +50,26 @@ public class UserStorage {
             long id = resultSet.getLong(1);
             String name = resultSet.getString(2);
             String lastName = resultSet.getString(3);
+            String password = resultSet.getString(5);
+            String phone = resultSet.getString(6);
+            String role = resultSet.getString(7);
+            return new User(id, name, lastName, login, password, phone, role);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public User getUserById(long id) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from userscarcatalog s where s.id = ?");
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            String name = resultSet.getString(2);
+            String lastName = resultSet.getString(3);
+            String login = resultSet.getString(4);
             String password = resultSet.getString(5);
             String phone = resultSet.getString(6);
             String role = resultSet.getString(7);

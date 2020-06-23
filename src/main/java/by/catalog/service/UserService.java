@@ -25,6 +25,10 @@ public class UserService {
         }
     }
 
+    public User returnUserById(Long id){
+        return userStorage.getUserById(id);
+    }
+
     public boolean checkUserByLogin (String login){
         return userStorage.checkByLogin(login);
     }
