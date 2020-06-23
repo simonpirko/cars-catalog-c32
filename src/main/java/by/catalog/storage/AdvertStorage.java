@@ -43,7 +43,7 @@ public class AdvertStorage {
         MessageStorage messageStorage = new MessageStorage();
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from advert s where s.idadvert = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from advert s where s.id = ?");
             preparedStatement.setLong(1, idAdvert);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -121,7 +121,7 @@ public class AdvertStorage {
         return null;
     }
 
-    public List getModelByMark (String mark){
+    public List <String> getModelByMark (String mark){
         ArrayList<String> list = new ArrayList<>();
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
@@ -139,7 +139,7 @@ public class AdvertStorage {
         return null;
             }
 
-    public List getAllMark (){
+    public List <String> getAllMark (){
         ArrayList <String> listMark = new ArrayList<>();
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);

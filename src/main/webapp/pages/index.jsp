@@ -10,7 +10,7 @@
 
     <ul>
         <c:forEach items="${requestScope.advertList}" var="last">
-            <li>${last}</li>
+            <li><a href="/advert?id=${last.id}"> ${last} </li>
         </c:forEach>
     </ul>
 
