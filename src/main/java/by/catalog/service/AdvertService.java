@@ -8,7 +8,7 @@ import java.util.List;
 
 public class AdvertService {
 
-    AdvertStorage advertStorage = new AdvertStorage();
+    private AdvertStorage advertStorage = new AdvertStorage();
 
     public void saveAdvert(String model, String color, int year, double price, long idUser) {
         AdvertStorage advertStorage = new AdvertStorage();

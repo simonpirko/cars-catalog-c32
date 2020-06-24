@@ -1,6 +1,7 @@
 package by.catalog.storage;
 
 import by.catalog.domain.Message;
+import by.catalog.domain.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -50,7 +51,9 @@ public class MessageStorage {
                 long idUser = resultSet.getLong(3);
                 String body = resultSet.getString(4);
                 String date = resultSet.getString(5);
-                listMessage.add(new Message(id, idUser, idAdvert, body, date));
+                UserStorage userStorage = new UserStorage();
+                User userById = userStorage.getUserById(idUser);
+                listMessage.add(new Message(id, idAdvert, userById.getName(), body, date));
             }
             connection.close();
             return listMessage;

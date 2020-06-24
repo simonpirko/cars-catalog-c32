@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class MessageService {
-    MessageStorage messageStorage = new MessageStorage();
+    private MessageStorage messageStorage = new MessageStorage();
 
     public void saveMessage(long idAdvert, long idUser, String body) {
         Calendar calendar = new GregorianCalendar();
@@ -17,7 +17,6 @@ public class MessageService {
     }
 
     public List<Message> getMessage(long idAdvert) {
-
         return messageStorage.returnMessageByIdAdvert(idAdvert);
     }
 }
