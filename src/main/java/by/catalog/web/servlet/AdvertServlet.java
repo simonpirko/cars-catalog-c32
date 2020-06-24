@@ -24,24 +24,13 @@ public class AdvertServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long idAdvert = Long.parseLong( req.getParameter("id"));
+        req.setAttribute("id", idAdvert);
         Advert advert = advertService.getAdvert(idAdvert);
-        String modelFromAdvert = advert.getModelCar();
-        req.setAttribute("model", modelFromAdvert);
-        String colorFromAdvert = advert.getColorCar();
-        req.setAttribute("color", colorFromAdvert);
+        req.setAttribute("advert", advert);
         User user = (User) userService.returnUserById(advert.getIdUser());
-        String nameFromAdvert = user.getName();
-        req.setAttribute("name", nameFromAdvert);
-        String lastNameFromAdvert = user.getLastName();
-        req.setAttribute("lastName", lastNameFromAdvert);
-        String phoneFromAdvert = user.getPhone();
-        req.setAttribute("phone", phoneFromAdvert);
-        int yearFromAdvert = advert.getYearCar();
-        req.setAttribute("year", yearFromAdvert);
-        double price = advert.getPriceCar();
-        req.setAttribute("price", price);
+        req.setAttribute("user", user);
         List<Message> userMessages = messageStorage.returnMessageByIdAdvert(idAdvert);
-        req.setAttribute("messges", userMessages);
+        req.setAttribute("messages", userMessages);
         req.getServletContext().getRequestDispatcher("/pages/advert.jsp").forward(req, resp);
     }
 }

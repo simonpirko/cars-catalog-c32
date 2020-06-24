@@ -50,7 +50,7 @@ public class MessageStorage {
                 long idUser = resultSet.getLong(3);
                 String body = resultSet.getString(4);
                 String date = resultSet.getString(5);
-                listMessage.add(new Message(id, idUser, idAdvert, body, date));
+                listMessage.add(new Message(id, idAdvert, idUser, body, date));
             }
             connection.close();
             return listMessage;

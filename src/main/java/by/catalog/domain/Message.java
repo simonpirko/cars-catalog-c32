@@ -1,5 +1,6 @@
 package by.catalog.domain;
 
+import by.catalog.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,10 +26,9 @@ public class Message {
 
     @Override
     public String toString() {
-        return "Message{" +
 
-                ", body='" + body + '\'' +
-                ", date='" + date + '\'' +
-                '}';
+        UserService userService = new UserService();
+        User user = userService.returnUserById(idUser);
+        return user.getName() + " date " + date + " Text " + body;
     }
 }

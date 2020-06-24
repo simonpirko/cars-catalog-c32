@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -7,38 +8,41 @@
 
 
 <h3>Имя владельца</h3>
-${requestScope.name}
+${requestScope.user.name}
 <h3>Фамилия владельца</h3>
-${requestScope.lastName}
+${requestScope.user.lastName}
 <h3>Телефон владельца</h3>
-${requestScope.phone}
+${requestScope.user.phone}
 <h3>Модель автомобиля</h3>
-${requestScope.model}
+${requestScope.advert.modelCar}
 <h3>Цвет автомобиля</h3>
-${requestScope.color}
+${requestScope.advert.colorCar}
 <h3>Год автомобиля</h3>
-${requestScope.year}
+${requestScope.advert.yearCar}
 <h3>Цена автомобиля</h3>
-${requestScope.price}
+${requestScope.advert.priceCar}
 
+
+<c:if test="${sessionScope.checkAuth}">
+
+    <h3>Сообщения</h3>
 <ul>
-    <c:forEach items="${requestScope.message}" var="item">
-        <li>${item}</li>
+    <c:forEach items="${requestScope.messages}" var="item">
+        <li>${item.body}</li>
     </c:forEach>
 </ul>
-
-Добавить список всех доступных комментов
 
 
 
 <h3>Add message</h3>
-<form name="addMessage" action="/MessageServlet" method="post">
+<form name="addMessage" action="/MessageServlet?id=${requestScope.id}" method="post">
     <input type="text" name="addMessage" placeholder="Add message">
     <button>Submit</button>
 </form>
-
+</c:if>
 
 <a href="/">Go to main page</a>
 
 </body>
 </html>
+
