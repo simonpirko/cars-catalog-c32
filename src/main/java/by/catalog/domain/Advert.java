@@ -52,9 +52,9 @@ public class Advert {
 
         UserService userService = new UserService();
         return
-                "Advert{" +
-                        ", modelCar='" + modelCar + '\'' +
-                        ", colorCar='" + colorCar + '\'' +
+
+                        ", Car model ='" + modelCar + '\'' +
+                        ", Car color ='" + colorCar + '\'' +
                         ", yearCar=" + yearCar +
                         ", priceCar=" + priceCar +
                         '}';
