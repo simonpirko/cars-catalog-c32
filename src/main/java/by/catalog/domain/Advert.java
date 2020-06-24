@@ -47,6 +47,8 @@ public class Advert {
         this.idUser = idUser;
     }
 
+
+
     @Override
     public String toString() {
 

@@ -27,12 +27,10 @@ ${requestScope.advert.priceCar}
 
     <h3>Сообщения</h3>
 <ul>
-    <c:forEach items="${requestScope.messages}" var="item">
-        <li>${item.body}</li>
+    <c:forEach items="${requestScope.advert.message}" var="item">
+        <li>${item.nameUser} ${item.date} ${item.body}</li>
     </c:forEach>
 </ul>
-
-
 
 <h3>Add message</h3>
 <form name="addMessage" action="/MessageServlet?id=${requestScope.id}" method="post">
