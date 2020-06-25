@@ -8,7 +8,7 @@ import java.util.List;
 
 public class AdvertService {
 
-    private AdvertStorage advertStorage = new AdvertStorage();
+    private final AdvertStorage advertStorage = new AdvertStorage();
 
     public void saveAdvert(String model, String color, int year, double price, long idUser) {
         AdvertStorage advertStorage = new AdvertStorage();
@@ -61,37 +61,36 @@ public class AdvertService {
         return null;
     }
 
-    public List <String > returnModelByMark(String mark){
+    public List<String> returnModelByMark(String mark) {
         return advertStorage.getModelByMark(mark);
     }
 
-    public List <String> returnSortMark (){
+    public List<String> returnSortMark() {
         List<String> listMark = new ArrayList<>();
         boolean b = true;
-        List <String> allMark = advertStorage.getAllMark();
-        for (String mark :allMark) {
+        List<String> allMark = advertStorage.getAllMark();
+        for (String mark : allMark) {
             for (String mark1 : listMark) {
                 b = true;
-                if (mark.equals(mark1)){
+                if (mark.equals(mark1)) {
                     b = false;
                     break;
                 }
             }
             if (b) {
-                listMark.add( mark);
+                listMark.add(mark);
             }
         }
         return listMark;
     }
 
-    public List<Integer> listYear (){
+    public List<Integer> listYear() {
         List<Integer> listYear = new ArrayList<>();
         for (int i = 1980; i < 2021; i++) {
             listYear.add(i);
         }
         return listYear;
     }
-
 
 
 }

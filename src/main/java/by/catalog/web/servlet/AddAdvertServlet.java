@@ -25,11 +25,11 @@ public class AddAdvertServlet extends HttpServlet {
         List<Integer> listYear = advertService.listYear();
         req.setAttribute("listYear", listYear);
         String mark = req.getParameter("mark");
-        if (mark != null){
-        List listCar = (List) advertService.returnModelByMark(mark);
-        req.setAttribute("checkModelCar", true);
-        req.setAttribute("listCar", listCar);
-}
+        if (mark != null) {
+            List listCar = advertService.returnModelByMark(mark);
+            req.setAttribute("checkModelCar", true);
+            req.setAttribute("listCar", listCar);
+        }
         getServletContext().getRequestDispatcher("/pages/addAdvert.jsp").forward(req, resp);
     }
 

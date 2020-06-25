@@ -15,7 +15,7 @@ import java.util.List;
 
 public class AddAdvertFilter extends HttpFilter {
 
-    AdvertService advertService= new AdvertService();
+    AdvertService advertService = new AdvertService();
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException, NumberFormatException {
