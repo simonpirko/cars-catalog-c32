@@ -26,12 +26,14 @@ public class AdvertStorage {
 
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into advert (id, model, color, yearcar, price, id_user) values (default , ? , ? , ? , ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into advert (id, model, color, yearcar, price, id_user, dateadvert, specificationadvert) values (default , ? , ? , ? , ?, ?, ?, ?)");
             preparedStatement.setString(1, advert.getModelCar());
             preparedStatement.setString(2, advert.getColorCar());
             preparedStatement.setInt(3, advert.getYearCar());
             preparedStatement.setDouble(4, advert.getPriceCar());
             preparedStatement.setLong(5, advert.getIdUser());
+            preparedStatement.setString(6, advert.getDateAdvert());
+            preparedStatement.setString(7, advert.getSpecificationAdvert());
             preparedStatement.executeQuery();
             connection.close();
         } catch (SQLException e) {
@@ -53,8 +55,10 @@ public class AdvertStorage {
             int yearCar = resultSet.getInt(4);
             double price = resultSet.getDouble(5);
             long idUser = resultSet.getLong(6);
+            String date = resultSet.getString(7);
+            String specification = resultSet.getString(8);
             List<Message> messages = messageStorage.returnMessageByIdAdvert(idAdvert);
-            return new Advert(id, model, color, yearCar, price, idUser, messages);
+            return new Advert(id, model, color, yearCar, price, idUser, date, specification, messages);
         } catch (SQLException e) {
             e.printStackTrace();
         }

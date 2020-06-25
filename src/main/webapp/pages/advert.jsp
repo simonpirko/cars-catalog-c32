@@ -21,7 +21,10 @@ ${requestScope.advert.colorCar}
 ${requestScope.advert.yearCar}
 <h3>Цена автомобиля</h3>
 ${requestScope.advert.priceCar}
-
+<h3>Описание</h3>
+${requestScope.advert.specificationAdvert}
+<h3>Дата регистрации</h3>
+${requestScope.advert.dateAdvert}
 
 <c:if test="${sessionScope.checkAuth}">
 
