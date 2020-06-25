@@ -125,7 +125,7 @@ public class AdvertStorage {
         return null;
     }
 
-    public List <String> getModelByMark (String mark){
+    public List<String> getModelByMark(String mark) {
         ArrayList<String> list = new ArrayList<>();
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
@@ -141,10 +141,10 @@ public class AdvertStorage {
             e.printStackTrace();
         }
         return null;
-            }
+    }
 
-    public List <String> getAllMark (){
-        ArrayList <String> listMark = new ArrayList<>();
+    public List<String> getAllMark() {
+        ArrayList<String> listMark = new ArrayList<>();
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
             PreparedStatement preparedStatement = connection.prepareStatement("select * from car");

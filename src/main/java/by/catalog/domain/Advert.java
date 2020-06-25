@@ -49,7 +49,6 @@ public class Advert {
         this.idUser = idUser;
     }
 
-
     public Advert(String modelCar, String colorCar, int yearCar, double priceCar, long idUser, String dateAdvert, String specificationAdvert) {
         this.modelCar = modelCar;
         this.colorCar = colorCar;
@@ -59,12 +58,11 @@ public class Advert {
         this.dateAdvert = dateAdvert;
         this.specificationAdvert = specificationAdvert;
     }
-
     @Override
     public String toString() {
 
         UserService userService = new UserService();
         return
-                  "Model car - " + modelCar + ", color car - " + colorCar + ", year car - " + yearCar +", price car - " + priceCar;
+                "Model car - " + modelCar + ", color car - " + colorCar + ", year car - " + yearCar + ", price car - " + priceCar;
     }
 }
