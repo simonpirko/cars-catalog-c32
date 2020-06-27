@@ -49,15 +49,7 @@ public class Advert {
         this.idUser = idUser;
     }
 
-    public Advert(String modelCar, String colorCar, int yearCar, double priceCar, long idUser, String dateAdvert, String specificationAdvert) {
-        this.modelCar = modelCar;
-        this.colorCar = colorCar;
-        this.yearCar = yearCar;
-        this.priceCar = priceCar;
-        this.idUser = idUser;
-        this.dateAdvert = dateAdvert;
-        this.specificationAdvert = specificationAdvert;
-    }
+
     @Override
     public String toString() {
 
