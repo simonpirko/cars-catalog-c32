@@ -13,6 +13,8 @@ ${requestScope.user.name}
 ${requestScope.user.lastName}
 <h3>Телефон владельца</h3>
 ${requestScope.user.phone}
+<h3>Марка автомобтля</h3>
+${requestScope.advert.markCar}
 <h3>Модель автомобиля</h3>
 ${requestScope.advert.modelCar}
 <h3>Цвет автомобиля</h3>
