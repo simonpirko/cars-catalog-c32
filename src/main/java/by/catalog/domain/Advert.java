@@ -14,11 +14,11 @@ import java.util.List;
 public class Advert {
 
     private long id;
-    private String modelCar;
-    private String colorCar;
-    private int yearCar;
-    private double priceCar;
-    private long idUser;
+    private final String modelCar;
+    private final String colorCar;
+    private final int yearCar;
+    private final double priceCar;
+    private final long idUser;
     private List<Message> message;
 
     public Advert(long id, String modelCar, String colorCar, int yearCar, double priceCar, long idUser) {
