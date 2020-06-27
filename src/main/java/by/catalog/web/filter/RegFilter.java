@@ -38,7 +38,7 @@ public class RegFilter extends HttpFilter {
                 req.setAttribute("messageReg", message);
                 getServletContext().getRequestDispatcher("/pages/reg.jsp").forward(req, res);
             }
-            if (b1 || !b2) {
+            if (!b1 || !b2) {
                 chain.doFilter(req, res);
             }
         }

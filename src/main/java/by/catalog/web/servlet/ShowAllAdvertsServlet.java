@@ -16,10 +16,10 @@ public class ShowAllAdvertsServlet extends HttpServlet {
 
     AdvertService advertService = new AdvertService();
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Advert> allAdverts = advertService.findAllAdverts();
-        req.setAttribute("allAdverts", allAdverts);
-        resp.sendRedirect("/index");
-    }
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        List<Advert> allAdverts = advertService.findAllAdverts();
+//        req.setAttribute("allAdverts", allAdverts);
+//        resp.sendRedirect("/index");
+//    }
 }
