@@ -12,11 +12,12 @@
 <c:if test="${!requestScope.checkModelCar}">
     <ul>
         <form action="/addAdvert" method="get">
-            Select mark car  <select name="mark">
+            <li> Select mark car  <select name="mark">
             <c:forEach items="${requestScope.listMark}" var="list">
                 <option value= "${list}"> ${list} </option>
             </c:forEach>
         </select>
+            </li>
     </ul>
     <button>Submit</button>
     </c:if>
@@ -24,23 +25,36 @@
 <c:if test="${requestScope.checkModelCar}">
     <ul>
          <form action="/addAdvert" method="post">
-             Select model car  <select name="model">
+             <li>Select model car  <select name="model">
                 <c:forEach items="${requestScope.listCar}" var="last">
                     <option value= "${last}"> ${last} </option>
                 </c:forEach>
             </select>
-    </ul>
-    <p> Color car <input type="text" name="color" placeholder="Color"></p>
-    <ul>
-        <form action="/addAdvert" method="post">
-            Select production year  <select name="year">
+             </li>
+
+             <li>Select color car  <select name="color">
+    <c:forEach items="${requestScope.colorList}" var="list">
+        <option value= "${list}"> ${list} </option>
+    </c:forEach>
+             </select>
+             </li>
+
+             <li>Select production year  <select name="year">
             <c:forEach items="${requestScope.listYear}" var="list">
                 <option value= "${list}"> ${list} </option>
             </c:forEach>
         </select>
+             </li>
+
     </ul>
+
     <p> Prise in BYN <input type="text" name="prise" placeholder="Prise"></p>
+
+    <p> Specification <input type="text" name="specificationAdvert" ></p>
+
     <button>Submit</button>
+
+
 </c:if>
 </form>
 <b>${requestScope.checkAdvert}</b>

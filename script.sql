@@ -4,12 +4,14 @@ alter sequence messageforadvert_date_seq owner to postgres;
 
 create table advert
 (
-    id      serial not null,
-    model   varchar,
-    color   varchar,
-    yearcar integer,
-    price   double precision,
-    id_user integer
+    id                  serial not null,
+    model               varchar,
+    color               varchar,
+    yearcar             integer,
+    price               double precision,
+    id_user             integer,
+    dateadvert          varchar,
+    specificationadvert varchar
 );
 
 alter table advert

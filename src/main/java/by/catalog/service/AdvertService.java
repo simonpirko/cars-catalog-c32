@@ -3,16 +3,21 @@ package by.catalog.service;
 import by.catalog.domain.Advert;
 import by.catalog.storage.AdvertStorage;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AdvertService {
 
     private final AdvertStorage advertStorage = new AdvertStorage();
 
-    public void saveAdvert(String model, String color, int year, double price, long idUser) {
+    public void saveAdvert(String model, String color, int year, double price, long idUser, String specificationAdvert) {
         AdvertStorage advertStorage = new AdvertStorage();
-        advertStorage.addAdvert(new Advert(model, color, year, price, idUser));
+        Date dateNow = new Date();
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("E dd.MM.yyyy ' время' hh:mm");
+        String date = formatForDateNow.format(dateNow).toString();
+        advertStorage.addAdvert(new Advert(model, color, year, price, idUser, date, specificationAdvert));
     }
 
 
@@ -90,6 +95,10 @@ public class AdvertService {
             listYear.add(i);
         }
         return listYear;
+    }
+
+    public String[] colorList (){
+        return new String[]{"black", "white", "silver", "brown", "gray", "red", "blue"};
     }
 
 
