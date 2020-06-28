@@ -29,7 +29,6 @@
         <form action="/addAdvert" method="post">
             <li>
                 <select name="model">
-
                     <option value="${requestScope.mark}">${requestScope.mark}</option>
                 </select>
             </li>

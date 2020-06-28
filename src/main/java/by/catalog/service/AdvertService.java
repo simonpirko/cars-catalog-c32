@@ -78,17 +78,17 @@ public class AdvertService {
         return listBySearch;
     }
 
-//    public List<Advert> findAdvertByModel(String mark, String model) {
-//        List<Advert> listBySearch = new ArrayList<>();
-//        List markAdverts = findAdvertByMark(mark);
-//        for (int i = 0; i < markAdverts.size(); i++) {
-//            Advert advert = (Advert) markAdverts.get(i);
-//            if (advert.getMarkCar().equals(mark)) {
-//                listBySearch.add(advert);
-//            }
-//        }
-//        return listBySearch;
-//    }
+    public List<Advert> findAdvertByModel(String mark, String model) {
+        List<Advert> listBySearch = new ArrayList<>();
+        List markAdverts = findAdvertByMark(mark);
+        for (int i = 0; i < markAdverts.size(); i++) {
+            Advert advert = (Advert) markAdverts.get(i);
+            if (advert.getModelCar().equals(model)) {
+                listBySearch.add(advert);
+            }
+        }
+        return listBySearch;
+    }
 
     public List<String> getAdvertMarks() {
         return advertStorage.getAllAdvertMark();
