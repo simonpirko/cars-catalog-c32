@@ -33,8 +33,8 @@ public class UserService {
     }
 
 
-    public void updateUser(User user) {
-
+    public void editUserById(User user) {
+        userStorage.updateUserById(user.getId(), user);
     }
 
     public String authMessageService(String login, String password) {

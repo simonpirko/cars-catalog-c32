@@ -15,7 +15,7 @@
 
     <c:if test="${sessionScope.checkAuth}">
         <a href="/addAdvert">Add Advert |</a>
-        <a href="/pers">PersonalAccount |</a>
+        <a href="/pers">Personal Account |</a>
         <a href="/logout">Logout |</a>
     </c:if>
 

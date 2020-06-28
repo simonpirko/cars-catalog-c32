@@ -19,7 +19,7 @@ public class UserStorage {
         }
     }
 
-    Connection connection = null;
+    private Connection connection = null;
 
 
     public void addUser(User user) {
@@ -93,6 +93,24 @@ public class UserStorage {
             e.printStackTrace();
         }
         return false;
+    }
+
+
+    public void updateUserById (long id, User user) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("update userscarcatalog set name = ?, lastName = ?, login = ?, password = ?, phone= ? where id = ?");
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getLastName());
+            preparedStatement.setString(3, user.getLogin());
+            preparedStatement.setString(4, user.getPassword());
+            preparedStatement.setString(5, user.getPhone());
+            preparedStatement.setLong(6, id);
+            preparedStatement.executeUpdate();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -42,11 +42,12 @@ public class AdvertService {
         return list;
     }
 
-    public List<Advert> findAllAdverts() {
-//        return advertStorage.findAllAdverts();
-        // FIXME: 6/13/20
-        return null;
-    }
+
+//    public List<Advert> findAllAdverts() {
+////        return advertStorage.findAllAdverts();
+//        // FIXME: 6/13/20
+//        return null;
+//    }
 
     public List<Advert> getLastAdverts() {
         List<Advert> list = new ArrayList<>();
