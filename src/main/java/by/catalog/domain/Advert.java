@@ -23,6 +23,16 @@ public class Advert {
     private String specificationAdvert;
     private List<Message> message;
 
+    public Advert(String modelCar, String colorCar, int yearCar, double priceCar, long idUser, String dateAdvert, String specificationAdvert) {
+        this.modelCar = modelCar;
+        this.colorCar = colorCar;
+        this.yearCar = yearCar;
+        this.priceCar = priceCar;
+        this.idUser = idUser;
+        this.dateAdvert = dateAdvert;
+        this.specificationAdvert = specificationAdvert;
+    }
+
     public Advert(long id, String modelCar, String colorCar, int yearCar, double priceCar, long idUser) {
         this.id = id;
         this.modelCar = modelCar;
@@ -48,6 +58,8 @@ public class Advert {
         this.priceCar = priceCar;
         this.idUser = idUser;
     }
+
+
 
 
     @Override

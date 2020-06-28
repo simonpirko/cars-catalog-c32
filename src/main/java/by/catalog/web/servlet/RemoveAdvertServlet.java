@@ -1,6 +1,5 @@
 package by.catalog.web.servlet;
 
-import by.catalog.domain.Advert;
 import by.catalog.domain.User;
 import by.catalog.service.AdvertService;
 
@@ -11,20 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "SaveAdvertServlet", urlPatterns = "/saveAdvert")
-public class SaveAdvertServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/removeAdvert")
+public class RemoveAdvertServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //сюда приходит с главной страницы запрос на добавление объявления автотизованного юзера
-        ;
+        User currentUser = (User) req.getSession().getAttribute("currentUser");
         String id = req.getParameter("id");
         long idAdvert = Long.parseLong(id);
-        User currentUser = (User) req.getSession().getAttribute("currentUser");
-        long idCurrentUser = currentUser.getId();
         AdvertService advertService = new AdvertService();
-        advertService.saveAdvertToUserAdvertList(idAdvert, idCurrentUser);
+        advertService.deleteInterestingAdvert(idAdvert, currentUser.getId());
         resp.sendRedirect("/advert?id=" + idAdvert);
+
     }
 }
-

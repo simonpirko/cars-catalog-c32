@@ -103,4 +103,11 @@ public class AdvertService {
     }
 
 
+    public void deleteInterestingAdvert(long idAdvert, long idUser){
+        advertStorage.removeIdAdvertIdUser(idAdvert, idUser);
+    }
+
+    public boolean checkIntrAdvert(long idAdvert, long idUser){
+       return advertStorage.checkIdUserIdAdvert(idUser, idAdvert);
+    }
 }
