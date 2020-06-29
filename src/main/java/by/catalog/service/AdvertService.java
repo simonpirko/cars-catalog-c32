@@ -31,7 +31,7 @@ public class AdvertService {
         // FIXME: 6/13/20
     }
 
-    public List<Advert> findAllAdvertsFromUser(long idUser) {
+    public List<Advert> findAllInterestingAdverts(long idUser) {
         List<Advert> list = new ArrayList<>();
         List allIdAdvertByIdUser = advertStorage.getAllIdAdvertByIdUser(idUser);
         for (int i = 0; i < allIdAdvertByIdUser.size(); i++) {
@@ -109,5 +109,9 @@ public class AdvertService {
 
     public boolean checkIntrAdvert(long idAdvert, long idUser){
        return advertStorage.checkIdUserIdAdvert(idUser, idAdvert);
+    }
+
+    public List<Advert> getAllUserAdvert(long idUser){
+       return advertStorage.getAllAdvertByIdUser(idUser);
     }
 }
