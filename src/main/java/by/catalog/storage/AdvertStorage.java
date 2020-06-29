@@ -66,6 +66,32 @@ public class AdvertStorage {
         return null;
     }
 
+    public List<Advert> getAllAdvertByIdUser(long idUser) {
+        MessageStorage messageStorage = new MessageStorage();
+        List<Advert> adverts = new ArrayList<>();
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from advert s where s.id_user = ?");
+            preparedStatement.setLong(1, idUser);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                long id = resultSet.getLong(1);
+                String model = resultSet.getString(2);
+                String color = resultSet.getString(3);
+                int yearCar = resultSet.getInt(4);
+                double price = resultSet.getDouble(5);
+                String date = resultSet.getString(7);
+                String specification = resultSet.getString(8);
+                List<Message> messages = messageStorage.returnMessageByIdAdvert(id);
+                adverts.add( new Advert(id, model, color, yearCar, price, idUser, date, specification, messages));
+            }
+            return adverts;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void addIdUserIdAdvert(long idUser, long idAdvert) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
