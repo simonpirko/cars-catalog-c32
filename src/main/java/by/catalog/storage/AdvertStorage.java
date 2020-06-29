@@ -9,6 +9,7 @@ import java.util.List;
 
 public class AdvertStorage {
 
+
     private final static String URL_TABLES = "jdbc:postgresql://localhost:5432/postgres";
     private final static String LOGIN_TABLES = "postgres";
     private final static String PASS_TABLES = "1987Roll";
@@ -23,7 +24,6 @@ public class AdvertStorage {
     }
 
     public void addAdvert(Advert advert) {
-
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
             PreparedStatement preparedStatement = connection.prepareStatement("insert into advert (id, model, color, yearcar, price, id_user, dateadvert, specificationadvert) values (default , ? , ? , ? , ?, ?, ?, ?)");
@@ -40,6 +40,7 @@ public class AdvertStorage {
             e.printStackTrace();
         }
     }
+
 
     public Advert returnAdvertById(long idAdvert) {
         MessageStorage messageStorage = new MessageStorage();
@@ -158,6 +159,36 @@ public class AdvertStorage {
             e.printStackTrace();
         }
         return null;
+    }
+
+
+
+
+    public void removeIdAdvertIdUser(long idAdvert, long idUser) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from useradvertlist where iduser = ? and idadvert = ?");
+            preparedStatement.setLong(1, idUser);
+            preparedStatement.setLong(2, idAdvert);
+            preparedStatement.executeQuery();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean checkIdUserIdAdvert(long idUser, long idAdvert) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from useradvertlist s where s.iduser = ? and s.idadvert = ?");
+            preparedStatement.setLong(1, idUser);
+            preparedStatement.setLong(2, idAdvert);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 

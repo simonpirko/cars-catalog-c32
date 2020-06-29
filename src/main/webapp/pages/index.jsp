@@ -21,7 +21,6 @@
 
     <div class="container">
         <div class="row row-cols-3">
-
         <c:forEach items="${requestScope.advertList}" var="last">
             <div class="col">
             <div class="card" style="width: 18rem;">
@@ -33,8 +32,6 @@
             </div>
             </div>
         </c:forEach>
-
-
         </div>
     </div>
 
