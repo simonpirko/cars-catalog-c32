@@ -10,7 +10,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Advert {
 
     private long id;
@@ -32,6 +31,7 @@ public class Advert {
         this.yearCar = yearCar;
         this.priceCar = priceCar;
         this.idUser = idUser;
+        this.dateAdvert = dateAdvert;
     }
 
     public Advert(String markCar, String modelCar, String colorCar, int yearCar, double priceCar, long idUser, List<Message> message) {
@@ -41,7 +41,6 @@ public class Advert {
         this.yearCar = yearCar;
         this.priceCar = priceCar;
         this.idUser = idUser;
-        this.message = message;
     }
 
     public Advert(String markCar, String modelCar, String colorCar, int yearCar, double priceCar, long idUser) {
@@ -60,8 +59,6 @@ public class Advert {
         this.yearCar = yearCar;
         this.priceCar = priceCar;
         this.idUser = idUser;
-        this.dateAdvert = dateAdvert;
-        this.specificationAdvert = specificationAdvert;
     }
 
     @Override

@@ -9,6 +9,7 @@ import java.util.List;
 
 public class AdvertStorage {
 
+
     private final static String URL_TABLES = "jdbc:postgresql://localhost:5432/postgres";
     private final static String LOGIN_TABLES = "postgres";
     private final static String PASS_TABLES = "aili61329";
@@ -23,7 +24,6 @@ public class AdvertStorage {
     }
 
     public void addAdvert(Advert advert) {
-
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
             PreparedStatement preparedStatement = connection.prepareStatement("insert into advert (id, mark, model, color, yearcar, price, id_user, dateadvert, specificationadvert) values (default , ?, ? , ? , ? , ?, ?, ?, ?)");
@@ -41,6 +41,7 @@ public class AdvertStorage {
             e.printStackTrace();
         }
     }
+
 
     public Advert returnAdvertById(long idAdvert) {
         MessageStorage messageStorage = new MessageStorage();
@@ -61,6 +62,32 @@ public class AdvertStorage {
             String specification = resultSet.getString(9);
             List<Message> messages = messageStorage.returnMessageByIdAdvert(idAdvert);
             return new Advert(id, mark, model, color, yearCar, price, idUser, date, specification, messages);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Advert> getAllAdvertByIdUser(long idUser) {
+        MessageStorage messageStorage = new MessageStorage();
+        List<Advert> adverts = new ArrayList<>();
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from advert s where s.id_user = ?");
+            preparedStatement.setLong(1, idUser);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                long id = resultSet.getLong(1);
+                String model = resultSet.getString(2);
+                String color = resultSet.getString(3);
+                int yearCar = resultSet.getInt(4);
+                double price = resultSet.getDouble(5);
+                String date = resultSet.getString(7);
+                String specification = resultSet.getString(8);
+                List<Message> messages = messageStorage.returnMessageByIdAdvert(id);
+                adverts.add( new Advert(id, model, color, yearCar, price, idUser, date, specification, messages));
+            }
+            return adverts;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -216,6 +243,36 @@ public class AdvertStorage {
             e.printStackTrace();
         }
         return null;
+    }
+
+
+
+
+    public void removeIdAdvertIdUser(long idAdvert, long idUser) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from useradvertlist where iduser = ? and idadvert = ?");
+            preparedStatement.setLong(1, idUser);
+            preparedStatement.setLong(2, idAdvert);
+            preparedStatement.executeQuery();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean checkIdUserIdAdvert(long idUser, long idAdvert) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from useradvertlist s where s.iduser = ? and s.idadvert = ?");
+            preparedStatement.setLong(1, idUser);
+            preparedStatement.setLong(2, idAdvert);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 
