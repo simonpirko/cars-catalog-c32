@@ -13,12 +13,12 @@
         <ul class="navbar-nav">
             <form class="form-inline nav-item active">
                 <a class="nav-link" href="/"> Home <span class="sr-only">(current)</span></a>
-<c:if test="${requestScope.checkIntrAdd}">
-                <a href="/saveAdvert?id=${requestScope.id}" class="btn btn-outline-success" type="button">Save advert for you list</a>
-</c:if>
-<c:if test="${requestScope.checkIntrRem}">
-                <a href="/removeAdvert?id=${requestScope.id}" class="btn btn-outline-danger" type="button">Remove advert with you list</a>
-</c:if>
+                <c:if test="${requestScope.checkIntrAdd}">
+                    <a href="/saveAdvert?id=${requestScope.id}" class="btn btn-outline-success" type="button">Save advert for you list</a>
+                </c:if>
+                <c:if test="${requestScope.checkIntrRem}">
+                    <a href="/removeAdvert?id=${requestScope.id}" class="btn btn-outline-danger" type="button">Remove advert with you list</a>
+                </c:if>
             </form>
         </ul>
     </div>
@@ -63,15 +63,15 @@
         </div>
     </dl>
 
-<dl class="row offset-sm-1" >
-    <div class="form-group  w-50">
-        Коментировать
-        <form name="addMessage" action="/MessageServlet?id=${requestScope.id}" method="post">
-        <textarea class="form-control" name="addMessage" id="exampleFormControlTextarea1" rows="3"></textarea>
-        <button>Submit</button>
-        </form>
-    </div>
-</dl>
+    <dl class="row offset-sm-1" >
+        <div class="form-group  w-50">
+            Коментировать
+            <form name="addMessage" action="/MessageServlet?id=${requestScope.id}" method="post">
+                <textarea class="form-control" name="addMessage" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <button>Submit</button>
+            </form>
+        </div>
+    </dl>
 
 </c:if>
 

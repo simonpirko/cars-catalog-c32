@@ -25,13 +25,13 @@ public class AddAdvertServlet extends HttpServlet {
         req.setAttribute("listYear", listYear);
         String mark = req.getParameter("mark");
         if (mark != null){
-        List listCar = (List) advertService.returnModelByMark(mark);
+            List listCar = (List) advertService.returnModelByMark(mark);
             String[] colorList = advertService.colorList();
             req.getSession().setAttribute("markSession", mark);
             req.setAttribute("colorList", colorList);
             req.setAttribute("checkModelCar", true);
-        req.setAttribute("listCar", listCar);
-}
+            req.setAttribute("listCar", listCar);
+        }
         getServletContext().getRequestDispatcher("/pages/addAdvert.jsp").forward(req, resp);
     }
 
@@ -46,7 +46,7 @@ public class AddAdvertServlet extends HttpServlet {
         double prise = Double.parseDouble(req.getParameter("prise"));
         long id_user = currentUSer.getId();
         String specificationAdvert = req.getParameter("specificationAdvert");
-        advertService.saveAdvert(model, color, year, prise, id_user, specificationAdvert);
+        advertService.saveAdvert(mark, model, color, year, prise, id_user, specificationAdvert);
         req.setAttribute("messageAccount", "Advert successfully added");
         resp.sendRedirect("/");
     }
