@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Advert</title>
+    <title>Advert</title>z
 </head>
 <body>
 

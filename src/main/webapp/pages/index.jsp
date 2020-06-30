@@ -9,37 +9,48 @@
         It's Cars Catalog ver.1</h1>
 
     <c:if test="${!sessionScope.checkAuth}">
-        <a href="/reg">Registration |</a>
-        <a href="/auth">Authorisation |</a>
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <nav class="nav" >
+        <a class="nav-link active" href="/reg">Registration</a>
+        <a class="nav-link" href="/auth">Authorisation</a>
+    </nav>
+    </nav>
     </c:if>
+
 
     <c:if test="${sessionScope.checkAuth}">
-        <a href="/addAdvert">Add Advert |</a>
-        <a href="/pers">PersonalAccount |</a>
-        <a href="/logout">Logout |</a>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <nav class="nav" >
+            <a class="nav-link active" href="/addAdvert">Add Advert</a>
+            <a class="nav-link" href="/pers">PersonalAccount</a>
+            <a class="nav-link" href="/logout">Logout</a>
+        </nav>
+    </nav>
     </c:if>
 
-    <div class="container">
-        <div class="row row-cols-3">
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row row-cols-3">
 
         <c:forEach items="${requestScope.advertList}" var="last">
             <div class="col">
-            <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">${last.modelCar}</h5>
-            <p class="card-text">${last}</p>
-            <a href="/advert?id=${last.id}">Go somewhere</a>
-            </div>
-            </div>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${last.modelCar}</h5>
+                        <p class="card-text">${last}</p>
+                        <a href="/advert?id=${last.id}">Go somewhere</a>
+                    </div>
+                </div>
             </div>
         </c:forEach>
 
 
-        </div>
     </div>
+</div>
 
-</head>
-<body>
 
 <p>Today: <c:out value="<%=new java.util.Date()%>"/></p>
 
