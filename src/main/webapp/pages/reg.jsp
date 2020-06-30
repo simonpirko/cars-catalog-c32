@@ -14,8 +14,7 @@
     <button>Submit</button>
 </form>
 
-
-<p> ${requestScope.messageReg} </p>
+<p> ${sessionScope.messageReg} </p>
 <a href="/">Return</a>
 
 
