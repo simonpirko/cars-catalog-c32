@@ -11,13 +11,34 @@
     <c:if test="${!sessionScope.checkAuth}">
         <a href="/reg">Registration |</a>
         <a href="/auth">Authorisation |</a>
+        <img src="https://img3.goodfon.ru/wallpaper/nbig/5/1e/hot-rod-classic-car-klassika-2407.jpg" height="700" width="1000">
     </c:if>
+
 
     <c:if test="${sessionScope.checkAuth}">
         <a href="/addAdvert">Add Advert |</a>
         <a href="/pers">Personal Account |</a>
         <a href="/logout">Logout |</a>
+
+
+        <c:if test="${sessionScope.currentAdmin && sessionScope.checkAuth}">
+            <a href="/listAllUsers">Show all users |</a>
+            <a href="/deleteUsers">Delete user |</a>
+            <a href="/addUser">Add new user |</a>
+            <a href="/changeUserData">Change user's data |</a>
+            <a href="/showAllAdverts">Show all adverts |</a>
+            <a href="/changeAdverts">Change adverts |</a>
+            <a href="/deleteAdverts">Delete adverts |</a>
+            <a href="/delete comments">Delete comments |</a>
+            <a href="/deleteMyAcc">Delete my account |</a>
+            <a href="/index">Go to main page |</a>
+            <a href="/logout">Logout |</a>
+        </c:if>
+
     </c:if>
+
+
+
 
     <div class="container">
         <div class="row row-cols-3">
@@ -39,12 +60,6 @@
 <body>
 
 <p>Today: <c:out value="<%=new java.util.Date()%>"/></p>
-
-<%--<ul style="list-style: decimal">--%>
-<%--    <c:forEach items="${requestScope.adsList}" var="adsList">--%>
-<%--        <li>${adsList}</li>--%>
-<%--    </c:forEach>--%>
-<%--</ul>--%>
 
 </body>
 
