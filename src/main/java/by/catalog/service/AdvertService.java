@@ -53,7 +53,7 @@ public class AdvertService {
     public List<Advert> getLastAdverts() {
         List<Advert> list = new ArrayList<>();
         List allAdverts = advertStorage.getAllAdverts();
-        if (allAdverts !=null) {
+        if (allAdverts != null) {
             for (int i = allAdverts.size() - 1; i > allAdverts.size() - 20 && i > -1; i--) {
                 Advert advert = (Advert) allAdverts.get(i);
                 list.add(advert);
@@ -65,7 +65,7 @@ public class AdvertService {
 
     public Advert findAdvertById(long advertId) {
 //        advertStorage.findAdvertById(advertId);
-        // FIXME: 6/13/20 
+        // FIXME: 6/13/20
         return null;
     }
 
@@ -155,15 +155,15 @@ public class AdvertService {
         return new String[]{"black", "white", "silver", "brown", "gray", "red", "blue"};
     }
 
-    public void deleteInterestingAdvert(long idAdvert, long idUser){
+    public void deleteInterestingAdvert(long idAdvert, long idUser) {
         advertStorage.removeIdAdvertIdUser(idAdvert, idUser);
     }
 
-    public boolean checkIntrAdvert(long idAdvert, long idUser){
+    public boolean checkIntrAdvert(long idAdvert, long idUser) {
         return advertStorage.checkIdUserIdAdvert(idUser, idAdvert);
     }
 
-    public List<Advert> getAllUserAdvert(long idUser){
+    public List<Advert> getAllUserAdvert(long idUser) {
         return advertStorage.getAllAdvertByIdUser(idUser);
     }
 }

@@ -19,7 +19,7 @@ public class interestingAdvertServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User currentUser = (User) req.getSession().getAttribute("currentUser");
         AdvertService advertService = new AdvertService();
-        List<Advert> allAdvertsFromUser = (List) advertService.findAllInterestingAdverts(currentUser.getId());
+        List<Advert> allAdvertsFromUser = advertService.findAllInterestingAdverts(currentUser.getId());
         req.setAttribute("listAdvert", allAdvertsFromUser);
         req.getServletContext().getRequestDispatcher("/pages/interestingAdvert.jsp").forward(req, resp);
     }

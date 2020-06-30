@@ -24,8 +24,8 @@ public class AddAdvertServlet extends HttpServlet {
         List<Integer> listYear = advertService.listYear();
         req.setAttribute("listYear", listYear);
         String mark = req.getParameter("mark");
-        if (mark != null){
-            List listCar = (List) advertService.returnModelByMark(mark);
+        if (mark != null) {
+            List listCar = advertService.returnModelByMark(mark);
             String[] colorList = advertService.colorList();
             req.getSession().setAttribute("markSession", mark);
             req.setAttribute("colorList", colorList);

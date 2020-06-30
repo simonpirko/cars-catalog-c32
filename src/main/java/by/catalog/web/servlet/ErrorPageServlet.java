@@ -11,8 +11,8 @@ import java.io.IOException;
 public class ErrorPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String massage ="Page not found. Error 404";
-        req.setAttribute("message",massage);
+        String massage = "Page not found. Error 404";
+        req.setAttribute("message", massage);
         req.getServletContext().getRequestDispatcher("/pages/error.jsp").forward(req, resp);
     }
 }

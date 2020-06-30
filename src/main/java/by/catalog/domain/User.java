@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 public class User {
 
     private long id;
-    private  String name;
-    private  String lastName;
-    private  String login;
-    private  String password;
-    private  String phone;
-    private  String role;
+    private String name;
+    private String lastName;
+    private String login;
+    private String password;
+    private String phone;
+    private String role;
 
     public User(String name, String lastName, String login, String password, String phone, String role) {
         this.name = name;

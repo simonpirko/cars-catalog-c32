@@ -15,7 +15,7 @@ import java.util.List;
 @WebServlet(name = "YouAdvertsServlet", urlPatterns = "/pers/youAdvert")
 public class YouAdvertServlet extends HttpServlet {
 
-    private AdvertService advertService = new AdvertService();
+    private final AdvertService advertService = new AdvertService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

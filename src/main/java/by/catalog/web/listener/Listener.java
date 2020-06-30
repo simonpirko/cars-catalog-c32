@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 @WebListener()
 public class Listener implements ServletContextListener,
-        HttpSessionListener, HttpSessionAttributeListener {
+    HttpSessionListener, HttpSessionAttributeListener {
 
     // Public constructor is required by servlet spec
     public Listener() {
@@ -24,14 +24,14 @@ public class Listener implements ServletContextListener,
     // -------------------------------------------------------
     public void contextInitialized(ServletContextEvent sce) {
       /* This method is called when the servlet context is
-         initialized(when the Web application is deployed). 
+         initialized(when the Web application is deployed).
          You can initialize servlet context related data here.
       */
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
-      /* This method is invoked when the Servlet Context 
-         (the Web application) is undeployed or 
+      /* This method is invoked when the Servlet Context
+         (the Web application) is undeployed or
          Application Server shuts down.
       */
     }
@@ -52,7 +52,7 @@ public class Listener implements ServletContextListener,
     // -------------------------------------------------------
 
     public void attributeAdded(HttpSessionBindingEvent sbe) {
-      /* This method is called when an attribute 
+      /* This method is called when an attribute
          is added to a session.
       */
     }

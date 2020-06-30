@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 public class Message {
 
     private long id;
-    private  long idAdvert;
+    private long idAdvert;
     private long idUser;
     private String nameUser;
-    private  String body;
-    private  String date;
+    private String body;
+    private String date;
 
     public Message(long idAdvert, long idUser, String body, String date) {
         this.idAdvert = idAdvert;

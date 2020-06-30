@@ -12,7 +12,7 @@ public class AdvertStorage {
 
     private final static String URL_TABLES = "jdbc:postgresql://localhost:5432/postgres";
     private final static String LOGIN_TABLES = "postgres";
-    private final static String PASS_TABLES = "aili61329";
+    private final static String PASS_TABLES = "";
     Connection connection = null;
 
     {
@@ -86,7 +86,7 @@ public class AdvertStorage {
                 String date = resultSet.getString(8);
                 String specification = resultSet.getString(9);
                 List<Message> messages = messageStorage.returnMessageByIdAdvert(id);
-                adverts.add( new Advert(id, mark, model, color, yearCar, price, idUser, date, specification, messages));
+                adverts.add(new Advert(id, mark, model, color, yearCar, price, idUser, date, specification, messages));
             }
             return adverts;
         } catch (SQLException e) {
@@ -245,8 +245,6 @@ public class AdvertStorage {
         }
         return null;
     }
-
-
 
 
     public void removeIdAdvertIdUser(long idAdvert, long idUser) {
