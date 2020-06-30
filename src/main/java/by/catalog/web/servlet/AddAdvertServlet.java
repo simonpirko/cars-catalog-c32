@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/addAdvert", name = "AddAdvertServlet")
-
 public class AddAdvertServlet extends HttpServlet {
 
 
@@ -28,6 +27,7 @@ public class AddAdvertServlet extends HttpServlet {
         if (mark != null){
         List listCar = (List) advertService.returnModelByMark(mark);
             String[] colorList = advertService.colorList();
+            req.getSession().setAttribute("markSession", mark);
             req.setAttribute("colorList", colorList);
             req.setAttribute("checkModelCar", true);
         req.setAttribute("listCar", listCar);
@@ -37,8 +37,9 @@ public class AddAdvertServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         User currentUSer = (User) req.getSession().getAttribute("currentUser");
+        String mark = (String) req.getSession().getAttribute("markSession");
+        req.getSession().removeAttribute("markSession");
         String model = req.getParameter("model");
         String color = req.getParameter("color");
         int year = Integer.parseInt(req.getParameter("year"));

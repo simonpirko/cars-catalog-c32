@@ -53,9 +53,11 @@ public class AdvertService {
     public List<Advert> getLastAdverts() {
         List<Advert> list = new ArrayList<>();
         List allAdverts = advertStorage.getAllAdverts();
-        for (int i = allAdverts.size() - 1; i > allAdverts.size() - 20 && i > -1; i--) {
-            Advert advert = (Advert) allAdverts.get(i);
-            list.add(advert);
+        if (allAdverts !=null) {
+            for (int i = allAdverts.size() - 1; i > allAdverts.size() - 20 && i > -1; i--) {
+                Advert advert = (Advert) allAdverts.get(i);
+                list.add(advert);
+            }
         }
         return list;
     }
