@@ -26,19 +26,19 @@ public class HomepageServlet extends HttpServlet {
         List MarkList = advertService.returnSortMark();
         req.setAttribute("AllAdvertMarks", MarkList);
 
-//        String mark = req.getParameter("mark");
-//        if (mark != null) {
-//            if (mark.equals("anyMark")) {
-//                req.setAttribute("hadChosen", false);
-//            } else {
-//                List<String> modelByMark = advertService.returnModelByMark(mark);
-//                req.setAttribute("modelByMark", modelByMark);
-//                req.setAttribute("mark", mark);
-//                req.setAttribute("hadChosen", true);
-//                List<Advert> advertByMark = advertService.findAdvertByMark(mark);
-//                req.setAttribute("advertList", advertByMark);
-//            }
-//        }
+        String mark = req.getParameter("mark");
+        if (mark != null) {
+            if (mark.equals("anyMark")) {
+                req.setAttribute("hadChosen", false);
+            } else {
+                List<String> modelByMark = advertService.returnModelByMark(mark);
+                req.setAttribute("modelByMark", modelByMark);
+                req.setAttribute("mark", mark);
+                req.setAttribute("hadChosen", true);
+                List<Advert> advertByMark = advertService.findAdvertByMark(mark);
+                req.setAttribute("advertList", advertByMark);
+            }
+        }
 
         Calendar calendar = new GregorianCalendar();
         Date data = calendar.getTime();

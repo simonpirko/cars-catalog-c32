@@ -160,11 +160,11 @@ public class AdvertService {
     }
 
     public boolean checkIntrAdvert(long idAdvert, long idUser){
-       return advertStorage.checkIdUserIdAdvert(idUser, idAdvert);
+        return advertStorage.checkIdUserIdAdvert(idUser, idAdvert);
     }
 
     public List<Advert> getAllUserAdvert(long idUser){
-       return advertStorage.getAllAdvertByIdUser(idUser);
+        return advertStorage.getAllAdvertByIdUser(idUser);
     }
 }
 
