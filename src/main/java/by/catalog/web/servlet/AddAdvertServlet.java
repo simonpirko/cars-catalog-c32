@@ -15,7 +15,6 @@ import java.util.List;
 
 public class AddAdvertServlet extends HttpServlet {
 
-
     AdvertService advertService = new AdvertService();
 
     @Override
