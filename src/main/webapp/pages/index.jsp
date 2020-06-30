@@ -19,9 +19,6 @@
         <a href="/addAdvert">Add Advert |</a>
         <a href="/pers">Personal Account |</a>
         <a href="/logout">Logout |</a>
-
-
-
         <c:if test="${sessionScope.currentAdmin && sessionScope.checkAuth}">
             <a href="/listAllUsers">Show all users |</a>
             <a href="/deleteUsers">Delete user |</a>
@@ -35,7 +32,6 @@
             <a href="/index">Go to main page |</a>
             <a href="/logout">Logout |</a>
         </c:if>
-
     </c:if>
 
 
