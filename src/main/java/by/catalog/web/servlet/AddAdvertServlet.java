@@ -30,7 +30,7 @@ public class AddAdvertServlet extends HttpServlet {
         if (mark != null) {
             List listCar = (List) advertService.returnModelByMark(mark);
             String[] colorList = advertService.colorList();
-            req.setAttribute("mark", mark);
+            req.getSession().setAttribute("markSession", mark);
             req.setAttribute("colorList", colorList);
             req.setAttribute("checkModelCar", true);
             req.setAttribute("listCar", listCar);
@@ -42,7 +42,8 @@ public class AddAdvertServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         User currentUSer = (User) req.getSession().getAttribute("currentUser");
-        String mark = req.getParameter("mark");
+        String mark = (String) req.getSession().getAttribute("markSession");
+        req.getSession().removeAttribute("markSession");
         String model = req.getParameter("model");
         String color = req.getParameter("color");
         int year = Integer.parseInt(req.getParameter("year"));
