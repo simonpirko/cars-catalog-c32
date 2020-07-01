@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/pers")
+@WebServlet(urlPatterns = "/pers", name = "PersonalAccountServlet")
 public class PersonalAccountServlet extends HttpServlet {
 
     @Override

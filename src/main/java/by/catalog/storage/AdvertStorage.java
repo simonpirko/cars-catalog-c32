@@ -12,7 +12,7 @@ public class AdvertStorage {
 
     private final static String URL_TABLES = "jdbc:postgresql://localhost:5432/postgres";
     private final static String LOGIN_TABLES = "postgres";
-    private final static String PASS_TABLES = "";
+    private final static String PASS_TABLES = "1987Roll";
     Connection connection = null;
 
     {
@@ -272,6 +272,19 @@ public class AdvertStorage {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public void removeAdvertByIdAdvert(long idAdvert, long idUser) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from advert where idadvert = ? and iduser = ? ");
+            preparedStatement.setLong(1, idUser);
+            preparedStatement.setLong(2, idAdvert);
+            preparedStatement.executeQuery();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
