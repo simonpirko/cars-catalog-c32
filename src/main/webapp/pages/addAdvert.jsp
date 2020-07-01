@@ -19,21 +19,18 @@
                 </c:forEach>
             </select>
             </li>
+            <button>Submit</button>
+        </form>
     </ul>
-    <button>Submit</button>
+
 </c:if>
 
 <c:if test="${requestScope.checkModelCar}">
     <ul>
 
         <form action="/addAdvert" method="post">
-            <li>
-                <select name="model">
-                    <option value="${requestScope.mark}">${requestScope.mark}</option>
-                </select>
-            </li>
 
-            <li>Select model car <select name="mark">
+            <li>Select model car <select name="model">
                 <c:forEach items="${requestScope.listCar}" var="last">
                     <option value="${last}"> ${last} </option>
                 </c:forEach>
@@ -62,7 +59,7 @@
 
     <button>Submit</button>
 
-
+    </form>
 </c:if>
 </form>
 <b>${requestScope.checkAdvert}</b>

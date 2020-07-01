@@ -22,5 +22,8 @@ public class CheckCurrentUserFilter extends HttpFilter {
         if (currentUser == null){
             getServletContext().getRequestDispatcher("/pages/error.jsp").forward(req, res);
         }
+        else {
+            chain.doFilter(req, res);
+        }
     }
 }
