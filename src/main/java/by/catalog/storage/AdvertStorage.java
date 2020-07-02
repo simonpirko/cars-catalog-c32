@@ -61,6 +61,7 @@ public class AdvertStorage {
             String date = resultSet.getString(8);
             String specification = resultSet.getString(9);
             List<Message> messages = messageStorage.returnMessageByIdAdvert(idAdvert);
+            connection.close();
             return new Advert(id, mark, model, color, yearCar, price, idUser, date, specification, messages);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,6 +87,7 @@ public class AdvertStorage {
                 String date = resultSet.getString(8);
                 String specification = resultSet.getString(9);
                 List<Message> messages = messageStorage.returnMessageByIdAdvert(id);
+                connection.close();
                 adverts.add(new Advert(id, mark, model, color, yearCar, price, idUser, date, specification, messages));
             }
             return adverts;
@@ -119,6 +121,7 @@ public class AdvertStorage {
                 long idAdvert = resultSet.getLong(2);
                 list.add(idAdvert);
             }
+            connection.close();
             return list;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -150,6 +153,7 @@ public class AdvertStorage {
                 Advert advert = new Advert(id, mark, model, color, year, price, idUser);
                 list.add(advert);
             }
+            connection.close();
             return list;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -169,6 +173,7 @@ public class AdvertStorage {
                 String model = resultSet.getString(2);
                 list.add(model);
             }
+            connection.close();
             return list;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -187,6 +192,7 @@ public class AdvertStorage {
                 String mark = resultSet.getString(3);
                 list.add(mark);
             }
+            connection.close();
             return list;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -204,6 +210,7 @@ public class AdvertStorage {
                 String mark = resultSet.getString(1);
                 listMark.add(mark);
             }
+            connection.close();
             return listMark;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -221,6 +228,7 @@ public class AdvertStorage {
                 String model = resultSet.getString(2);
                 listModel.add(model);
             }
+            connection.close();
             return listModel;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -239,6 +247,7 @@ public class AdvertStorage {
                 String mark = resultSet.getString(2);
                 listAdvertMark.add(mark);
             }
+            connection.close();
             return listAdvertMark;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -267,7 +276,9 @@ public class AdvertStorage {
             preparedStatement.setLong(1, idUser);
             preparedStatement.setLong(2, idAdvert);
             ResultSet resultSet = preparedStatement.executeQuery();
-            return resultSet.next();
+            boolean next = resultSet.next();
+            connection.close();
+            return next;
         } catch (SQLException e) {
             e.printStackTrace();
         }

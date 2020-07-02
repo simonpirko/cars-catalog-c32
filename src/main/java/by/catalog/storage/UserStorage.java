@@ -53,6 +53,7 @@ public class UserStorage {
             String password = resultSet.getString(5);
             String phone = resultSet.getString(6);
             String role = resultSet.getString(7);
+            connection.close();
             return new User(id, name, lastName, login, password, phone, role);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -73,6 +74,7 @@ public class UserStorage {
             String password = resultSet.getString(5);
             String phone = resultSet.getString(6);
             String role = resultSet.getString(7);
+            connection.close();
             return new User(id, name, lastName, login, password, phone, role);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,6 +91,7 @@ public class UserStorage {
             if (resultSet.next()) {
                 return true;
             }
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
