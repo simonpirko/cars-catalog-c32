@@ -13,7 +13,7 @@ import java.io.IOException;
 @WebFilter(filterName = "CheckCurrentUserFilter", servletNames = {"AddAdvertServlet",
         "ChangeCurrentAdvertServlet", "EditProfileServlet", "InterestingAdvertServlet",
         "MessageServlet", "PersonalAccountServlet", "RemoveAdvertServlet", "SaveAdvertServlet",
-        "YouAdvertsServlet"})
+        "YouAdvertsServlet", "DestroyAdvertServlet"})
 public class CheckCurrentUserFilter extends HttpFilter {
 
     @Override
