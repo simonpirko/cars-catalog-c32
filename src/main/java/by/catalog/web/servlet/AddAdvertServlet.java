@@ -15,7 +15,7 @@ import java.util.List;
 public class AddAdvertServlet extends HttpServlet {
 
 
-    AdvertService advertService = new AdvertService();
+    private AdvertService advertService = new AdvertService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

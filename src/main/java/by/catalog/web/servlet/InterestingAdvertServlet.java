@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = "/pers/interestingAdvert")
-public class interestingAdvertServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/pers/interestingAdvert", name = "InterestingAdvertServlet")
+public class InterestingAdvertServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

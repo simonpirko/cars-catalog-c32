@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/removeAdvert")
+@WebServlet(urlPatterns = "/removeAdvert", name = "RemoveAdvertServlet")
 public class RemoveAdvertServlet extends HttpServlet {
 
     @Override
@@ -19,7 +19,7 @@ public class RemoveAdvertServlet extends HttpServlet {
         String id = req.getParameter("id");
         long idAdvert = Long.parseLong(id);
         AdvertService advertService = new AdvertService();
-        advertService.deleteInterestingAdvert(idAdvert, currentUser.getId());
+        advertService.removeInterestingAdvert(idAdvert, currentUser.getId());
         resp.sendRedirect("/advert?id=" + idAdvert);
 
     }

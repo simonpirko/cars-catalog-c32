@@ -24,7 +24,7 @@ public class RegServlet extends HttpServlet {
         String lastName = req.getParameter("lastName");
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        String phone = req.getParameter("password");
+        String phone = req.getParameter("phone");
         String role = "1";
         userService.saveUser(name, lastName, login, password, phone, role);
 //        String message = "User " + login + "added!";

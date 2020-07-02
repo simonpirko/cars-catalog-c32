@@ -33,18 +33,18 @@
 </dl>
 <dl class="row" >
     <dt class="col-sm-2 offset-sm-1"> Name </dt>
-    <dd class="col-sm-8">${requestScope.user.name}</dd>
+    <dd class="col-sm-8">${sessionScope.currentUser.name}</dd>
     <dt class="col-sm-2 offset-sm-1"> Last Name </dt>
-    <dd class="col-sm-8">${requestScope.user.lastName}</dd>
+    <dd class="col-sm-8">${sessionScope.currentUser.lastName}</dd>
     <dt class="col-sm-2 offset-sm-1"> Login </dt>
-    <dd class="col-sm-8">${requestScope.user.login}</dd>
+    <dd class="col-sm-8">${sessionScope.currentUser.login}</dd>
     <dt class="col-sm-2 offset-sm-1"> Password </dt>
-    <dd class="col-sm-8">${requestScope.user.password}</dd>
+    <dd class="col-sm-8">${sessionScope.currentUser.password}</dd>
     <dt class="col-sm-2 offset-sm-1"> Phone </dt>
-    <dd class="col-sm-8">${requestScope.user.phone}</dd>
+    <dd class="col-sm-8">${sessionScope.currentUser.phone}</dd>
 </dl>
 
-<h4>${requestScope.messageUpdate}</h4>
+<h4>${sessionScope.messageUpdate}</h4>
 
 </body>
 </html>

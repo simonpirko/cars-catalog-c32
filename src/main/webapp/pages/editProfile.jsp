@@ -25,15 +25,15 @@
 <form action="/pers/editProfile" method="post">
     <dl class="row" >
         <dt class="col-sm-2 offset-sm-1"> Name </dt>
-        <dd class="col-sm-8">  <input type="text" name="newName" value="${requestScope.currentUser.name}"></dd>
+        <dd class="col-sm-8">  <input type="text" name="newName" value="${sessionScope.currentUser.name}"></dd>
         <dt class="col-sm-2 offset-sm-1"> Last Name </dt>
-        <dd class="col-sm-8">    <input type="text" name="newLastName" value="${requestScope.currentUser.lastName}"></dd>
+        <dd class="col-sm-8">    <input type="text" name="newLastName" value="${sessionScope.currentUser.lastName}"></dd>
         <dt class="col-sm-2 offset-sm-1"> Login </dt>
-        <dd class="col-sm-8">    <input type="text" name="newLogin" value="${requestScope.currentUser.login}"></dd>
+        <dd class="col-sm-8">    <input type="text" name="newLogin" value="${sessionScope.currentUser.login}"></dd>
         <dt class="col-sm-2 offset-sm-1"> Password </dt>
-        <dd class="col-sm-8"> <input type="text" name="newPass" value="${requestScope.currentUser.password}"></dd>
+        <dd class="col-sm-8"> <input type="text" name="newPass" value="${sessionScope.currentUser.password}"></dd>
         <dt class="col-sm-2 offset-sm-1"> Phone </dt>
-        <dd class="col-sm-8">  <input type="text" name="newPhone" value="${requestScope.currentUser.phone}"></dd>
+        <dd class="col-sm-8">  <input type="text" name="newPhone" value="${sessionScope.currentUser.phone}"></dd>
     </dl>
     <button>Apply</button>
 </form>

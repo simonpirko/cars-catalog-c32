@@ -11,9 +11,11 @@
     <c:if test="${!sessionScope.checkAuth}">
         <a href="/reg">Registration |</a>
         <a href="/auth">Authorisation |</a>
-        <img src="https://img3.goodfon.ru/wallpaper/nbig/5/1e/hot-rod-classic-car-klassika-2407.jpg" height="700" width="1000">
     </c:if>
 
+    <style>
+        body { background: url("https://img3.goodfon.ru/wallpaper/nbig/5/1e/hot-rod-classic-car-klassika-2407.jpg")  }
+    </style>
 
     <c:if test="${sessionScope.checkAuth}">
         <a href="/addAdvert">Add Advert |</a>
