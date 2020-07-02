@@ -14,10 +14,10 @@
             <form class="form-inline nav-item active">
                 <a class="nav-link" href="/"> Home <span class="sr-only">(current)</span></a>
                 <c:if test="${requestScope.checkIntrAdd}">
-                    <button type="submit" formaction="/saveAdvert?id=${requestScope.id}" class="btn btn-outline-success">Save advert for you list</button>
+                    <button type="submit" formaction="/saveAdvert?id=${requestScope.id}" class="btn btn-outline-success" formmethod="post">Save advert for you list</button>
                 </c:if>
                 <c:if test="${requestScope.checkIntrRem}">
-                    <button type="submit" formaction="/removeAdvert?id=${requestScope.id}" class="btn btn-outline-danger">Remove advert with you list</button>
+                    <button type="submit" formaction="/removeAdvert?id=${requestScope.id}" class="btn btn-outline-danger" formmethod="post">Remove advert with you list</button>
                 </c:if>
                 <c:if test="${requestScope.checkYouAdvert}">
                  <button type= "submit" formaction="/updateAdvert?id=${requestScope.id}" class="btn btn-primary" formmethod="post" >Edit advert</button>
