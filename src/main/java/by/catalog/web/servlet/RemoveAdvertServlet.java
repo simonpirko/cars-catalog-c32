@@ -14,7 +14,7 @@ import java.io.IOException;
 public class RemoveAdvertServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User currentUser = (User) req.getSession().getAttribute("currentUser");
         String id = req.getParameter("id");
         long idAdvert = Long.parseLong(id);
