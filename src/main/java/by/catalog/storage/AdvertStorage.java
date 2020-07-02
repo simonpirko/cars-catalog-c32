@@ -288,9 +288,9 @@ public class AdvertStorage {
     public void removeAdvertByIdAdvert(long idAdvert, long idUser) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement("delete from advert where idadvert = ? and iduser = ? ");
-            preparedStatement.setLong(1, idUser);
-            preparedStatement.setLong(2, idAdvert);
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from advert where id = ? and id_user = ? ");
+            preparedStatement.setLong(1, idAdvert);
+            preparedStatement.setLong(2, idUser);
             preparedStatement.executeQuery();
             connection.close();
         } catch (SQLException e) {

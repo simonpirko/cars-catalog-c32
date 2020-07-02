@@ -155,7 +155,7 @@ public class AdvertService {
         return new String[]{"black", "white", "silver", "brown", "gray", "red", "blue"};
     }
 
-    public void deleteInterestingAdvert(long idAdvert, long idUser) {
+    public void removeInterestingAdvert(long idAdvert, long idUser) {
         advertStorage.removeIdAdvertIdUser(idAdvert, idUser);
     }
 
@@ -166,6 +166,10 @@ public class AdvertService {
     public boolean checkAdvertByUser(long idAdvert, long idUser){
         Advert advert = advertStorage.returnAdvertById(idAdvert);
         return advert.getIdUser() == idUser;
+    }
+
+    public void destroyAdvertByIdAdvert(long idAdvert, long idUser ){
+        advertStorage.removeAdvertByIdAdvert(idAdvert, idUser);
     }
 
     public List<Advert> getAllUserAdvert(long idUser) {

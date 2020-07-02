@@ -17,8 +17,6 @@ public class EditProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User currentUser = (User) req.getSession().getAttribute("currentUser");
-        req.setAttribute("currentUser", currentUser);
         req.getServletContext().getRequestDispatcher("/pages/editProfile.jsp").forward(req, resp);
     }
 

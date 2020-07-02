@@ -19,11 +19,10 @@
                 <c:if test="${requestScope.checkIntrRem}">
                     <a href="/removeAdvert?id=${requestScope.id}" class="btn btn-outline-danger" type="button">Remove advert with you list</a>
                 </c:if>
-
                 <c:if test="${requestScope.checkYouAdvert}">
-                    <a href="/updateAdvert?id=${requestScope.id}" class="btn btn-primary" type="button">Edit advert</a>
-                    <a href="/deletedAdvert?id=${requestScope.id}" class="btn btn-danger" type="button">Deleted advert</a>
-                </c:if>
+                <button type= "submit" formaction="/updateAdvert?id=${requestScope.id}" class="btn btn-primary" formmethod="post" >Edit advert</button>
+                 <button type= "submit" formaction="/destroyAdvert?id=${requestScope.id}" formmethod="post" class="btn btn-danger">Deleted advert</button>
+               </c:if>
 
             </form>
         </ul>
@@ -55,6 +54,21 @@
     <dl class="row offset-sm-1" >
         <div class="card w-50">
             <div class="card-header">
+                Описание
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                <ul>
+                    ${requestScope.advert. specificationAdvert}
+                </ul>
+                </p>
+            </div>
+        </div>
+    </dl>
+
+    <dl class="row offset-sm-1" >
+        <div class="card w-50">
+            <div class="card-header">
                 Сообщения
             </div>
             <div class="card-body">
@@ -80,7 +94,6 @@
     </dl>
 
 </c:if>
-
 
 </body>
 </html>
