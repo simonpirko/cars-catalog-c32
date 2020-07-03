@@ -14,7 +14,7 @@ import java.io.IOException;
 public class SaveAdvertServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //сюда приходит с главной страницы запрос на добавление объявления автотизованного юзера
         String id = req.getParameter("id");
         long idAdvert = Long.parseLong(id);
