@@ -172,8 +172,27 @@ public class AdvertService {
         advertStorage.removeAdvertByIdAdvert(idAdvert, idUser);
     }
 
+    public void destroyUserAdvertList (long idAdvert){
+        advertStorage.removeAfterDestroyUserAdvertList(idAdvert);
+    }
+
     public List<Advert> getAllUserAdvert(long idUser) {
         return advertStorage.getAllAdvertByIdUser(idUser);
+    }
+
+    public void editAdvertMarkAndModelByIdAdvert(long idAdvert, String mark, String model){
+        advertStorage.updateMarkAndModelById(idAdvert, mark, model);
+    }
+    public void editColorByIdAdvert(long idAdvert, String color){
+        advertStorage.updateColorById(idAdvert, color);
+    }
+
+    public void editYearByIdAdvert(long idAdvert, int year){
+        advertStorage.updateYearById(idAdvert, year);
+    }
+
+    public void editPriceByIdAdvert(long idAdvert, double price){
+        advertStorage.updatePriceById(idAdvert, price);
     }
 }
 
