@@ -4,9 +4,7 @@ import by.catalog.domain.Advert;
 import by.catalog.storage.AdvertStorage;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class AdvertService {
 
@@ -42,13 +40,11 @@ public class AdvertService {
         return list;
     }
 
-
 //    public List<Advert> findAllAdverts() {
 ////        return advertStorage.findAllAdverts();
 //        // FIXME: 6/13/20
 //        return null;
 //    }
-
 
     public List<Advert> getLastAdverts() {
         List<Advert> list = new ArrayList<>();
@@ -61,6 +57,20 @@ public class AdvertService {
         }
         return list;
     }
+
+//    public List<Advert> getAdvertByPage(int page) {
+//        List<Advert> list = new ArrayList<>();
+//        List<Advert> allAdverts = advertStorage.getAllAdverts();
+//        int startRation = page * 15 - 14;
+//        int endRatio = page * 15;
+//        if (allAdverts != null) {
+//            for (int i = startRation; i <= endRatio; i++){
+//                Advert advert = (Advert) allAdverts.get(i);
+//                list.add(advert);
+//            }
+//        }
+//        return list;
+//    }
 
 
     public Advert findAdvertById(long advertId) {
@@ -84,8 +94,8 @@ public class AdvertService {
     public List<Advert> findAdvertByModel(String mark, String model) {
         List<Advert> listBySearch = new ArrayList<>();
         List markAdverts = findAdvertByMark(mark);
-        for (int i = 0; i < markAdverts.size(); i++) {
-            Advert advert = (Advert) markAdverts.get(i);
+        for (Object markAdvert : markAdverts) {
+            Advert advert = (Advert) markAdvert;
             if (advert.getModelCar().equals(model)) {
                 listBySearch.add(advert);
             }
@@ -124,6 +134,7 @@ public class AdvertService {
         return listMark;
     }
 
+
     public List<String> returnSortModel() {
         List<String> listModel = new ArrayList<>();
         boolean b = true;
@@ -142,6 +153,35 @@ public class AdvertService {
         }
         return listModel;
     }
+
+
+    public List<Advert> sortAllAdvertList(String sort) {
+        List<Advert> toSortList = getLastAdverts();
+        toSortList.sort(Advert::compareTo);
+        if (sort.equalsIgnoreCase("desc")) {
+            Collections.reverse(toSortList);
+        }
+        return toSortList;
+    }
+
+    public List<Advert> sortMarkAdvertList(String sort, String mark) {
+        List<Advert> toSortList = findAdvertByMark(mark);
+        toSortList.sort(Advert::compareTo);
+        if (sort.equalsIgnoreCase("desc")) {
+            Collections.reverse(toSortList);
+        }
+        return toSortList;
+    }
+
+    public List<Advert> sortModelAdvertList(String sort, String mark, String model) {
+        List<Advert> toSortList = findAdvertByModel(mark, model);
+        toSortList.sort(Advert::compareTo);
+        if (sort.equalsIgnoreCase("desc")) {
+            Collections.reverse(toSortList);
+        }
+        return toSortList;
+    }
+
 
     public List<Integer> listYear() {
         List<Integer> listYear = new ArrayList<>();
@@ -163,12 +203,12 @@ public class AdvertService {
         return advertStorage.checkIdUserIdAdvert(idUser, idAdvert);
     }
 
-    public boolean checkAdvertByUser(long idAdvert, long idUser){
+    public boolean checkAdvertByUser(long idAdvert, long idUser) {
         Advert advert = advertStorage.returnAdvertById(idAdvert);
         return advert.getIdUser() == idUser;
     }
 
-    public void destroyAdvertByIdAdvert(long idAdvert, long idUser ){
+    public void destroyAdvertByIdAdvert(long idAdvert, long idUser) {
         advertStorage.removeAdvertByIdAdvert(idAdvert, idUser);
     }
 

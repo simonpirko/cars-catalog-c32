@@ -2,6 +2,7 @@ package by.catalog.domain;
 
 import by.catalog.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Advert {
+public class Advert implements Comparable<Advert> {
 
     private long id;
     private String markCar;
@@ -56,11 +57,18 @@ public class Advert {
     }
 
 
+
+
     @Override
     public String toString() {
 
         UserService userService = new UserService();
         return
-            "Model car - " + modelCar + ", color car - " + colorCar + ", year car - " + yearCar + ", price car - " + priceCar;
+                "Model car - " + modelCar + ", color car - " + colorCar + ", year car - " + yearCar + ", price car - " + priceCar;
+    }
+
+    @Override
+    public int compareTo(Advert o) {
+        return Double.compare(this.getPriceCar(), o.getPriceCar());
     }
 }

@@ -1,11 +1,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 <html>
 <head>
-    <h1>Hello${sessionScope.currentUser.name}!
+    <h1>Hello ${sessionScope.currentUser.name}!
         It's Cars Catalog ver.1</h1>
 
     <c:if test="${!sessionScope.checkAuth}">
@@ -13,9 +17,9 @@
         <a href="/auth">Authorisation |</a>
     </c:if>
 
-    <style>
-        body { background: url("https://img3.goodfon.ru/wallpaper/nbig/5/1e/hot-rod-classic-car-klassika-2407.jpg")  }
-    </style>
+    <%--    <style>
+    <%--        body { background: url("https://img3.goodfon.ru/wallpaper/nbig/5/1e/hot-rod-classic-car-klassika-2407.jpg")  }
+        </style>--%>
 
     <c:if test="${sessionScope.checkAuth}">
         <a href="/addAdvert">Add Advert |</a>
@@ -39,13 +43,19 @@
 
     <c:if test="${!requestScope.hadChosen}">
         <form action="" method="get">
+
             <select name="mark">
                 <option style="color:gray" value="anyMark">Any mark</option>
                 <c:forEach items="${requestScope.AllAdvertMarks}" var="var">
                     <option value="${var}"> ${var} </option>
                 </c:forEach>
             </select>
-            <button>Sub</button>
+            <select name="sort">
+                <option style="color: gray" value="none">None</option>
+                <option value="asc">ASC</option>
+                <option value="desc">DESK</option>
+            </select>
+            <button>Submit</button>
             <a href="/">Clear</a>
         </form>
     </c:if>
@@ -61,10 +71,16 @@
                     <option value="${model}">${model}</option>
                 </c:forEach>
             </select>
-            <button>Submit</button>
+            <select name="postSort">
+                <option style="color: gray" value="none">None</option>
+                <option value="asc">ASC</option>
+                <option value="desc">DESC</option>
+            </select>
+            <button>Submited</button>
             <a href="/">Clear</a>
 
         </form>
+        ${requestScope.message}
     </c:if>
 
     <div class="container">
