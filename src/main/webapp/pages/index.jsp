@@ -70,13 +70,13 @@
                 <option value="${requestScope.mark}">${requestScope.mark}</option>
             </select>
             <select name="model">
-                <option selected disabled hidden>Choose model</option>
-                <option style="color:gray" value="anyModel">Any model</option>
+                <option style="color:gray" value="anyModel" selected>Any model</option>
                 <c:forEach items="${requestScope.modelByMark}" var="model">
                     <option value="${model}">${model}</option>
                 </c:forEach>
             </select>
             <select name="postSort">
+
                 <option selected disabled hidden>Sort</option>
                 <option style="color: gray" value="none">None</option>
                 <option value="ascPrice">Ascending price</option>

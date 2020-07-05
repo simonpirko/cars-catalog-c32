@@ -93,7 +93,6 @@ public class HomepageServlet extends HttpServlet {
 
         String sort = req.getParameter("postSort");
         if (!model.equalsIgnoreCase("anyModel")) {
-
             if (sort != null
                     && !sort.equalsIgnoreCase("none")
                     && (sort.equalsIgnoreCase("descPrice")
