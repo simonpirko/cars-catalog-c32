@@ -143,15 +143,15 @@
 </dl>
 </dl>
 
-<form method="post" action="/editAdvert/editPrice?id=${requestScope.id}&editPrice=yes">
-<dl class="row offset-sm-1  w-50">
-            <dt class="col-sm-2">  Описание </dt>
-                <textarea class="form-control" name="specificationAdvert" id="exampleFormControlTextarea1" rows="3">
-                    ${requestScope.advert. specificationAdvert}
-                </textarea>
-</dl>
-    <button type="submit" class="btn btn-secondary offset-sm-1">Edit</button>
-</form>
+<%--<form method="post" action="/editAdvert/editPrice?id=${requestScope.id}&editPrice=yes">--%>
+<%--<dl class="row offset-sm-1  w-50">--%>
+<%--            <dt class="col-sm-2">  Описание </dt>--%>
+<%--                <textarea class="form-control" name="specificationAdvert" id="exampleFormControlTextarea1" rows="3">--%>
+<%--                    ${requestScope.advert. specificationAdvert}--%>
+<%--                </textarea>--%>
+<%--</dl>--%>
+<%--    <button type="submit" class="btn btn-secondary offset-sm-1">Edit</button>--%>
+<%--</form>--%>
 
 
 </body>
