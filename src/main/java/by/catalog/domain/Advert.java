@@ -6,13 +6,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Advert implements Comparable<Advert> {
+public class Advert implements Comparable<Advert>, Comparator<Advert> {
 
     private long id;
     private String markCar;
@@ -57,8 +58,6 @@ public class Advert implements Comparable<Advert> {
     }
 
 
-
-
     @Override
     public String toString() {
 
@@ -68,7 +67,26 @@ public class Advert implements Comparable<Advert> {
     }
 
     @Override
-    public int compareTo(Advert o) {
-        return Double.compare(this.getPriceCar(), o.getPriceCar());
+    public int compareTo(Advert car) {
+        return Double.compare(this.getPriceCar(), car.getPriceCar());
     }
+
+    @Override
+    public int compare(Advert car1, Advert car2) {
+        return car1.getYearCar() - car2.getYearCar();
+    }
+
+//    @Override
+//    public int compareTo(Advert o) {
+//        return Double.compare(this.getPriceCar(), o.getPriceCar());
+//    }
+//
+//    public static Comparator<Advert> AdvertYearComparable = new Comparator<Advert>() {
+//        @Override
+//        public int compare(Advert car1, Advert car2) {
+//            String car1Year = String.valueOf(car1.getYearCar());
+//            String car2Year = String.valueOf(car2.getYearCar());
+//            return car1Year.compareTo(car2Year);
+//        }
+//    };
 }

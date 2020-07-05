@@ -45,15 +45,19 @@
         <form action="" method="get">
 
             <select name="mark">
+                <option selected disabled hidden>Choose Mark</option>
                 <option style="color:gray" value="anyMark">Any mark</option>
                 <c:forEach items="${requestScope.AllAdvertMarks}" var="var">
                     <option value="${var}"> ${var} </option>
                 </c:forEach>
             </select>
             <select name="sort">
+                <option selected disabled hidden>Sort</option>
                 <option style="color: gray" value="none">None</option>
-                <option value="asc">ASC</option>
-                <option value="desc">DESK</option>
+                <option value="ascPrice">Ascending price</option>
+                <option value="descPrice">Descending price</option>
+                <option value="ascYear">Ascending year</option>
+                <option value="descYear">Descending year</option>
             </select>
             <button>Submit</button>
             <a href="/">Clear</a>
@@ -66,17 +70,21 @@
                 <option value="${requestScope.mark}">${requestScope.mark}</option>
             </select>
             <select name="model">
+                <option selected disabled hidden>Choose model</option>
                 <option style="color:gray" value="anyModel">Any model</option>
                 <c:forEach items="${requestScope.modelByMark}" var="model">
                     <option value="${model}">${model}</option>
                 </c:forEach>
             </select>
             <select name="postSort">
+                <option selected disabled hidden>Sort</option>
                 <option style="color: gray" value="none">None</option>
-                <option value="asc">ASC</option>
-                <option value="desc">DESC</option>
+                <option value="ascPrice">Ascending price</option>
+                <option value="descPrice">Descending price</option>
+                <option value="ascYear">Ascending year</option>
+                <option value="descYear">Descending year</option>
             </select>
-            <button>Submited</button>
+            <button>Submit</button>
             <a href="/">Clear</a>
 
         </form>

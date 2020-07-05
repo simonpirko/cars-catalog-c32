@@ -155,28 +155,55 @@ public class AdvertService {
     }
 
 
-    public List<Advert> sortAllAdvertList(String sort) {
+    public List<Advert> sortAllAdvertListByPrice(String sort) {
         List<Advert> toSortList = getLastAdverts();
         toSortList.sort(Advert::compareTo);
-        if (sort.equalsIgnoreCase("desc")) {
+        if (sort.equalsIgnoreCase("descPrice")) {
             Collections.reverse(toSortList);
         }
         return toSortList;
     }
 
-    public List<Advert> sortMarkAdvertList(String sort, String mark) {
+    public List<Advert> sortAllAdvertListByYear(String sort) {
+        List<Advert> toSortList = getLastAdverts();
+        toSortList.sort(new Advert());
+        if(sort.equalsIgnoreCase("descYear")){
+            Collections.reverse(toSortList);
+        }
+        return toSortList;
+    }
+
+    public List<Advert> sortMarkAdvertListByPrice(String sort, String mark) {
         List<Advert> toSortList = findAdvertByMark(mark);
         toSortList.sort(Advert::compareTo);
-        if (sort.equalsIgnoreCase("desc")) {
+        if (sort.equalsIgnoreCase("descPrice")) {
             Collections.reverse(toSortList);
         }
         return toSortList;
     }
 
-    public List<Advert> sortModelAdvertList(String sort, String mark, String model) {
+    public List<Advert> sortMarkAdvertListByYear(String sort, String mark) {
+        List<Advert> toSortList = findAdvertByMark(mark);
+        toSortList.sort(new Advert());
+        if(sort.equalsIgnoreCase("descYear")){
+            Collections.reverse(toSortList);
+        }
+        return toSortList;
+    }
+
+    public List<Advert> sortModelAdvertListByPrice(String sort, String mark, String model) {
         List<Advert> toSortList = findAdvertByModel(mark, model);
         toSortList.sort(Advert::compareTo);
-        if (sort.equalsIgnoreCase("desc")) {
+        if (sort.equalsIgnoreCase("descPrice")) {
+            Collections.reverse(toSortList);
+        }
+        return toSortList;
+    }
+
+    public List<Advert> sortModelAdvertListByYear(String sort, String mark, String model) {
+        List<Advert> toSortList = findAdvertByModel(mark, model);
+        toSortList.sort(new Advert());
+        if (sort.equalsIgnoreCase("descYear")) {
             Collections.reverse(toSortList);
         }
         return toSortList;
