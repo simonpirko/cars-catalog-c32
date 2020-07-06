@@ -1,6 +1,7 @@
 package by.catalog.web.servlet;
 
 import by.catalog.domain.Advert;
+import by.catalog.domain.User;
 import by.catalog.service.AdvertService;
 
 import javax.servlet.ServletException;
@@ -19,6 +20,7 @@ public class EditAdvertEditYearServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long idAdvert = Long.parseLong(req.getParameter("id"));
         req.setAttribute("id", idAdvert);
+        User currentUser = (User) req.getSession().getAttribute("currentUser");
         Advert advert = advertService.getAdvert(idAdvert);
         req.setAttribute("advert", advert);
         List<Integer> listYear = advertService.listYear();
@@ -30,7 +32,7 @@ public class EditAdvertEditYearServlet extends HttpServlet {
         String newYear = req.getParameter("newYear");
         if (newYear != null){
         int newYear1 = Integer.parseInt(newYear);
-            advertService.editYearByIdAdvert(idAdvert, newYear1);
+            advertService.editYearByIdAdvert(idAdvert,currentUser.getId(), newYear1);
             resp.sendRedirect("/editAdvert?id=" + idAdvert);
         }
         else {

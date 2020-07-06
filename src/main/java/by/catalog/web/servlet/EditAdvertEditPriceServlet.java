@@ -1,6 +1,7 @@
 package by.catalog.web.servlet;
 
 import by.catalog.domain.Advert;
+import by.catalog.domain.User;
 import by.catalog.service.AdvertService;
 
 import javax.servlet.ServletException;
@@ -19,6 +20,7 @@ public class EditAdvertEditPriceServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long idAdvert = Long.parseLong(req.getParameter("id"));
         req.setAttribute("id", idAdvert);
+        User currentUser = (User) req.getSession().getAttribute("currentUser");
         Advert advert = advertService.getAdvert(idAdvert);
         req.setAttribute("advert", advert);
        String editPrice = req.getParameter("editPrice");
@@ -29,7 +31,7 @@ public class EditAdvertEditPriceServlet extends HttpServlet {
         try {
             if (newPrice != null && !newPrice.equals("") && Double.parseDouble(newPrice) > 0) {
                 double newPrice1 = Double.parseDouble(newPrice);
-                advertService.editPriceByIdAdvert(idAdvert, newPrice1);
+                advertService.editPriceByIdAdvert(idAdvert,currentUser.getId(), newPrice1);
                 resp.sendRedirect("/editAdvert?id=" + idAdvert);
             }
                 else{

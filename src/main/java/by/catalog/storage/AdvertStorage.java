@@ -70,6 +70,31 @@ public class AdvertStorage {
         return null;
     }
 
+    public Advert returnAdvertByIdAdvertAndIdUser(long idAdvert, long idUser) {
+        MessageStorage messageStorage = new MessageStorage();
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from advert s where s.id = ? and s.id_user = ?");
+            preparedStatement.setLong(1, idAdvert);
+            preparedStatement.setLong(2, idUser);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            String mark = resultSet.getString(2);
+            String model = resultSet.getString(3);
+            String color = resultSet.getString(4);
+            int yearCar = resultSet.getInt(5);
+            double price = resultSet.getDouble(6);
+            String date = resultSet.getString(8);
+            String specification = resultSet.getString(9);
+            List<Message> messages = messageStorage.returnMessageByIdAdvert(idAdvert);
+            connection.close();
+            return new Advert(idAdvert, mark, model, color, yearCar, price, idUser, date, specification, messages);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public List<Advert> getAllAdvertByIdUser(long idUser) {
         MessageStorage messageStorage = new MessageStorage();
         List<Advert> adverts = new ArrayList<>();
@@ -311,25 +336,27 @@ public class AdvertStorage {
         }
     }
 
-    public void updateMarkAndModelById(long id, String mark, String model) {
+    public void updateMarkAndModelById(long idAdvert, long idUser, String mark, String model) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement("update advert set mark= ?, model = ?  where id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update advert set mark= ?, model = ?  where id = ? and id_user = ?");
             preparedStatement.setString(1, mark);
             preparedStatement.setString(2, model);
-            preparedStatement.setLong(3, id);
+            preparedStatement.setLong(3, idAdvert);
+            preparedStatement.setLong(4, idUser);
             preparedStatement.executeUpdate();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public void updateColorById(long id, String color) {
+    public void updateColorById(long idAdvert, long idUser, String color) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement("update advert set color= ? where id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update advert set color= ? where id = ? and id_user = ?");
             preparedStatement.setString(1, color);
-            preparedStatement.setLong(2, id);
+            preparedStatement.setLong(2, idAdvert);
+            preparedStatement.setLong(3, idUser);
             preparedStatement.executeUpdate();
             connection.close();
         } catch (SQLException e) {
@@ -337,12 +364,13 @@ public class AdvertStorage {
         }
     }
 
-    public void updateYearById(long id, int year) {
+    public void updateYearById(long id, long idUser,int year) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement("update advert set yearcar= ? where id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update advert set yearcar= ? where id = ? and id_user = ?");
             preparedStatement.setInt(1, year);
             preparedStatement.setLong(2, id);
+            preparedStatement.setLong(3, idUser);
             preparedStatement.executeUpdate();
             connection.close();
         } catch (SQLException e) {
@@ -350,12 +378,13 @@ public class AdvertStorage {
         }
     }
 
-    public void updatePriceById(long id, double price){
+    public void updatePriceById(long id, long idUser, double price){
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement("update advert set price= ? where id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update advert set price= ? where id = ? and id_user = ?");
             preparedStatement.setDouble(1, price);
             preparedStatement.setLong(2, id);
+            preparedStatement.setLong(3, idUser);
             preparedStatement.executeUpdate();
             connection.close();
         } catch (SQLException e) {
@@ -363,12 +392,13 @@ public class AdvertStorage {
         }
     }
 
-    public void updateSpecificationById(long id, String specification){
+    public void updateSpecificationById(long id, long idUser, String specification){
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement("update advert set specificationadvert = ? where id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("update advert set specificationadvert = ? where id = ? and id_user = ?");
             preparedStatement.setString(1, specification);
             preparedStatement.setLong(2, id);
+            preparedStatement.setLong(3, idUser);
             preparedStatement.executeUpdate();
             connection.close();
         } catch (SQLException e) {

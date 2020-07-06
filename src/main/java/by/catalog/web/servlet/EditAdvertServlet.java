@@ -2,6 +2,7 @@ package by.catalog.web.servlet;
 
 
 import by.catalog.domain.Advert;
+import by.catalog.domain.User;
 import by.catalog.service.AdvertService;
 
 import javax.servlet.ServletException;
@@ -20,8 +21,9 @@ public class EditAdvertServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long idAdvert = Long.parseLong(req.getParameter("id"));
+        User currentUser = (User) req.getSession().getAttribute("currentUser");
         req.setAttribute("id", idAdvert);
-        Advert advert = advertService.getAdvert(idAdvert);
+        Advert advert = advertService.getAdvertByIdAdvertAndIdUser(idAdvert, currentUser.getId());
         req.setAttribute("advert", advert);
         getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);
 
