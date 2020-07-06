@@ -19,9 +19,20 @@ public class HomepageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AdvertService advertService = new AdvertService();
-        List lastAdverts = advertService.getLastAdverts();
-        ArrayList advertList = new ArrayList<>(lastAdverts);
-        req.setAttribute("advertList", advertList);
+        String[] colorList = advertService.colorList();
+        req.setAttribute("colorList", colorList);
+
+        String color = req.getParameter("color");
+        if (color != null) {
+            List lastAdverts = advertService.getLastAdvertsByColor(color);
+            ArrayList advertList = new ArrayList<>(lastAdverts);
+            req.setAttribute("advertList", advertList);
+        } else {
+            List lastAdverts = advertService.getLastAdverts();
+            ArrayList advertList = new ArrayList<>(lastAdverts);
+            req.setAttribute("advertList", advertList);
+        }
+
 
         List MarkList = advertService.returnSortMark();
         req.setAttribute("AllAdvertMarks", MarkList);
@@ -31,13 +42,13 @@ public class HomepageServlet extends HttpServlet {
                 && !sort.equalsIgnoreCase("none")
                 && (sort.equalsIgnoreCase("descPrice")
                 || sort.equalsIgnoreCase("ascPrice"))) {
-            List<Advert> sortedAllAdvertListByPrice = advertService.sortAllAdvertListByPrice(sort);
+            List<Advert> sortedAllAdvertListByPrice = advertService.sortAllAdvertListByPrice(sort, color);
             req.setAttribute("advertList", sortedAllAdvertListByPrice);
         } else if (sort != null
                 && !sort.equalsIgnoreCase("none")
                 && (sort.equalsIgnoreCase("descYear")
                 || sort.equalsIgnoreCase("ascYear"))) {
-            List<Advert> sortedAllAdvertListByYear = advertService.sortAllAdvertListByYear(sort);
+            List<Advert> sortedAllAdvertListByYear = advertService.sortAllAdvertListByYear(sort, color);
             req.setAttribute("advertList", sortedAllAdvertListByYear);
         }
 
@@ -55,16 +66,16 @@ public class HomepageServlet extends HttpServlet {
                         && !sort.equalsIgnoreCase("none")
                         && (sort.equalsIgnoreCase("descPrice")
                         || sort.equalsIgnoreCase("ascPrice"))) {
-                    List<Advert> sortedAdvertByMark = advertService.sortMarkAdvertListByPrice(sort, mark);
+                    List<Advert> sortedAdvertByMark = advertService.sortMarkAdvertListByPrice(sort, mark, color);
                     req.setAttribute("advertList", sortedAdvertByMark);
                 } else if (sort != null
                         && !sort.equalsIgnoreCase("none")
                         && (sort.equalsIgnoreCase("descYear")
                         || sort.equalsIgnoreCase("ascYear"))) {
-                    List<Advert> sortedAdvertByYear = advertService.sortMarkAdvertListByYear(sort, mark);
+                    List<Advert> sortedAdvertByYear = advertService.sortMarkAdvertListByYear(sort, mark, color);
                     req.setAttribute("advertList", sortedAdvertByYear);
                 } else {
-                    List<Advert> advertByMark = advertService.findAdvertByMark(mark);
+                    List<Advert> advertByMark = advertService.findAdvertByMark(mark, color);
                     req.setAttribute("advertList", advertByMark);
                 }
             }
@@ -90,23 +101,23 @@ public class HomepageServlet extends HttpServlet {
         String markCar = req.getParameter("mark");
         req.setAttribute("mark", markCar);
         String model = req.getParameter("model");
-
+        String color = req.getParameter("color");
         String sort = req.getParameter("postSort");
         if (!model.equalsIgnoreCase("anyModel")) {
             if (sort != null
                     && !sort.equalsIgnoreCase("none")
                     && (sort.equalsIgnoreCase("descPrice")
                     || sort.equalsIgnoreCase("ascPrice"))) {
-                List<Advert> sortedModelAdvertListByPrice = advertService.sortModelAdvertListByPrice(sort, markCar, model);
+                List<Advert> sortedModelAdvertListByPrice = advertService.sortModelAdvertListByPrice(sort, markCar, model, color);
                 req.setAttribute("advertList", sortedModelAdvertListByPrice);
             } else if (sort != null
                     && !sort.equalsIgnoreCase("none")
                     && (sort.equalsIgnoreCase("descYear")
                     || sort.equalsIgnoreCase("ascYear"))) {
-                List<Advert> sortedModelAdvertListByYear = advertService.sortModelAdvertListByYear(sort, markCar, model);
+                List<Advert> sortedModelAdvertListByYear = advertService.sortModelAdvertListByYear(sort, markCar, model, color);
                 req.setAttribute("advertList", sortedModelAdvertListByYear);
             } else {
-                List<Advert> advertByModel = advertService.findAdvertByModel(markCar, model);
+                List<Advert> advertByModel = advertService.findAdvertByModel(markCar, model, color);
                 req.setAttribute("advertList", advertByModel);
             }
 
@@ -115,16 +126,16 @@ public class HomepageServlet extends HttpServlet {
                     && !sort.equalsIgnoreCase("none")
                     && (sort.equalsIgnoreCase("descPrice")
                     || sort.equalsIgnoreCase("ascPrice"))) {
-                List<Advert> sortedMarkAdvertList = advertService.sortMarkAdvertListByPrice(sort, markCar);
+                List<Advert> sortedMarkAdvertList = advertService.sortMarkAdvertListByPrice(sort, markCar, color);
                 req.setAttribute("advertList", sortedMarkAdvertList);
             } else if (sort != null
                     && !sort.equalsIgnoreCase("none")
                     && (sort.equalsIgnoreCase("descYear")
                     || sort.equalsIgnoreCase("ascYear"))) {
-                List<Advert> sortedMarkAdvertListByYear = advertService.sortMarkAdvertListByYear(sort, markCar);
+                List<Advert> sortedMarkAdvertListByYear = advertService.sortMarkAdvertListByYear(sort, markCar, color);
                 req.setAttribute("advertList", sortedMarkAdvertListByYear);
             } else {
-                List<Advert> advertByMark = advertService.findAdvertByMark(markCar);
+                List<Advert> advertByMark = advertService.findAdvertByMark(markCar, color);
                 req.setAttribute("advertList", advertByMark);
             }
         }

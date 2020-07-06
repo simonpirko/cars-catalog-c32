@@ -59,6 +59,12 @@
                 <option value="ascYear">Ascending year</option>
                 <option value="descYear">Descending year</option>
             </select>
+            <select name="color">
+                <option value="anyColor" selected>Any</option>
+                <c:forEach items="${requestScope.colorList}" var="item">
+                    <option value="${item}">${item}</option>
+                </c:forEach>
+            </select>
             <button>Submit</button>
             <a href="/">Clear</a>
         </form>
@@ -83,6 +89,12 @@
                 <option value="descPrice">Descending price</option>
                 <option value="ascYear">Ascending year</option>
                 <option value="descYear">Descending year</option>
+            </select>
+            <select name="color">
+                <option value="anyColor" selected>Any</option>
+                <c:forEach items="${requestScope.colorList}" var="item">
+                    <option value="${item}">${item}</option>
+                </c:forEach>
             </select>
             <button>Submit</button>
             <a href="/">Clear</a>
