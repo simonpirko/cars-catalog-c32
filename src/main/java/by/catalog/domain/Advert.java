@@ -76,17 +76,4 @@ public class Advert implements Comparable<Advert>, Comparator<Advert> {
         return car1.getYearCar() - car2.getYearCar();
     }
 
-//    @Override
-//    public int compareTo(Advert o) {
-//        return Double.compare(this.getPriceCar(), o.getPriceCar());
-//    }
-//
-//    public static Comparator<Advert> AdvertYearComparable = new Comparator<Advert>() {
-//        @Override
-//        public int compare(Advert car1, Advert car2) {
-//            String car1Year = String.valueOf(car1.getYearCar());
-//            String car2Year = String.valueOf(car2.getYearCar());
-//            return car1Year.compareTo(car2Year);
-//        }
-//    };
 }
