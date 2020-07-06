@@ -143,16 +143,36 @@
 </dl>
 </dl>
 
-<%--<form method="post" action="/editAdvert/editPrice?id=${requestScope.id}&editPrice=yes">--%>
-<%--<dl class="row offset-sm-1  w-50">--%>
-<%--            <dt class="col-sm-2">  Описание </dt>--%>
-<%--                <textarea class="form-control" name="specificationAdvert" id="exampleFormControlTextarea1" rows="3">--%>
-<%--                    ${requestScope.advert. specificationAdvert}--%>
-<%--                </textarea>--%>
-<%--</dl>--%>
-<%--    <button type="submit" class="btn btn-secondary offset-sm-1">Edit</button>--%>
-<%--</form>--%>
-
+<c:if test="${!requestScope.choiceDescription}">
+<dl class="row offset-sm-1" >
+    <div class="card w-50">
+        <div class="card-header">
+            Описание
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+            <ul>
+                ${requestScope.advert.specificationAdvert}
+            </ul>
+            </p>
+        </div>
+    </div>
+</dl>
+<form method="post" action="/editAdvert/editDescription?id=${requestScope.id}&editDescription=yes">
+    <button type="submit" class="btn btn-secondary offset-sm-1">Edit</button>
+</form>
+</c:if>
+<c:if test="${requestScope.choiceDescription}">
+<form method="post" action="/editAdvert/editDescription?id=${requestScope.id}&editDescription=yes">
+<dl class="row offset-sm-1  w-50">
+            <dt class="col-sm-2">  Описание </dt>
+                <textarea class="form-control" name="specificationAdvert" id="exampleFormControlTextarea1" rows="3">
+                    ${requestScope.advert.specificationAdvert}
+                </textarea>
+</dl>
+    <button type="submit" class="btn btn-secondary offset-sm-1">Save</button>
+</form>
+</c:if>
 
 </body>
 </html>

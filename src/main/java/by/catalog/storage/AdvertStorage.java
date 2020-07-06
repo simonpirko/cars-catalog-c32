@@ -363,4 +363,17 @@ public class AdvertStorage {
         }
     }
 
+    public void updateSpecificationById(long id, String specification){
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("update advert set specificationadvert = ? where id = ?");
+            preparedStatement.setString(1, specification);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

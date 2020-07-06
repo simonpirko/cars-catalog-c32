@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet(name = "EditAdvertEditYearServlet", urlPatterns = "/editAdvert/editYear")
-public class EditAdvertEditYearServlet extends HttpServlet {
+@WebServlet(name = "EditAdvertEditDescriptionServlet", urlPatterns = "/editAdvert/editDescription")
+public class EditAdvertEditDescriptionServlet extends HttpServlet {
     private AdvertService advertService = new AdvertService();
 
     @Override
@@ -21,21 +20,17 @@ public class EditAdvertEditYearServlet extends HttpServlet {
         req.setAttribute("id", idAdvert);
         Advert advert = advertService.getAdvert(idAdvert);
         req.setAttribute("advert", advert);
-        List<Integer> listYear = advertService.listYear();
-        req.setAttribute("listYear", listYear);
-        String editYear = req.getParameter("editYear");
-        if (editYear != null) {
-            req.setAttribute("choiceYear", true);
+        String editDescription = req.getParameter("editDescription");
+        if (editDescription != null) {
+            req.setAttribute("choiceDescription", true);
         }
-        String newYear = req.getParameter("newYear");
-        if (newYear != null){
-        int newYear1 = Integer.parseInt(newYear);
-            advertService.editYearByIdAdvert(idAdvert, newYear1);
+        String specificationAdvert = req.getParameter("specificationAdvert");
+        if (specificationAdvert != null) {
+            advertService.editSpecificationByIdAdvert(idAdvert, specificationAdvert);
             resp.sendRedirect("/editAdvert?id=" + idAdvert);
-        }
-        else {
+        } else {
             getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);
         }
     }
-    }
 
+}

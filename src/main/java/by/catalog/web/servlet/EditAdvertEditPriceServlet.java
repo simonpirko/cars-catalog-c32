@@ -26,13 +26,18 @@ public class EditAdvertEditPriceServlet extends HttpServlet {
             req.setAttribute("choicePrice", true);
         }
         String newPrice = req.getParameter("newPrice");
-        if (newPrice != null&& !newPrice.equals("")){
-            double newPrice1 = Double.parseDouble(newPrice);
-            advertService.editPriceByIdAdvert(idAdvert, newPrice1);
-            resp.sendRedirect("/editAdvert?id=" + idAdvert);
+        try {
+            if (newPrice != null && !newPrice.equals("") && Double.parseDouble(newPrice) > 0) {
+                double newPrice1 = Double.parseDouble(newPrice);
+                advertService.editPriceByIdAdvert(idAdvert, newPrice1);
+                resp.sendRedirect("/editAdvert?id=" + idAdvert);
+            }
+                else{
+                    getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);
+            }
         }
-        else {
-            getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);
+        catch (NumberFormatException e) {
+                getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);
         }
     }
     }

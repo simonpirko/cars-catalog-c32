@@ -194,5 +194,10 @@ public class AdvertService {
     public void editPriceByIdAdvert(long idAdvert, double price){
         advertStorage.updatePriceById(idAdvert, price);
     }
+
+    public void editSpecificationByIdAdvert(long idAdvert, String specification){
+        advertStorage.updateSpecificationById(idAdvert, specification);
+    }
 }
+
 
