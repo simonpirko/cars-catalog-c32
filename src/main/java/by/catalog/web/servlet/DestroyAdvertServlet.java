@@ -19,6 +19,7 @@ public class DestroyAdvertServlet extends HttpServlet {
         User currentUser = (User) req.getSession().getAttribute("currentUser");
         long id = Long.parseLong(req.getParameter("id"));
         advertService.destroyAdvertByIdAdvert(id, currentUser.getId());
+        advertService.destroyUserAdvertList(id);
         resp.sendRedirect("/pers/youAdvert");
     }
 }

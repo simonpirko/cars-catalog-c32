@@ -25,6 +25,10 @@ public class AdvertService {
         return advertStorage.returnAdvertById(idAdvert);
     }
 
+    public Advert getAdvertByIdAdvertAndIdUser(long idAdvert, long idUser){
+        return advertStorage.returnAdvertByIdAdvertAndIdUser(idAdvert, idUser);
+    }
+
 
     public void saveAdvertToUserAdvertList(long idAdvert, long idUser) {
         advertStorage.addIdUserIdAdvert(idUser, idAdvert);
@@ -172,8 +176,32 @@ public class AdvertService {
         advertStorage.removeAdvertByIdAdvert(idAdvert, idUser);
     }
 
+    public void destroyUserAdvertList (long idAdvert){
+        advertStorage.removeAfterDestroyUserAdvertList(idAdvert);
+    }
+
     public List<Advert> getAllUserAdvert(long idUser) {
         return advertStorage.getAllAdvertByIdUser(idUser);
     }
+
+    public void editAdvertMarkAndModelByIdAdvert(long idAdvert, long idUser, String mark, String model){
+        advertStorage.updateMarkAndModelById(idAdvert,idUser, mark, model);
+    }
+    public void editColorByIdAdvert(long idAdvert, long idUser, String color){
+        advertStorage.updateColorById(idAdvert, idUser, color);
+    }
+
+    public void editYearByIdAdvert(long idAdvert, long idUser,int year){
+        advertStorage.updateYearById(idAdvert, idUser, year);
+    }
+
+    public void editPriceByIdAdvert(long idAdvert,long idUser, double price){
+        advertStorage.updatePriceById(idAdvert, idUser, price);
+    }
+
+    public void editSpecificationByIdAdvert(long idAdvert,long idUser, String specification){
+        advertStorage.updateSpecificationById(idAdvert,idUser, specification);
+    }
 }
+
 

@@ -20,9 +20,11 @@
                     <button type="submit" formaction="/removeAdvert?id=${requestScope.id}" class="btn btn-outline-danger" formmethod="post">Remove advert with you list</button>
                 </c:if>
                 <c:if test="${requestScope.checkYouAdvert}">
-                 <button type= "submit" formaction="/updateAdvert?id=${requestScope.id}" class="btn btn-primary" formmethod="post" >Edit advert</button>
-                 <button type= "submit" formaction="/destroyAdvert?id=${requestScope.id}" formmethod="post" class="btn btn-danger">Deleted advert</button>
-               </c:if>
+                    <a href="/editAdvert?id=${requestScope.id}" class="btn btn-primary" >Edit advert</a>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                        Deleted advert
+                    </button>
+                </c:if>
             </form>
         </ul>
     </div>
@@ -48,22 +50,23 @@
     <dd class="col-sm-8">${requestScope.advert.dateAdvert}</dd>
 </dl>
 
+<dl class="row offset-sm-1" >
+    <div class="card w-50">
+        <div class="card-header">
+            Описание
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+            <ul>
+                ${requestScope.advert. specificationAdvert}
+            </ul>
+            </p>
+        </div>
+    </div>
+</dl>
+
 <c:if test="${sessionScope.checkAuth}">
 
-    <dl class="row offset-sm-1" >
-        <div class="card w-50">
-            <div class="card-header">
-                Описание
-            </div>
-            <div class="card-body">
-                <p class="card-text">
-                <ul>
-                    ${requestScope.advert. specificationAdvert}
-                </ul>
-                </p>
-            </div>
-        </div>
-    </dl>
 
     <dl class="row offset-sm-1" >
         <div class="card w-50">
