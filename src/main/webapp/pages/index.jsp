@@ -59,15 +59,16 @@
                 <option value="ascYear">Ascending year</option>
                 <option value="descYear">Descending year</option>
             </select>
-            <select name="color">
-                <option value="anyColor" selected>Any</option>
-                <c:forEach items="${requestScope.colorList}" var="item">
-                    <option value="${item}">${item}</option>
-                </c:forEach>
-            </select>
+
+
+            <li><input type="radio" name="color" value="anyColor" checked/>Any Color</li>
+            <c:forEach items="${requestScope.colorList}" var="item">
+                <li><input type="radio" name="color" value="${item}" checked/>${item}</li>
+            </c:forEach>
             <button>Submit</button>
             <a href="/">Clear</a>
         </form>
+
     </c:if>
 
     <c:if test="${requestScope.hadChosen}">
@@ -82,7 +83,6 @@
                 </c:forEach>
             </select>
             <select name="postSort">
-
                 <option selected disabled hidden>Sort</option>
                 <option style="color: gray" value="none">None</option>
                 <option value="ascPrice">Ascending price</option>
@@ -90,12 +90,13 @@
                 <option value="ascYear">Ascending year</option>
                 <option value="descYear">Descending year</option>
             </select>
-            <select name="color">
-                <option value="anyColor" selected>Any</option>
-                <c:forEach items="${requestScope.colorList}" var="item">
-                    <option value="${item}">${item}</option>
-                </c:forEach>
-            </select>
+
+
+            <li><input type="radio" name="postColor" value="anyColor" checked/>Any Color</li>
+            <c:forEach items="${requestScope.colorList}" var="item">
+               <li><input type="radio" name="postColor" value="${item}" checked/>${item}</li>
+            </c:forEach>
+
             <button>Submit</button>
             <a href="/">Clear</a>
 

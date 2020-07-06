@@ -95,14 +95,16 @@ public class HomepageServlet extends HttpServlet {
         req.getServletContext().getRequestDispatcher("/pages/index.jsp").forward(req, resp);
     }
 
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AdvertService advertService = new AdvertService();
         String markCar = req.getParameter("mark");
         req.setAttribute("mark", markCar);
         String model = req.getParameter("model");
-        String color = req.getParameter("color");
         String sort = req.getParameter("postSort");
+        String color = req.getParameter("postColor");
+
         if (!model.equalsIgnoreCase("anyModel")) {
             if (sort != null
                     && !sort.equalsIgnoreCase("none")
