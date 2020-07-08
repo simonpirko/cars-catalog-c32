@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
@@ -17,9 +16,11 @@
         <a href="/auth">Authorisation |</a>
     </c:if>
 
-       <style>
-           body { background: url("https://images5.alphacoders.com/393/393646.jpg")  }
-        </style>
+    <style>
+        body {
+            background: url("https://images5.alphacoders.com/393/393646.jpg")
+        }
+    </style>
 
     <c:if test="${sessionScope.checkAuth}">
         <a href="/addAdvert">Add Advert |</a>
@@ -61,17 +62,27 @@
             </select>
 
 
-            <li><input type="radio" name="color" value="anyColor" checked/>Any Color</li>
             <c:forEach items="${requestScope.colorList}" var="item">
                 <li><input type="radio" name="color" value="${item}" checked/>${item}</li>
             </c:forEach>
+            <li><input type="radio" name="color" value="anyColor" checked/>Any Color</li>
+
             <button>Submit</button>
             <a href="/">Clear</a>
+
+            <br><br>
+            Pages
+            <c:forEach begin="1" end="10" var="i">
+                <a href="${requestScope.URL}?${requestScope.query}${i}">${i}</a>
+            </c:forEach>
+
+
         </form>
 
     </c:if>
 
     <c:if test="${requestScope.hadChosen}">
+
         <form action="" method="post">
             <select name="mark">
                 <option value="${requestScope.mark}">${requestScope.mark}</option>
@@ -94,10 +105,13 @@
 
             <li><input type="radio" name="postColor" value="anyColor" checked/>Any Color</li>
             <c:forEach items="${requestScope.colorList}" var="item">
-               <li><input type="radio" name="postColor" value="${item}" checked/>${item}</li>
+                <li><input type="radio" name="postColor" value="${item}" checked/>${item}</li>
             </c:forEach>
-
             <button>Submit</button>
+            Pages
+            <c:forEach begin="1" end="10" var="i">
+                <a href="${requestScope.URL}?${requestScope.query}${i}">${i}</a>
+            </c:forEach>
             <a href="/">Clear</a>
 
         </form>

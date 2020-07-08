@@ -23,14 +23,13 @@ public class AdvertService {
         return advertStorage.returnAdvertById(idAdvert);
     }
 
-    public Advert getAdvertByIdAdvertAndIdUser(long idAdvert, long idUser){
+    public Advert getAdvertByIdAdvertAndIdUser(long idAdvert, long idUser) {
         return advertStorage.returnAdvertByIdAdvertAndIdUser(idAdvert, idUser);
     }
 
 
     public void saveAdvertToUserAdvertList(long idAdvert, long idUser) {
         advertStorage.addIdUserIdAdvert(idUser, idAdvert);
-        // FIXME: 6/13/20
     }
 
     public List<Advert> findAllInterestingAdverts(long idUser) {
@@ -44,47 +43,39 @@ public class AdvertService {
         return list;
     }
 
-//    public List<Advert> findAllAdverts() {
-////        return advertStorage.findAllAdverts();
-//        // FIXME: 6/13/20
-//        return null;
-//    }
 
-    public List<Advert> getLastAdvertsByColor(String color) {
+    public List<Advert> getLastAdvertsByColor(String color, int count, int page) {
         List<Advert> list = new ArrayList<>();
-        List allAdverts = advertStorage.getAllAdverts();
+        List allAdverts = advertStorage.getAllAdvertsByColor(color);
         if (allAdverts != null) {
-            for (int i = allAdverts.size() - 1; i > allAdverts.size() - 20 && i > -1; i--) {
-                Advert advert = (Advert) allAdverts.get(i);
-                if (color.equals("anyColor")) {
-                    list.add(advert);
-                } else if (advert.getColorCar().equals(color)) {
+            for (int i = count * page - 1; i >= count * (page - 1) && i >= 0; i--) {
+                if (i < allAdverts.size()) {
+                    Advert advert = (Advert) allAdverts.get(i);
                     list.add(advert);
                 }
             }
+            Collections.reverse(list);
         }
         return list;
     }
 
-    public List<Advert> getLastAdverts() {
+    public List<Advert> getLastAdverts(int count, int page) {
         List<Advert> list = new ArrayList<>();
         List allAdverts = advertStorage.getAllAdverts();
         if (allAdverts != null) {
-            for (int i = allAdverts.size() - 1; i > allAdverts.size() - 20 && i > -1; i--) {
-                Advert advert = (Advert) allAdverts.get(i);
-                list.add(advert);
+            for (int i = count * page - 1; i >= count * (page - 1) && i >= 0; i--) {
+                if (i < allAdverts.size()) {
+                    Advert advert = (Advert) allAdverts.get(i);
+                    list.add(advert);
+                }
             }
+            Collections.reverse(list);
         }
         return list;
     }
 
-    public Advert findAdvertById(long advertId) {
-//        advertStorage.findAdvertById(advertId);
-        // FIXME: 6/13/20
-        return null;
-    }
 
-    public List<Advert> findAdvertByMark(String mark, String color) {
+    public List<Advert> findAdvertByMark(String mark, String color, int count, int page) {
         List<Advert> listBySearch = new ArrayList<>();
         List allAdverts = advertStorage.getAllAdverts();
         for (int i = 0; i < allAdverts.size(); i++) {
@@ -97,19 +88,38 @@ public class AdvertService {
                 }
             }
         }
-        return listBySearch;
-    }
-
-    public List<Advert> findAdvertByModel(String mark, String model, String color) {
-        List<Advert> listBySearch = new ArrayList<>();
-        List markAdverts = findAdvertByMark(mark, color);
-        for (Object markAdvert : markAdverts) {
-            Advert advert = (Advert) markAdvert;
-            if (advert.getModelCar().equals(model)) {
-                listBySearch.add(advert);
+        List<Advert> newList = new ArrayList<>();
+        for (int i = count * (page - 1); newList.size() < count && i < listBySearch.size(); i++) {
+            if (!listBySearch.isEmpty()) {
+                Advert advert = listBySearch.get(i);
+                newList.add(advert);
             }
         }
-        return listBySearch;
+        return newList;
+    }
+
+    public List<Advert> findAdvertByModel(String mark, String model, String color, int count, int page) {
+        List<Advert> listBySearch = new ArrayList<>();
+        List<Advert> modelByMark = advertStorage.getAllAdvertsByMark(mark);
+        for (int i = 0; i < modelByMark.size(); i++) {
+            Advert advert = (Advert) modelByMark.get(i);
+            if (advert.getModelCar().equals(model)) {
+                if (color.equals("anyColor")) {
+                    listBySearch.add(advert);
+                } else if (advert.getColorCar().equals(color)) {
+                    listBySearch.add(advert);
+                }
+            }
+        }
+
+        List<Advert> newList = new ArrayList<>();
+        for (int i = count * (page - 1); newList.size() < count && i < listBySearch.size(); i++) {
+            if (!listBySearch.isEmpty()) {
+                Advert advert = listBySearch.get(i);
+                newList.add(advert);
+            }
+        }
+        return newList;
     }
 
     public List<String> getAdvertMarks() {
@@ -119,6 +129,7 @@ public class AdvertService {
     public List<String> returnModelByMark(String mark) {
         return advertStorage.getModelByMark(mark);
     }
+
 
     public List<String> returnMarkByModel(String model) {
         return advertStorage.getMarkByModel(model);
@@ -164,58 +175,131 @@ public class AdvertService {
     }
 
 
-    public List<Advert> sortAllAdvertListByPrice(String sort, String color) {
-        List<Advert> toSortList = getLastAdvertsByColor(color);
+    public List<Advert> sortAllAdvertListByPrice(String sort, String color, int count, int page) {
+        List<Advert> toSortList;
+        if (color.equals("anyColor")) {
+            toSortList = advertStorage.getAllAdverts();
+        } else {
+            toSortList = advertStorage.getAllAdvertsByColor(color);
+        }
         toSortList.sort(Advert::compareTo);
         if (sort.equalsIgnoreCase("descPrice")) {
             Collections.reverse(toSortList);
         }
-        return toSortList;
+        List<Advert> newList = new ArrayList<>();
+        for (int i = count * (page - 1); newList.size() < count && i < toSortList.size(); i++) {
+            if (!toSortList.isEmpty()) {
+                Advert advert = toSortList.get(i);
+                newList.add(advert);
+            }
+        }
+        return newList;
     }
 
-    public List<Advert> sortAllAdvertListByYear(String sort, String color) {
-        List<Advert> toSortList = getLastAdvertsByColor(color);
+    public List<Advert> sortAllAdvertListByYear(String sort, String color, int count, int page) {
+        List<Advert> toSortList;
+        if (color.equals("anyColor")) {
+            toSortList = advertStorage.getAllAdverts();
+        } else {
+            toSortList = advertStorage.getAllAdvertsByColor(color);
+        }
         toSortList.sort(new Advert());
         if (sort.equalsIgnoreCase("descYear")) {
             Collections.reverse(toSortList);
         }
-        return toSortList;
+        List<Advert> newList = new ArrayList<>();
+        for (int i = count * (page - 1); newList.size() < count && i < toSortList.size(); i++) {
+            if (!toSortList.isEmpty()) {
+                Advert advert = toSortList.get(i);
+                newList.add(advert);
+            }
+        }
+        return newList;
+
     }
 
-    public List<Advert> sortMarkAdvertListByPrice(String sort, String mark, String color) {
-        List<Advert> toSortList = findAdvertByMark(mark, color);
+    public List<Advert> sortMarkAdvertListByPrice(String sort, String mark, String color, int count, int page) {
+        List<Advert> toSortList;
+        if (color.equals("anyColor")) {
+            toSortList = advertStorage.getAllAdvertsByMark(mark);
+        } else {
+            toSortList = advertStorage.getAllAdvertsByMarkColor(mark, color);
+        }
         toSortList.sort(Advert::compareTo);
         if (sort.equalsIgnoreCase("descPrice")) {
             Collections.reverse(toSortList);
         }
-        return toSortList;
+        List<Advert> newList = new ArrayList<>();
+        for (int i = count * (page - 1); newList.size() < count && i < toSortList.size(); i++) {
+            if (!toSortList.isEmpty()) {
+                Advert advert = toSortList.get(i);
+                newList.add(advert);
+            }
+        }
+        return newList;
     }
 
-    public List<Advert> sortMarkAdvertListByYear(String sort, String mark, String color) {
-        List<Advert> toSortList = findAdvertByMark(mark, color);
+    public List<Advert> sortMarkAdvertListByYear(String sort, String mark, String color, int count, int page) {
+        List<Advert> toSortList;
+        if (color.equals("anyColor")) {
+            toSortList = advertStorage.getAllAdvertsByMark(mark);
+        } else {
+            toSortList = advertStorage.getAllAdvertsByMarkColor(mark, color);
+        }
         toSortList.sort(new Advert());
         if (sort.equalsIgnoreCase("descYear")) {
             Collections.reverse(toSortList);
         }
-        return toSortList;
+        List<Advert> newList = new ArrayList<>();
+        for (int i = count * (page - 1); newList.size() < count && i < toSortList.size(); i++) {
+            if (!toSortList.isEmpty()) {
+                Advert advert = toSortList.get(i);
+                newList.add(advert);
+            }
+        }
+        return newList;
     }
 
-    public List<Advert> sortModelAdvertListByPrice(String sort, String mark, String model, String color) {
-        List<Advert> toSortList = findAdvertByModel(mark, model, color);
+    public List<Advert> sortModelAdvertListByPrice(String sort,String model, String color, int count, int page) {
+        List<Advert> toSortList;
+        if (color.equals("anyColor")) {
+            toSortList = advertStorage.getAllAdvertsByModel(model);
+        } else {
+            toSortList = advertStorage.getAllAdvertsByModelColor(model, color);
+        }
         toSortList.sort(Advert::compareTo);
         if (sort.equalsIgnoreCase("descPrice")) {
             Collections.reverse(toSortList);
         }
-        return toSortList;
+        List<Advert> newList = new ArrayList<>();
+        for (int i = count * (page - 1); newList.size() < count && i < toSortList.size(); i++) {
+            if (!toSortList.isEmpty()) {
+                Advert advert = toSortList.get(i);
+                newList.add(advert);
+            }
+        }
+        return newList;
     }
 
-    public List<Advert> sortModelAdvertListByYear(String sort, String mark, String model, String color) {
-        List<Advert> toSortList = findAdvertByModel(mark, model, color);
+    public List<Advert> sortModelAdvertListByYear(String sort, String model, String color, int count, int page) {
+        List<Advert> toSortList;
+        if (color.equals("anyColor")) {
+            toSortList = advertStorage.getAllAdvertsByModel(model);
+        } else {
+            toSortList = advertStorage.getAllAdvertsByModelColor(model, color);
+        }
         toSortList.sort(new Advert());
         if (sort.equalsIgnoreCase("descYear")) {
             Collections.reverse(toSortList);
         }
-        return toSortList;
+        List<Advert> newList = new ArrayList<>();
+        for (int i = count * (page - 1); newList.size() < count && i < toSortList.size(); i++) {
+            if (!toSortList.isEmpty()) {
+                Advert advert = toSortList.get(i);
+                newList.add(advert);
+            }
+        }
+        return newList;
     }
 
 
@@ -248,7 +332,7 @@ public class AdvertService {
         advertStorage.removeAdvertByIdAdvert(idAdvert, idUser);
     }
 
-    public void destroyUserAdvertList (long idAdvert){
+    public void destroyUserAdvertList(long idAdvert) {
         advertStorage.removeAfterDestroyUserAdvertList(idAdvert);
     }
 
@@ -256,23 +340,24 @@ public class AdvertService {
         return advertStorage.getAllAdvertByIdUser(idUser);
     }
 
-    public void editAdvertMarkAndModelByIdAdvert(long idAdvert, long idUser, String mark, String model){
-        advertStorage.updateMarkAndModelById(idAdvert,idUser, mark, model);
+    public void editAdvertMarkAndModelByIdAdvert(long idAdvert, long idUser, String mark, String model) {
+        advertStorage.updateMarkAndModelById(idAdvert, idUser, mark, model);
     }
-    public void editColorByIdAdvert(long idAdvert, long idUser, String color){
+
+    public void editColorByIdAdvert(long idAdvert, long idUser, String color) {
         advertStorage.updateColorById(idAdvert, idUser, color);
     }
 
-    public void editYearByIdAdvert(long idAdvert, long idUser,int year){
+    public void editYearByIdAdvert(long idAdvert, long idUser, int year) {
         advertStorage.updateYearById(idAdvert, idUser, year);
     }
 
-    public void editPriceByIdAdvert(long idAdvert,long idUser, double price){
+    public void editPriceByIdAdvert(long idAdvert, long idUser, double price) {
         advertStorage.updatePriceById(idAdvert, idUser, price);
     }
 
-    public void editSpecificationByIdAdvert(long idAdvert,long idUser, String specification){
-        advertStorage.updateSpecificationById(idAdvert,idUser, specification);
+    public void editSpecificationByIdAdvert(long idAdvert, long idUser, String specification) {
+        advertStorage.updateSpecificationById(idAdvert, idUser, specification);
     }
 }
 
