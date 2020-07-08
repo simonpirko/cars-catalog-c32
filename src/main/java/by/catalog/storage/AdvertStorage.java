@@ -15,6 +15,7 @@ public class AdvertStorage {
     private final static String LOGIN_TABLES = "postgres";
     private final static String PASS_TABLES = "aili61329";
     Connection connection = null;
+    private int noOfRecords;
 
     {
         try {
@@ -155,6 +156,106 @@ public class AdvertStorage {
         return null;
     }
 
+    public List<Advert> getAllAdvertsByMark(String markToFind) {
+        List<Advert> list = new ArrayList<>();
+        try {
+            long id = 0;
+            String mark = "";
+            String model = "";
+            String color = "";
+            int year = 0;
+            double price = 0;
+            long idUser = 0;
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from advert where advert.mark=?");
+            preparedStatement.setString(1, markToFind);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getLong(1);
+                mark = resultSet.getString(2);
+                model = resultSet.getString(3);
+                color = resultSet.getString(4);
+                year = resultSet.getInt(5);
+                price = resultSet.getDouble(6);
+                idUser = resultSet.getLong(7);
+                Advert advert = new Advert(id, mark, model, color, year, price, idUser);
+                list.add(advert);
+            }
+            connection.close();
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Advert> getAllAdvertsByMarkColor(String markToFind, String colorSearch) {
+        List<Advert> list = new ArrayList<>();
+        try {
+            long id = 0;
+            String mark = "";
+            String model = "";
+            String color = "";
+            int year = 0;
+            double price = 0;
+            long idUser = 0;
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from advert where advert.mark=? and advert.color=?");
+            preparedStatement.setString(1, markToFind);
+            preparedStatement.setString(2, colorSearch);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getLong(1);
+                mark = resultSet.getString(2);
+                model = resultSet.getString(3);
+                color = resultSet.getString(4);
+                year = resultSet.getInt(5);
+                price = resultSet.getDouble(6);
+                idUser = resultSet.getLong(7);
+                Advert advert = new Advert(id, mark, model, color, year, price, idUser);
+                list.add(advert);
+            }
+            connection.close();
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Advert> getAllAdvertsByColor(String colorSearch) {
+        List<Advert> list = new ArrayList<>();
+        try {
+            long id = 0;
+            String mark = "";
+            String model = "";
+            String color = "";
+            int year = 0;
+            double price = 0;
+            long idUser = 0;
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from advert where advert.color=?");
+            preparedStatement.setString(1, colorSearch);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getLong(1);
+                mark = resultSet.getString(2);
+                model = resultSet.getString(3);
+                color = resultSet.getString(4);
+                year = resultSet.getInt(5);
+                price = resultSet.getDouble(6);
+                idUser = resultSet.getLong(7);
+                Advert advert = new Advert(id, mark, model, color, year, price, idUser);
+                list.add(advert);
+            }
+            connection.close();
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public List<Advert> getAllAdverts() {
         List<Advert> list = new ArrayList<>();
         try {
@@ -167,6 +268,73 @@ public class AdvertStorage {
             long idUser = 0;
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
             PreparedStatement preparedStatement = connection.prepareStatement("select * from advert");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getLong(1);
+                mark = resultSet.getString(2);
+                model = resultSet.getString(3);
+                color = resultSet.getString(4);
+                year = resultSet.getInt(5);
+                price = resultSet.getDouble(6);
+                idUser = resultSet.getLong(7);
+                Advert advert = new Advert(id, mark, model, color, year, price, idUser);
+                list.add(advert);
+            }
+            connection.close();
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Advert> getAllAdvertsByModelColor(String modelToFind, String colorToFind) {
+        List<Advert> list = new ArrayList<>();
+        try {
+            long id = 0;
+            String mark = "";
+            String model = "";
+            String color = "";
+            int year = 0;
+            double price = 0;
+            long idUser = 0;
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from advert where advert.mark=? and advert.color=?");
+            preparedStatement.setString(1, modelToFind);
+            preparedStatement.setString(2, colorToFind);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getLong(1);
+                mark = resultSet.getString(2);
+                model = resultSet.getString(3);
+                color = resultSet.getString(4);
+                year = resultSet.getInt(5);
+                price = resultSet.getDouble(6);
+                idUser = resultSet.getLong(7);
+                Advert advert = new Advert(id, mark, model, color, year, price, idUser);
+                list.add(advert);
+            }
+            connection.close();
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Advert> getAllAdvertsByModel(String modelToFind) {
+        List<Advert> list = new ArrayList<>();
+        try {
+            long id = 0;
+            String mark = "";
+            String model = "";
+            String color = "";
+            int year = 0;
+            double price = 0;
+            long idUser = 0;
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from advert where advert.model=?");
+            preparedStatement.setString(1, modelToFind);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 id = resultSet.getLong(1);
@@ -350,6 +518,7 @@ public class AdvertStorage {
             e.printStackTrace();
         }
     }
+
     public void updateColorById(long idAdvert, long idUser, String color) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
@@ -364,7 +533,7 @@ public class AdvertStorage {
         }
     }
 
-    public void updateYearById(long id, long idUser,int year) {
+    public void updateYearById(long id, long idUser, int year) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
             PreparedStatement preparedStatement = connection.prepareStatement("update advert set yearcar= ? where id = ? and id_user = ?");
@@ -378,7 +547,7 @@ public class AdvertStorage {
         }
     }
 
-    public void updatePriceById(long id, long idUser, double price){
+    public void updatePriceById(long id, long idUser, double price) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
             PreparedStatement preparedStatement = connection.prepareStatement("update advert set price= ? where id = ? and id_user = ?");
@@ -392,7 +561,7 @@ public class AdvertStorage {
         }
     }
 
-    public void updateSpecificationById(long id, long idUser, String specification){
+    public void updateSpecificationById(long id, long idUser, String specification) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
             PreparedStatement preparedStatement = connection.prepareStatement("update advert set specificationadvert = ? where id = ? and id_user = ?");
