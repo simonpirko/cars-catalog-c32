@@ -340,6 +340,10 @@ public class AdvertService {
         return advertStorage.getAllAdvertByIdUser(idUser);
     }
 
+    public List<Advert> getAllAdvert(){
+        return advertStorage.getAllAdverts();
+    }
+
     public void editAdvertMarkAndModelByIdAdvert(long idAdvert, long idUser, String mark, String model) {
         advertStorage.updateMarkAndModelById(idAdvert, idUser, mark, model);
     }

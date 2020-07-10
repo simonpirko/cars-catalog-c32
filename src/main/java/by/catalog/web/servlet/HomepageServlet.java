@@ -38,7 +38,7 @@ public class HomepageServlet extends HttpServlet {
             req.setAttribute("query", newQ);
         }
 
-        int count = 4;
+        int count = 9;
         int pageS = 1;
         String page = req.getParameter("page");
         if (page != null)

@@ -14,16 +14,9 @@
     </c:forEach>
 </ul>
 
-<a href="/listAllUsers">Show all users |</a>
-<a href="/deleteUsers">Delete user |</a>
-<a href="/addUser">Add new user |</a>
-<a href="/changeUserData">Change user's data |</a>
-<a href="/showAllAdverts">Show all adverts |</a>
-<a href="/changeAdverts">Change adverts |</a>
-<a href="/deleteAdverts">Delete adverts |</a>
-<a href="/delete comments">Delete comments |</a>
-<a href="/deleteMyAcc">Delete my account |</a>
-<a href="/">Homepage|</a>
+<a href="/changeUsers">Operations with user</a>
+<a href="/changeAdvertisement">Operations with advert</a>
+<a href="/">Homepage</a>
 <a href="/logout">Logout</a>
 </body>
 </html>
