@@ -1,5 +1,6 @@
 package by.catalog.storage;
 
+import by.catalog.domain.Admin;
 import by.catalog.domain.Advert;
 import by.catalog.domain.Message;
 import by.catalog.domain.User;
@@ -17,6 +18,7 @@ public class AdvertStorage {
     Connection connection = null;
     private int noOfRecords;
 
+
     {
         try {
             Class.forName("org.postgresql.Driver");
@@ -24,6 +26,8 @@ public class AdvertStorage {
             e.printStackTrace();
         }
     }
+
+
 
     public void addAdvert(Advert advert) {
         try {

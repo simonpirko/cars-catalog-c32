@@ -1,6 +1,7 @@
 package by.catalog.storage;
 
 
+import by.catalog.domain.Admin;
 import by.catalog.domain.User;
 
 import java.sql.*;
@@ -21,6 +22,34 @@ public class UserStorage {
 
     private Connection connection = null;
 
+//    private void mainAdmin(){
+//        try {
+//            Connection connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+//            PreparedStatement preparedStatement = connection.prepareStatement("insert into userscarcatalog (login, password) values (?, ?)");
+//            preparedStatement.setString(1,"admin");
+//            preparedStatement.setString(2,"admin");
+//            preparedStatement.executeQuery();
+//            connection.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public Admin getAdmin() {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from admins");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            String login = resultSet.getString(1);
+            String password = resultSet.getString(2);
+            connection.close();
+            return new Admin(login, password);
+        } catch (SQLException e) {
+            e.getErrorCode();
+        }
+        return null;
+    }
 
     public void addUser(User user) {
         try {
