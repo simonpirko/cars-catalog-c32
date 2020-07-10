@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet(name = "EditAdvertEditDescriptionServlet", urlPatterns = "/editAdvert/editDescription")
 public class EditAdvertEditDescriptionServlet extends HttpServlet {
-    private AdvertService advertService = new AdvertService();
+    private final AdvertService advertService = new AdvertService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,7 +28,7 @@ public class EditAdvertEditDescriptionServlet extends HttpServlet {
         }
         String specificationAdvert = req.getParameter("specificationAdvert");
         if (specificationAdvert != null) {
-            advertService.editSpecificationByIdAdvert(idAdvert,currentUser.getId(), specificationAdvert);
+            advertService.editSpecificationByIdAdvert(idAdvert, currentUser.getId(), specificationAdvert);
             resp.sendRedirect("/editAdvert?id=" + idAdvert);
         } else {
             getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);

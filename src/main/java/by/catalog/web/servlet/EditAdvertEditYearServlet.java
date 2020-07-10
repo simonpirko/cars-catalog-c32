@@ -14,7 +14,7 @@ import java.util.List;
 
 @WebServlet(name = "EditAdvertEditYearServlet", urlPatterns = "/editAdvert/editYear")
 public class EditAdvertEditYearServlet extends HttpServlet {
-    private AdvertService advertService = new AdvertService();
+    private final AdvertService advertService = new AdvertService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,14 +30,13 @@ public class EditAdvertEditYearServlet extends HttpServlet {
             req.setAttribute("choiceYear", true);
         }
         String newYear = req.getParameter("newYear");
-        if (newYear != null){
-        int newYear1 = Integer.parseInt(newYear);
-            advertService.editYearByIdAdvert(idAdvert,currentUser.getId(), newYear1);
+        if (newYear != null) {
+            int newYear1 = Integer.parseInt(newYear);
+            advertService.editYearByIdAdvert(idAdvert, currentUser.getId(), newYear1);
             resp.sendRedirect("/editAdvert?id=" + idAdvert);
-        }
-        else {
+        } else {
             getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);
         }
     }
-    }
+}
 

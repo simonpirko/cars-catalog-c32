@@ -13,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet(name = "EditAdvertEditColorServlet", urlPatterns = "/editAdvert/editColor")
 public class EditAdvertEditColorServlet extends HttpServlet {
-    private AdvertService advertService = new AdvertService();
+    private final AdvertService advertService = new AdvertService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,11 +29,10 @@ public class EditAdvertEditColorServlet extends HttpServlet {
             req.setAttribute("choiceColor", true);
         }
         String newColor = req.getParameter("newColor");
-        if (newColor!=null){
+        if (newColor != null) {
             advertService.editColorByIdAdvert(idAdvert, currentUser.getId(), newColor);
             resp.sendRedirect("/editAdvert?id=" + idAdvert);
-        }
-        else {
+        } else {
             getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);
         }
     }

@@ -2,7 +2,6 @@ package by.catalog.storage;
 
 import by.catalog.domain.Advert;
 import by.catalog.domain.Message;
-import by.catalog.domain.User;
 
 import java.sql.*;
 import java.util.ArrayList;
