@@ -18,6 +18,7 @@ public class EditUserFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
         User currentUser = (User) req.getSession().getAttribute("currentUser");
+
         String name = req.getParameter("newName");
         String lastName = req.getParameter("newLastName");
         String login = req.getParameter("newLogin");
@@ -28,7 +29,8 @@ public class EditUserFilter extends HttpFilter {
         }
         if (req.getMethod().equals("POST")) {
             boolean b1 = name.equals("") || lastName.equals("") || login.equals("") || password.equals("") || phone.equals("");
-            boolean b2 = userService.checkUserByLogin(login) && !currentUser.getLogin().equals(login);
+            boolean b2 = (userService.checkUserByLogin(login) && !currentUser.getLogin().equals(login));
+            boolean b3 = (req.getSession().getAttribute("admin") != null && userService.checkUserByLogin(login));
             if (b1) {
                 String message = "Enter all required data";
                 req.setAttribute("messageEdit", message);
@@ -36,8 +38,14 @@ public class EditUserFilter extends HttpFilter {
                 getServletContext().getRequestDispatcher("/pages/editProfile.jsp").forward(req, res);
                 return;
             }
-            if (b2) {
-                String message = "Login exists. Try another login";
+            if (b3) {
+                String message = "This login is already exist. Try another login";
+                req.setAttribute("messageEdit", message);
+                req.setAttribute("currentUser", currentUser);
+                getServletContext().getRequestDispatcher("/pages/editProfile.jsp").forward(req, res);
+                return;
+            } else if (b2) {
+                String message = "This login is already exist. Try another login";
                 req.setAttribute("messageEdit", message);
                 req.setAttribute("currentUser", currentUser);
                 getServletContext().getRequestDispatcher("/pages/editProfile.jsp").forward(req, res);

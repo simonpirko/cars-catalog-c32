@@ -5,6 +5,8 @@ import by.catalog.domain.Admin;
 import by.catalog.domain.User;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserStorage {
 
@@ -22,18 +24,6 @@ public class UserStorage {
 
     private Connection connection = null;
 
-//    private void mainAdmin(){
-//        try {
-//            Connection connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-//            PreparedStatement preparedStatement = connection.prepareStatement("insert into userscarcatalog (login, password) values (?, ?)");
-//            preparedStatement.setString(1,"admin");
-//            preparedStatement.setString(2,"admin");
-//            preparedStatement.executeQuery();
-//            connection.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public Admin getAdmin() {
         try {
@@ -108,6 +98,31 @@ public class UserStorage {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    public List<User> getAllUsers() {
+        List<User> list = new ArrayList<>();
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from userscarcatalog");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                long id = resultSet.getLong(1);
+                String name = resultSet.getString(2);
+                String lastName = resultSet.getString(3);
+                String login = resultSet.getString(4);
+                String password = resultSet.getString(5);
+                String phone = resultSet.getString(6);
+                User user = new User(id, name, lastName, login, password, phone);
+                list.add(user);
+            }
+            connection.close();
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 

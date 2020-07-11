@@ -28,6 +28,7 @@ public class AdvertService {
     }
 
 
+
     public void saveAdvertToUserAdvertList(long idAdvert, long idUser) {
         advertStorage.addIdUserIdAdvert(idUser, idAdvert);
     }

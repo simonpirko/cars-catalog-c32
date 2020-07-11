@@ -5,6 +5,8 @@ import by.catalog.domain.Admin;
 import by.catalog.domain.User;
 import by.catalog.storage.UserStorage;
 
+import java.util.List;
+
 public class UserService {
 
     private final UserStorage userStorage = new UserStorage();
@@ -38,6 +40,9 @@ public class UserService {
         return userStorage.checkByLogin(login);
     }
 
+    public List<User> getAllUsers() {
+        return userStorage.getAllUsers();
+    }
 
     public void editUserById(User user) {
         userStorage.updateUserById(user.getId(), user);

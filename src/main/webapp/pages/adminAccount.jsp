@@ -2,21 +2,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
-<head>
-    <title>Admin ${requestScope.currentUserName} page</title>
-</head>
-<body>
+<c:if test="${sessionScope.adminBoolean}">
+    <h2>Что делаем</h2>
 
-<h1>"Hello Admin ${requestScope.currentUserName}"</h1>
-<ul>
-    <c:forEach items="${requestScope.currentUser}" var="item">
-        <li>${item}</li>
-    </c:forEach>
-</ul>
-
-<a href="/changeUsers">Operations with user</a>
+<a href="/changeProfile">Operations with user</a>
 <a href="/changeAdvertisement">Operations with advert</a>
 <a href="/">Homepage</a>
 <a href="/logout">Logout</a>
 </body>
+</c:if>
 </html>
