@@ -72,4 +72,12 @@ create table car
 alter table car
     owner to postgres;
 
+create table admins
+(
+    login    varchar,
+    password varchar
+);
+
+alter table admins
+    owner to postgres;
 
