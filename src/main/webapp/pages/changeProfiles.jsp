@@ -12,24 +12,26 @@
     <title>Profiles</title>
 </head>
 <body>
-<a href="/adminMenu" class="btn btn-primary">Admin menu</a>
-<form action="/changeProfile" method="get">
-    <div class="container">
-        <div class="row row-cols-3">
-            <c:forEach items="${sessionScope.allUsers}" var="last">
-                <div class="col">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">${last.name} ${last.login}</h5>
-                            <p class="card-text">${last}</p>
-<%--                            <a href="/advert?id=${last.id}">Check info</a>--%>
-                            <a href="/pers/editProfile?id=${last.id}" class="btn btn-primary">Edit profile</a>
+<c:if test="${sessionScope.adminBoolean}">
+    <a href="/adminMenu" class="btn btn-primary">Admin menu</a>
+    <form action="/changeProfile" method="get">
+        <div class="container">
+            <div class="row row-cols-3">
+                <c:forEach items="${sessionScope.allUsers}" var="last">
+                    <div class="col">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">${last.name} ${last.login}</h5>
+                                <p class="card-text">${last}</p>
+                                    <%--                            <a href="/advert?id=${last.id}">Check info</a>--%>
+                                <a href="/pers/editProfile?id=${last.id}" class="btn btn-primary">Edit profile</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </c:forEach>
+                </c:forEach>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+</c:if>
 </body>
 </html>
