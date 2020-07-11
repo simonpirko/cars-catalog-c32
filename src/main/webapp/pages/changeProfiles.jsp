@@ -12,7 +12,7 @@
     <title>Profiles</title>
 </head>
 <body>
-
+<a href="/adminMenu" class="btn btn-primary">Admin menu</a>
 <form action="/changeProfile" method="get">
     <div class="container">
         <div class="row row-cols-3">

@@ -39,6 +39,7 @@ public class EditProfileServlet extends HttpServlet {
         String newPhone = req.getParameter("newPhone");
         if (req.getSession().getAttribute("admin") != null) {
             User user4Admin = (User) req.getSession().getAttribute("user4Admin");
+            req.getSession().setAttribute("idDel", user4Admin.getId());
             req.getSession().setAttribute("user4Admin", new User(user4Admin.getId(), newName, newLastName, newLogin, newPass, newPhone));
             userService.editUserById(new User(user4Admin.getId(), newName, newLastName, newLogin, newPass, newPhone));
             resp.sendRedirect("/changeProfile");

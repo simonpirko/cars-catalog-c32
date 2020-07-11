@@ -12,7 +12,7 @@
 </head>
 <body>
 <c:if test="${sessionScope.adminBoolean}">
-<a href="/" class="btn btn-primary" >Back</a>
+
 </c:if>
 <c:if test="${sessionScope.adminBoolean}">
     <a href="/adminMenu" class="btn btn-primary">Admin menu</a>

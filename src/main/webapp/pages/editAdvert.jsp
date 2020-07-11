@@ -20,7 +20,7 @@
                 <a class="nav-link" href="/advert?id=${requestScope.id}">Return<span class="sr-only">(current)</span></a>
                 </c:if>
                 <c:if test="${sessionScope.adminBoolean}">
-                    <a class="nav-link" href="/changeAdvertisement">Admin menu<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/changeAdvertisement">Back<span class="sr-only">(current)</span></a>
                 <form action="/destroyAdvert" method="get">
                     <a href="/destroyAdvert?id=${requestScope.id}" class="btn btn-danger" >Delete </a>
                 </form>

@@ -36,6 +36,10 @@ public class UserService {
         return userStorage.getUserById(id);
     }
 
+    public void destroyUser(Long id) {
+        userStorage.removeUser(id);
+    }
+
     public boolean checkUserByLogin(String login) {
         return userStorage.checkByLogin(login);
     }

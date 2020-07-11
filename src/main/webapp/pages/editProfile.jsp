@@ -17,7 +17,15 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="/pers"> Return <span class="sr-only">(current)</span></a>
+                <c:if test="${!sessionScope.check4Admin}">
+                    <a class="nav-link" href="/pers"> Return <span class="sr-only">(current)</span></a>
+                </c:if>
+                <c:if test="${sessionScope.check4Admin}">
+                    <a class="nav-link" href="/changeProfile">Back<span class="sr-only">(current)</span></a>
+                    <form action="/destroyProfile" method="get">
+                        <a href="/destroyProfile?id=${sessionScope.idDel}" class="btn btn-danger">Delete</a>
+                    </form>
+                </c:if>
             </li>
         </ul>
     </div>
@@ -45,40 +53,27 @@
 
 
 <c:if test="${sessionScope.adminBoolean}">
+
     <c:if test="${sessionScope.check4Admin}">
         <form action="/pers/editProfile" method="get">
-<%--            <dl class="row">--%>
-<%--                <dt class="col-sm-2 offset-sm-1"> Name</dt>--%>
-<%--                <dd class="col-sm-8"><input type="text" name="newName" value="${sessionScope.user4Admin.name}"></dd>--%>
-<%--                <dt class="col-sm-2 offset-sm-1"> Last Name</dt>--%>
-<%--                <dd class="col-sm-8"><input type="text" name="newLastName" value="${sessionScope.user4Admin.lastName}">--%>
-<%--                </dd>--%>
-<%--                <dt class="col-sm-2 offset-sm-1"> Login</dt>--%>
-<%--                <dd class="col-sm-8"><input type="text" name="newLogin" value="${sessionScope.user4Admin.login}"></dd>--%>
-<%--                <dt class="col-sm-2 offset-sm-1"> Password</dt>--%>
-<%--                <dd class="col-sm-8"><input type="text" name="newPass" value="${sessionScope.user4Admin.password}"></dd>--%>
-<%--                <dt class="col-sm-2 offset-sm-1"> Phone</dt>--%>
-<%--                <dd class="col-sm-8"><input type="text" name="newPhone" value="${sessionScope.user4Admin.phone}"></dd>--%>
-<%--            </dl>--%>
-<%--            <button>Apply</button>--%>
         </form>
     </c:if>
-        <form action="/pers/editProfile" method="post">
-            <dl class="row">
-                <dt class="col-sm-2 offset-sm-1"> Name</dt>
-                <dd class="col-sm-8"><input type="text" name="newName" value="${sessionScope.user4Admin.name}"></dd>
-                <dt class="col-sm-2 offset-sm-1"> Last Name</dt>
-                <dd class="col-sm-8"><input type="text" name="newLastName" value="${sessionScope.user4Admin.lastName}">
-                </dd>
-                <dt class="col-sm-2 offset-sm-1"> Login</dt>
-                <dd class="col-sm-8"><input type="text" name="newLogin" value="${sessionScope.user4Admin.login}"></dd>
-                <dt class="col-sm-2 offset-sm-1"> Password</dt>
-                <dd class="col-sm-8"><input type="text" name="newPass" value="${sessionScope.user4Admin.password}"></dd>
-                <dt class="col-sm-2 offset-sm-1"> Phone</dt>
-                <dd class="col-sm-8"><input type="text" name="newPhone" value="${sessionScope.user4Admin.phone}"></dd>
-            </dl>
-            <button>Apply</button>
-        </form>
+    <form action="/pers/editProfile" method="post">
+        <dl class="row">
+            <dt class="col-sm-2 offset-sm-1"> Name</dt>
+            <dd class="col-sm-8"><input type="text" name="newName" value="${sessionScope.user4Admin.name}"></dd>
+            <dt class="col-sm-2 offset-sm-1"> Last Name</dt>
+            <dd class="col-sm-8"><input type="text" name="newLastName" value="${sessionScope.user4Admin.lastName}">
+            </dd>
+            <dt class="col-sm-2 offset-sm-1"> Login</dt>
+            <dd class="col-sm-8"><input type="text" name="newLogin" value="${sessionScope.user4Admin.login}"></dd>
+            <dt class="col-sm-2 offset-sm-1"> Password</dt>
+            <dd class="col-sm-8"><input type="text" name="newPass" value="${sessionScope.user4Admin.password}"></dd>
+            <dt class="col-sm-2 offset-sm-1"> Phone</dt>
+            <dd class="col-sm-8"><input type="text" name="newPhone" value="${sessionScope.user4Admin.phone}"></dd>
+        </dl>
+        <button>Apply</button>
+    </form>
 </c:if>
 <h4>${requestScope.messageEdit}</h4>
 

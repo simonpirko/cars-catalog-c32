@@ -142,6 +142,17 @@ public class UserStorage {
         return false;
     }
 
+    public void removeUser(long idAdvert) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from userscarcatalog where id = ? ");
+            preparedStatement.setLong(1, idAdvert);
+            preparedStatement.executeQuery();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void updateUserById(long id, User user) {
         try {
