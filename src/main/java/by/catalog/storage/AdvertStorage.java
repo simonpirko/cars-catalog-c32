@@ -479,6 +479,8 @@ public class AdvertStorage {
         }
     }
 
+
+
     public boolean checkIdUserIdAdvert(long idUser, long idAdvert) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
@@ -508,6 +510,18 @@ public class AdvertStorage {
         }
     }
 
+    public void removeAdvert(long idAdvert) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from advert where id = ? ");
+            preparedStatement.setLong(1, idAdvert);
+            preparedStatement.executeQuery();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updateMarkAndModelById(long idAdvert, long idUser, String mark, String model) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
@@ -516,6 +530,33 @@ public class AdvertStorage {
             preparedStatement.setString(2, model);
             preparedStatement.setLong(3, idAdvert);
             preparedStatement.setLong(4, idUser);
+            preparedStatement.executeUpdate();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateMarkAndModel(long idAdvert,String mark, String model) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("update advert set mark= ?, model = ?  where id = ?");
+            preparedStatement.setString(1, mark);
+            preparedStatement.setString(2, model);
+            preparedStatement.setLong(3, idAdvert);
+            preparedStatement.executeUpdate();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateColor(long idAdvert,String color) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("update advert set color= ? where id = ?");
+            preparedStatement.setString(1, color);
+            preparedStatement.setLong(2, idAdvert);
             preparedStatement.executeUpdate();
             connection.close();
         } catch (SQLException e) {
@@ -551,6 +592,19 @@ public class AdvertStorage {
         }
     }
 
+    public void updateYear(long id,int year) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("update advert set yearcar= ? where id = ?");
+            preparedStatement.setInt(1, year);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updatePriceById(long id, long idUser, double price) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
@@ -565,6 +619,19 @@ public class AdvertStorage {
         }
     }
 
+    public void updatePrice(long id,double price) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("update advert set price= ? where id = ?");
+            preparedStatement.setDouble(1, price);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updateSpecificationById(long id, long idUser, String specification) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
@@ -572,6 +639,19 @@ public class AdvertStorage {
             preparedStatement.setString(1, specification);
             preparedStatement.setLong(2, id);
             preparedStatement.setLong(3, idUser);
+            preparedStatement.executeUpdate();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateSpecification(long id,String specification) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("update advert set specificationadvert = ? where id = ?");
+            preparedStatement.setString(1, specification);
+            preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
             connection.close();
         } catch (SQLException e) {

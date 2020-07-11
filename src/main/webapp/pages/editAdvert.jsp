@@ -16,7 +16,15 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
+                <c:if test="${!sessionScope.adminBoolean}">
                 <a class="nav-link" href="/advert?id=${requestScope.id}">Return<span class="sr-only">(current)</span></a>
+                </c:if>
+                <c:if test="${sessionScope.adminBoolean}">
+                    <a class="nav-link" href="/changeAdvertisement">Admin menu<span class="sr-only">(current)</span></a>
+                <form action="/destroyAdvert" method="get">
+                    <a href="/destroyAdvert?id=${requestScope.id}" class="btn btn-danger" >Delete </a>
+                </form>
+                </c:if>
             </li>
         </ul>
     </div>
@@ -25,58 +33,58 @@
 
 <dl class="row" >
     <dt class="col-sm-2 offset-sm-1"> Автомобиль </dt>
-        <dl class="col-sm-3">
-<c:if test="${!requestScope.choiceMarkModel}">
+    <dl class="col-sm-3">
+        <c:if test="${!requestScope.choiceMarkModel}">
             ${requestScope.advert.markCar}  ${requestScope.advert.modelCar}
-    </c:if>
-<c:if test="${requestScope.choiceMark}">
-    <form action="/editAdvert/editMarkModel?id=${requestScope.id}&editMark=yes" method="post">
-    <select name="newMark">
-    <c:forEach items="${requestScope.listMark}" var="list">
-        <option value="${list}"> ${list} </option>
-    </c:forEach>
-    </select>
-    <button class="btn btn-secondary btn-sm offset-sm-2">Enter</button>
-    </form>
-</c:if>
-    <c:if test="${requestScope.choiceModel}">
-        <form action="/editAdvert/editMarkModel?id=${requestScope.id}&newMark=${requestScope.newMark}" method="post">
-            <select name="newModel">
-                <c:forEach items="${requestScope.listModel}" var="list">
-                    <option value="${list}">${requestScope.newMark} ${list} </option>
-                </c:forEach>
-            </select>
+        </c:if>
+        <c:if test="${requestScope.choiceMark}">
+            <form action="/editAdvert/editMarkModel?id=${requestScope.id}&editMark=yes" method="post">
+                <select name="newMark">
+                    <c:forEach items="${requestScope.listMark}" var="list">
+                        <option value="${list}"> ${list} </option>
+                    </c:forEach>
+                </select>
+                <button class="btn btn-secondary btn-sm offset-sm-2">Enter</button>
+            </form>
+        </c:if>
+        <c:if test="${requestScope.choiceModel}">
+            <form action="/editAdvert/editMarkModel?id=${requestScope.id}&newMark=${requestScope.newMark}" method="post">
+                <select name="newModel">
+                    <c:forEach items="${requestScope.listModel}" var="list">
+                        <option value="${list}">${requestScope.newMark} ${list} </option>
+                    </c:forEach>
+                </select>
                 <button type="submit" class="btn btn-secondary btn-sm offset-sm-2">Save</button>
-        </form>
-</c:if>
-        </dl>
-        <dl class="col-sm"-1>
-    <c:if test="${!requestScope.choiceMarkModel}">
-        <form method="post" action="/editAdvert/editMarkModel?id=${requestScope.id}&editMarkModel=yes">
-            <button type="submit" class="btn btn-secondary">Edit</button>
-        </form>
-    </c:if>
+            </form>
+        </c:if>
+    </dl>
+    <dl class="col-sm"-1>
+        <c:if test="${!requestScope.choiceMarkModel}">
+            <form method="post" action="/editAdvert/editMarkModel?id=${requestScope.id}&editMarkModel=yes">
+                <button type="submit" class="btn btn-secondary">Edit</button>
+            </form>
+        </c:if>
     </dl>
 </dl>
 
 
 <dl class="row" >
     <dt class="col-sm-2 offset-sm-1"> Цвет автомобиля  </dt>
-        <dl class="col-sm-3">
-<c:if test="${!requestScope.choiceColor}">
+    <dl class="col-sm-3">
+        <c:if test="${!requestScope.choiceColor}">
             ${requestScope.advert.colorCar}
-</c:if>
-<c:if test="${requestScope.choiceColor}">
-    <form action="/editAdvert/editColor?id=${requestScope.id}" method="post">
-    <select name="newColor">
-    <c:forEach items="${requestScope.colorList}" var="list">
-        <option value="${list}"> ${list} </option>
-    </c:forEach>
-    </select>
-    <button class="btn btn-secondary btn-sm offset-sm-2">Save</button>
-    </form>
-</c:if>
-        </dl>
+        </c:if>
+        <c:if test="${requestScope.choiceColor}">
+            <form action="/editAdvert/editColor?id=${requestScope.id}" method="post">
+                <select name="newColor">
+                    <c:forEach items="${requestScope.colorList}" var="list">
+                        <option value="${list}"> ${list} </option>
+                    </c:forEach>
+                </select>
+                <button class="btn btn-secondary btn-sm offset-sm-2">Save</button>
+            </form>
+        </c:if>
+    </dl>
     <dl class="col-sm-1">
         <c:if test="${!requestScope.choiceColor}">
             <form method="post" action="/editAdvert/editColor?id=${requestScope.id}&editColor=yes">
@@ -89,31 +97,31 @@
 
 
 <dl class="row" >
-<dt class="col-sm-2 offset-sm-1"> Год выпуска автомобиля </dt>
-        <dl class="col-sm-3">
-<c:if test="${!requestScope.choiceYear}">
+    <dt class="col-sm-2 offset-sm-1"> Год выпуска автомобиля </dt>
+    <dl class="col-sm-3">
+        <c:if test="${!requestScope.choiceYear}">
             ${requestScope.advert.yearCar}
-</c:if>
-<c:if test="${requestScope.choiceYear}">
+        </c:if>
+        <c:if test="${requestScope.choiceYear}">
             <form action="/editAdvert/editYear?id=${requestScope.id}" method="post">
                 <select name="newYear">
-                 <c:forEach items="${requestScope.listYear}" var="list">
-                    <option value="${list}"> ${list} </option>
-                </c:forEach>
+                    <c:forEach items="${requestScope.listYear}" var="list">
+                        <option value="${list}"> ${list} </option>
+                    </c:forEach>
                 </select>
-             <button class="btn btn-secondary btn-sm offset-sm-2">Save</button>
+                <button class="btn btn-secondary btn-sm offset-sm-2">Save</button>
             </form>
-</c:if>
-        </dl>
-
-        <dl class="col-sm-1">
-            <c:if test="${!requestScope.choiceYear}">
-                <form method="post" action="/editAdvert/editYear?id=${requestScope.id}&editYear=yes">
-                    <button type="submit" class="btn btn-secondary">Edit</button>
-                </form>
-            </c:if>
-        </dl>
+        </c:if>
     </dl>
+
+    <dl class="col-sm-1">
+        <c:if test="${!requestScope.choiceYear}">
+            <form method="post" action="/editAdvert/editYear?id=${requestScope.id}&editYear=yes">
+                <button type="submit" class="btn btn-secondary">Edit</button>
+            </form>
+        </c:if>
+    </dl>
+</dl>
 </dl>
 
 
@@ -126,7 +134,7 @@
         <c:if test="${requestScope.choicePrice}">
             <form action="/editAdvert/editPrice?id=${requestScope.id}" method="post">
 
-                    <input type="text" name="newPrice" value="${requestScope.advert.priceCar}">
+                <input type="text" name="newPrice" value="${requestScope.advert.priceCar}">
 
                 <button class="btn btn-secondary btn-sm offset-sm-2">Save</button>
             </form>
@@ -144,34 +152,34 @@
 </dl>
 
 <c:if test="${!requestScope.choiceDescription}">
-<dl class="row offset-sm-1" >
-    <div class="card w-50">
-        <div class="card-header">
-            Описание
+    <dl class="row offset-sm-1" >
+        <div class="card w-50">
+            <div class="card-header">
+                Описание
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                <ul>
+                        ${requestScope.advert.specificationAdvert}
+                </ul>
+                </p>
+            </div>
         </div>
-        <div class="card-body">
-            <p class="card-text">
-            <ul>
-                ${requestScope.advert.specificationAdvert}
-            </ul>
-            </p>
-        </div>
-    </div>
-</dl>
-<form method="post" action="/editAdvert/editDescription?id=${requestScope.id}&editDescription=yes">
-    <button type="submit" class="btn btn-secondary offset-sm-1">Edit</button>
-</form>
+    </dl>
+    <form method="post" action="/editAdvert/editDescription?id=${requestScope.id}&editDescription=yes">
+        <button type="submit" class="btn btn-secondary offset-sm-1">Edit</button>
+    </form>
 </c:if>
 <c:if test="${requestScope.choiceDescription}">
-<form method="post" action="/editAdvert/editDescription?id=${requestScope.id}&editDescription=yes">
-<dl class="row offset-sm-1  w-50">
+    <form method="post" action="/editAdvert/editDescription?id=${requestScope.id}&editDescription=yes">
+        <dl class="row offset-sm-1  w-50">
             <dt class="col-sm-2">  Описание </dt>
-                <textarea class="form-control" name="specificationAdvert" id="exampleFormControlTextarea1" rows="3">
+            <textarea class="form-control" name="specificationAdvert" id="exampleFormControlTextarea1" rows="3">
                     ${requestScope.advert.specificationAdvert}
-                </textarea>
-</dl>
-    <button type="submit" class="btn btn-secondary offset-sm-1">Save</button>
-</form>
+            </textarea>
+        </dl>
+        <button type="submit" class="btn btn-secondary offset-sm-1">Save</button>
+    </form>
 </c:if>
 
 </body>

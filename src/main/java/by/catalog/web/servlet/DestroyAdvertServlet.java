@@ -13,13 +13,20 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/destroyAdvert", name = "DestroyAdvertServlet")
 public class DestroyAdvertServlet extends HttpServlet {
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    //    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AdvertService advertService = new AdvertService();
-        User currentUser = (User) req.getSession().getAttribute("currentUser");
         long id = Long.parseLong(req.getParameter("id"));
-        advertService.destroyAdvertByIdAdvert(id, currentUser.getId());
-        advertService.destroyUserAdvertList(id);
-        resp.sendRedirect("/pers/youAdvert");
+        if (req.getSession().getAttribute("admin") != null) {
+            advertService.destroyAdvert(id);
+            advertService.destroyUserAdvertList(id);
+            resp.sendRedirect("/changeAdvertisement");
+        } else {
+            User currentUser = (User) req.getSession().getAttribute("currentUser");
+            advertService.destroyAdvertByIdAdvert(id, currentUser.getId());
+            advertService.destroyUserAdvertList(id);
+            resp.sendRedirect("/pers/youAdvert");
+        }
     }
+
 }

@@ -260,7 +260,7 @@ public class AdvertService {
         return newList;
     }
 
-    public List<Advert> sortModelAdvertListByPrice(String sort,String model, String color, int count, int page) {
+    public List<Advert> sortModelAdvertListByPrice(String sort, String model, String color, int count, int page) {
         List<Advert> toSortList;
         if (color.equals("anyColor")) {
             toSortList = advertStorage.getAllAdvertsByModel(model);
@@ -332,6 +332,10 @@ public class AdvertService {
         advertStorage.removeAdvertByIdAdvert(idAdvert, idUser);
     }
 
+    public void destroyAdvert(long idAdvert) {
+        advertStorage.removeAdvert(idAdvert);
+    }
+
     public void destroyUserAdvertList(long idAdvert) {
         advertStorage.removeAfterDestroyUserAdvertList(idAdvert);
     }
@@ -340,7 +344,7 @@ public class AdvertService {
         return advertStorage.getAllAdvertByIdUser(idUser);
     }
 
-    public List<Advert> getAllAdvert(){
+    public List<Advert> getAllAdvert() {
         return advertStorage.getAllAdverts();
     }
 
@@ -348,20 +352,40 @@ public class AdvertService {
         advertStorage.updateMarkAndModelById(idAdvert, idUser, mark, model);
     }
 
+    public void editAdvertMarkAndModel(long idAdvert, String mark, String model) {
+        advertStorage.updateMarkAndModel(idAdvert, mark, model);
+    }
+
     public void editColorByIdAdvert(long idAdvert, long idUser, String color) {
         advertStorage.updateColorById(idAdvert, idUser, color);
+    }
+
+    public void editColor(long idAdvert, String color) {
+        advertStorage.updateColor(idAdvert, color);
     }
 
     public void editYearByIdAdvert(long idAdvert, long idUser, int year) {
         advertStorage.updateYearById(idAdvert, idUser, year);
     }
 
+    public void editYear(long idAdvert, int year) {
+        advertStorage.updateYear(idAdvert, year);
+    }
+
     public void editPriceByIdAdvert(long idAdvert, long idUser, double price) {
         advertStorage.updatePriceById(idAdvert, idUser, price);
     }
 
+    public void editPrice(long idAdvert, double price) {
+        advertStorage.updatePrice(idAdvert, price);
+    }
+
     public void editSpecificationByIdAdvert(long idAdvert, long idUser, String specification) {
         advertStorage.updateSpecificationById(idAdvert, idUser, specification);
+    }
+
+    public void editSpecification(long idAdvert, String specificationAdvert) {
+        advertStorage.updateSpecification(idAdvert, specificationAdvert);
     }
 }
 

@@ -23,7 +23,7 @@ public class EditAdvertEditPriceServlet extends HttpServlet {
         User currentUser = (User) req.getSession().getAttribute("currentUser");
         Advert advert = advertService.getAdvert(idAdvert);
         req.setAttribute("advert", advert);
-       String editPrice = req.getParameter("editPrice");
+        String editPrice = req.getParameter("editPrice");
         if (editPrice != null) {
             req.setAttribute("choicePrice", true);
         }
@@ -31,16 +31,18 @@ public class EditAdvertEditPriceServlet extends HttpServlet {
         try {
             if (newPrice != null && !newPrice.equals("") && Double.parseDouble(newPrice) > 0) {
                 double newPrice1 = Double.parseDouble(newPrice);
-                advertService.editPriceByIdAdvert(idAdvert,currentUser.getId(), newPrice1);
+                if (req.getSession().getAttribute("admin") != null) {
+                    advertService.editPrice(idAdvert, newPrice1);
+                } else {
+                    advertService.editPriceByIdAdvert(idAdvert, currentUser.getId(), newPrice1);
+                }
                 resp.sendRedirect("/editAdvert?id=" + idAdvert);
-            }
-                else{
-                    getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);
-            }
-        }
-        catch (NumberFormatException e) {
+            } else {
                 getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);
+            }
+        } catch (NumberFormatException e) {
+            getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);
         }
     }
-    }
+}
 

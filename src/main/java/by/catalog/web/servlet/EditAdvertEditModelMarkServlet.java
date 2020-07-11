@@ -44,13 +44,16 @@ public class EditAdvertEditModelMarkServlet extends HttpServlet {
         }
         String newModel = req.getParameter("newModel");
         if (newMark != null && newModel != null) {
-            advertService.editAdvertMarkAndModelByIdAdvert(idAdvert, currentUser.getId(), newMark, newModel);
+            if (req.getSession().getAttribute("admin") != null) {
+                advertService.editAdvertMarkAndModel(idAdvert, newMark, newModel);
+            } else {
+                advertService.editAdvertMarkAndModelByIdAdvert(idAdvert, currentUser.getId(), newMark, newModel);
+            }
             resp.sendRedirect("/editAdvert?id=" + idAdvert);
         } else {
             getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);
         }
     }
-
 
 
 }
