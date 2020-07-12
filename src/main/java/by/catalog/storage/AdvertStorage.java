@@ -11,8 +11,8 @@ public class AdvertStorage {
 
 
     private final static String URL_TABLES = "jdbc:postgresql://localhost:5432/postgres";
-    private final static String LOGIN_TABLES = "postgres";
-    private final static String PASS_TABLES = "aili61329";
+    private final static String LOGIN_TABLES = "";
+    private final static String PASS_TABLES = "";
     Connection connection = null;
     private int noOfRecords;
 
