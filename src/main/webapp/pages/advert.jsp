@@ -2,12 +2,22 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 <html>
 <head>
     <title>Advert</title>
@@ -20,13 +30,17 @@
             <form class="form-inline nav-item active">
                 <a class="nav-link" href="/"> Home <span class="sr-only">(current)</span></a>
                 <c:if test="${requestScope.checkIntrAdd}">
-                    <button type="submit" formaction="/saveAdvert?id=${requestScope.id}" class="btn btn-outline-success" formmethod="post">Save advert for you list</button>
+                    <button type="submit" formaction="/saveAdvert?id=${requestScope.id}" class="btn btn-outline-success"
+                            formmethod="post">Save advert for you list
+                    </button>
                 </c:if>
                 <c:if test="${requestScope.checkIntrRem}">
-                    <button type="submit" formaction="/removeAdvert?id=${requestScope.id}" class="btn btn-outline-danger" formmethod="post">Remove advert with you list</button>
+                    <button type="submit" formaction="/removeAdvert?id=${requestScope.id}"
+                            class="btn btn-outline-danger" formmethod="post">Remove advert with you list
+                    </button>
                 </c:if>
                 <c:if test="${requestScope.checkYouAdvert}">
-                    <a href="/editAdvert?id=${requestScope.id}" class="btn btn-primary" >Edit advert</a>
+                    <a href="/editAdvert?id=${requestScope.id}" class="btn btn-primary">Edit advert</a>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                         Deleted advert
                     </button>
@@ -36,27 +50,27 @@
     </div>
 </nav>
 
-<dl class="row" >
-    <dt class="col-sm-2 offset-sm-2"> Автомобиль ${requestScope.advert.markCar}  ${requestScope.advert.modelCar}</dt>
+<dl class="row">
+    <dt class="col-sm-2 offset-sm-2"> Автомобиль ${requestScope.advert.markCar} ${requestScope.advert.modelCar}</dt>
 </dl>
-<dl class="row" >
-    <dt class="col-sm-2 offset-sm-1"> Имя владельца </dt>
+<dl class="row">
+    <dt class="col-sm-2 offset-sm-1"> Имя владельца</dt>
     <dd class="col-sm-8">${requestScope.user.name}</dd>
-    <dt class="col-sm-2 offset-sm-1"> Фамилия владельца </dt>
+    <dt class="col-sm-2 offset-sm-1"> Фамилия владельца</dt>
     <dd class="col-sm-8">${requestScope.user.lastName}</dd>
-    <dt class="col-sm-2 offset-sm-1"> Телефон владельца </dt>
+    <dt class="col-sm-2 offset-sm-1"> Телефон владельца</dt>
     <dd class="col-sm-8">${requestScope.user.phone}</dd>
-    <dt class="col-sm-2 offset-sm-1"> Цвет автомобиля </dt>
+    <dt class="col-sm-2 offset-sm-1"> Цвет автомобиля</dt>
     <dd class="col-sm-8">${requestScope.advert.colorCar}</dd>
-    <dt class="col-sm-2 offset-sm-1"> Год выпуска автомобиля </dt>
+    <dt class="col-sm-2 offset-sm-1"> Год выпуска автомобиля</dt>
     <dd class="col-sm-8">${requestScope.advert.yearCar}</dd>
-    <dt class="col-sm-2 offset-sm-1"> Цена автомобиля </dt>
+    <dt class="col-sm-2 offset-sm-1"> Цена автомобиля</dt>
     <dd class="col-sm-8">${requestScope.advert.priceCar}</dd>
-    <dt class="col-sm-2 offset-sm-1"> Дата регистрации </dt>
+    <dt class="col-sm-2 offset-sm-1"> Дата регистрации</dt>
     <dd class="col-sm-8">${requestScope.advert.dateAdvert}</dd>
 </dl>
 
-<dl class="row offset-sm-1" >
+<dl class="row offset-sm-1">
     <div class="card w-50">
         <div class="card-header">
             Описание
@@ -74,7 +88,7 @@
 <c:if test="${sessionScope.checkAuth}">
 
 
-    <dl class="row offset-sm-1" >
+    <dl class="row offset-sm-1">
         <div class="card w-50">
             <div class="card-header">
                 Сообщения
@@ -91,7 +105,7 @@
         </div>
     </dl>
 
-    <dl class="row offset-sm-1" >
+    <dl class="row offset-sm-1">
         <div class="form-group  w-50">
             Коментировать
             <form name="addMessage" action="/MessageServlet?id=${requestScope.id}" method="post">
@@ -104,7 +118,8 @@
 </c:if>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
