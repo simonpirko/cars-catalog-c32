@@ -10,11 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "EditAdvertEditPriceServlet", urlPatterns = "/editAdvert/editPrice")
 public class EditAdvertEditPriceServlet extends HttpServlet {
-    private AdvertService advertService = new AdvertService();
+    private final AdvertService advertService = new AdvertService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

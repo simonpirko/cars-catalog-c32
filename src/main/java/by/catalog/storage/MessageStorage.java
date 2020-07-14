@@ -10,8 +10,8 @@ import java.util.List;
 public class MessageStorage {
 
     private final static String URL_TABLES = "jdbc:postgresql://localhost:5432/postgres";
-    private final static String LOGIN_TABLES = "postgres";
-    private final static String PASS_TABLES = "aili61329";
+    private final static String LOGIN_TABLES = "";
+    private final static String PASS_TABLES = "";
     Connection connection = null;
 
     {
@@ -40,7 +40,7 @@ public class MessageStorage {
 
 
     public List<Message> returnMessageByIdAdvert(long idAdvert) {
-        List<Message> listMessage = new ArrayList();
+        List<Message> listMessage = new ArrayList<>();
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
             PreparedStatement preparedStatement = connection.prepareStatement("select * from messageforadvert s where s.idadvert = ?");

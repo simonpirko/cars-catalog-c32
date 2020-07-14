@@ -14,7 +14,7 @@ import java.util.List;
 
 @WebServlet(name = "EditAdvertEditModelMarkServlet", urlPatterns = "/editAdvert/editMarkModel")
 public class EditAdvertEditModelMarkServlet extends HttpServlet {
-    private AdvertService advertService = new AdvertService();
+    private final AdvertService advertService = new AdvertService();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

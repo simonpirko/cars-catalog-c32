@@ -51,7 +51,6 @@
     </form>
 </c:if>
 
-
 <c:if test="${sessionScope.adminBoolean}">
 
     <c:if test="${sessionScope.check4Admin}">
@@ -76,7 +75,6 @@
     </form>
 </c:if>
 <h4>${requestScope.messageEdit}</h4>
-
 
 </body>
 </html>

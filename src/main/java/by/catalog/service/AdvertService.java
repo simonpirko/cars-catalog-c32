@@ -4,7 +4,10 @@ import by.catalog.domain.Advert;
 import by.catalog.storage.AdvertStorage;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 public class AdvertService {
 
@@ -103,7 +106,7 @@ public class AdvertService {
         List<Advert> listBySearch = new ArrayList<>();
         List<Advert> modelByMark = advertStorage.getAllAdvertsByMark(mark);
         for (int i = 0; i < modelByMark.size(); i++) {
-            Advert advert = (Advert) modelByMark.get(i);
+            Advert advert = modelByMark.get(i);
             if (advert.getModelCar().equals(model)) {
                 if (color.equals("anyColor")) {
                     listBySearch.add(advert);

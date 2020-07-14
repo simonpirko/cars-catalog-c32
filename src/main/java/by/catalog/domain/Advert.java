@@ -2,7 +2,6 @@ package by.catalog.domain;
 
 import by.catalog.service.UserService;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -63,7 +62,7 @@ public class Advert implements Comparable<Advert>, Comparator<Advert> {
 
         UserService userService = new UserService();
         return
-                "Model car - " + modelCar + ", color car - " + colorCar + ", year car - " + yearCar + ", price car - " + priceCar;
+            "Model car - " + modelCar + ", color car - " + colorCar + ", year car - " + yearCar + ", price car - " + priceCar;
     }
 
     @Override

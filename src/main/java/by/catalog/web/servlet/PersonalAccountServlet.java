@@ -1,8 +1,5 @@
 package by.catalog.web.servlet;
 
-import by.catalog.domain.User;
-import by.catalog.service.UserService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

@@ -10,9 +10,17 @@ import java.util.List;
 
 public class UserStorage {
 
+    private Connection connection = null;
+
     private final static String URL_TABLES = "jdbc:postgresql://localhost:5432/postgres";
-    private final static String LOGIN_TABLES = "postgres";
-    private final static String PASS_TABLES = "aili61329";
+    private final static String LOGIN_TABLES = "";
+    private final static String PASS_TABLES = "";
+
+    private final static String UPDATE_USER_BY_ID = "update userscarcatalog set name = ?, lastname = ?, login = ?, password = ?, phone= ? where id = ?";
+    private final static String CHECK_BY_LOGIN = "select * from userscarcatalog s where s.login = ?";
+    private final static String GET_USER_BY_ID = "select * from userscarcatalog s where s.id = ?";
+    private final static String GET_USER_BY_LOGIN = "select * from userscarcatalog s where s.login = ?";
+    private final static String ADD_USER = "insert into userscarcatalog (id, name, lastname, login, password, phone, role) values (default , ?, ?, ?, ?, ?, ?)";
 
     static {
         try {
@@ -21,30 +29,11 @@ public class UserStorage {
             e.printStackTrace();
         }
     }
-
-    private Connection connection = null;
-
-
-    public Admin getAdmin() {
-        try {
-            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from admins");
-            ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            String login = resultSet.getString(1);
-            String password = resultSet.getString(2);
-            connection.close();
-            return new Admin(login, password);
-        } catch (SQLException e) {
-            e.getErrorCode();
-        }
-        return null;
-    }
-
+  
     public void addUser(User user) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into userscarcatalog (id, name, lastname, login, password, phone, role) values (default , ?, ?, ?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement(ADD_USER);
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setString(3, user.getLogin());
@@ -62,7 +51,7 @@ public class UserStorage {
     public User getUserByLogin(String login) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from userscarcatalog s where s.login = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_LOGIN);
             preparedStatement.setString(1, login);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -83,7 +72,7 @@ public class UserStorage {
     public User getUserById(long id) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from userscarcatalog s where s.id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_BY_ID);
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
@@ -129,7 +118,7 @@ public class UserStorage {
     public boolean checkByLogin(String login) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from userscarcatalog s where s.login = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement(CHECK_BY_LOGIN);
             preparedStatement.setString(1, login);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -157,7 +146,7 @@ public class UserStorage {
     public void updateUserById(long id, User user) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
-            PreparedStatement preparedStatement = connection.prepareStatement("update userscarcatalog set name = ?, lastName = ?, login = ?, password = ?, phone= ? where id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_BY_ID);
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setString(3, user.getLogin());
