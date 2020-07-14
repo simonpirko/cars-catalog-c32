@@ -26,7 +26,8 @@ public class AuthServlet extends HttpServlet {
         User user = userService.checkPasswordByLogin(login, password);
         if (user != null) {
             if (user.getPassword().equals("admin") && user.getLogin().equals("admin")) {
-                req.getSession().setAttribute("Admin", user);
+                req.getSession().setAttribute("admin", "admin");
+                req.getSession().setAttribute("adminBoolean", true);
                 getServletContext().getRequestDispatcher("/pages/adminAccount.jsp").forward(req, resp);
             }
             req.getSession().setAttribute("currentUser", user);

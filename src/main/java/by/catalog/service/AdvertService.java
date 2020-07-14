@@ -31,6 +31,7 @@ public class AdvertService {
     }
 
 
+
     public void saveAdvertToUserAdvertList(long idAdvert, long idUser) {
         advertStorage.addIdUserIdAdvert(idUser, idAdvert);
     }
@@ -335,6 +336,10 @@ public class AdvertService {
         advertStorage.removeAdvertByIdAdvert(idAdvert, idUser);
     }
 
+    public void destroyAdvert(long idAdvert) {
+        advertStorage.removeAdvert(idAdvert);
+    }
+
     public void destroyUserAdvertList(long idAdvert) {
         advertStorage.removeAfterDestroyUserAdvertList(idAdvert);
     }
@@ -343,24 +348,48 @@ public class AdvertService {
         return advertStorage.getAllAdvertByIdUser(idUser);
     }
 
+    public List<Advert> getAllAdvert() {
+        return advertStorage.getAllAdverts();
+    }
+
     public void editAdvertMarkAndModelByIdAdvert(long idAdvert, long idUser, String mark, String model) {
         advertStorage.updateMarkAndModelById(idAdvert, idUser, mark, model);
+    }
+
+    public void editAdvertMarkAndModel(long idAdvert, String mark, String model) {
+        advertStorage.updateMarkAndModel(idAdvert, mark, model);
     }
 
     public void editColorByIdAdvert(long idAdvert, long idUser, String color) {
         advertStorage.updateColorById(idAdvert, idUser, color);
     }
 
+    public void editColor(long idAdvert, String color) {
+        advertStorage.updateColor(idAdvert, color);
+    }
+
     public void editYearByIdAdvert(long idAdvert, long idUser, int year) {
         advertStorage.updateYearById(idAdvert, idUser, year);
+    }
+
+    public void editYear(long idAdvert, int year) {
+        advertStorage.updateYear(idAdvert, year);
     }
 
     public void editPriceByIdAdvert(long idAdvert, long idUser, double price) {
         advertStorage.updatePriceById(idAdvert, idUser, price);
     }
 
+    public void editPrice(long idAdvert, double price) {
+        advertStorage.updatePrice(idAdvert, price);
+    }
+
     public void editSpecificationByIdAdvert(long idAdvert, long idUser, String specification) {
         advertStorage.updateSpecificationById(idAdvert, idUser, specification);
+    }
+
+    public void editSpecification(long idAdvert, String specificationAdvert) {
+        advertStorage.updateSpecification(idAdvert, specificationAdvert);
     }
 }
 

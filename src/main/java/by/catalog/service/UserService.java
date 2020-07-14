@@ -1,8 +1,11 @@
 package by.catalog.service;
 
 
+import by.catalog.domain.Admin;
 import by.catalog.domain.User;
 import by.catalog.storage.UserStorage;
+
+import java.util.List;
 
 public class UserService {
 
@@ -14,6 +17,11 @@ public class UserService {
 
 
     public User checkPasswordByLogin(String login, String password) {
+
+        Admin admin = userStorage.getAdmin();
+        if (admin.getLogin().equals(login) && admin.getPassword().equals(password)) {
+            return new User(null, null, login, password, null, null);
+        }
         User userForCheck = userStorage.getUserByLogin(login);
         if (userForCheck == null) {
             return null;
@@ -28,10 +36,17 @@ public class UserService {
         return userStorage.getUserById(id);
     }
 
+    public void destroyUser(Long id) {
+        userStorage.removeUser(id);
+    }
+
     public boolean checkUserByLogin(String login) {
         return userStorage.checkByLogin(login);
     }
 
+    public List<User> getAllUsers() {
+        return userStorage.getAllUsers();
+    }
 
     public void editUserById(User user) {
         userStorage.updateUserById(user.getId(), user);

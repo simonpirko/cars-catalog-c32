@@ -16,3 +16,5 @@ INSERT INTO public.car (mark, model) VALUES ('Volkswagen', 'Caddy III');
 INSERT INTO public.car (mark, model) VALUES ('BMW', 'X3 III (G01)');
 INSERT INTO public.car (mark, model) VALUES ('BMW', '4-Series F32/F33/F36');
 INSERT INTO public.car (mark, model) VALUES ('BMW', 'M6 III (F06/F13/F12)');
+
+INSERT INTO public.admins(login, password) VALUES ('admin','admin');

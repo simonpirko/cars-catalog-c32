@@ -7,7 +7,7 @@
         crossorigin="anonymous"></script>
 <html>
 <head>
-    <title>PersonalAccount</title>
+    <title>Personal Account</title>
 
 </head>
 <body>

@@ -32,7 +32,11 @@ public class EditAdvertEditYearServlet extends HttpServlet {
         String newYear = req.getParameter("newYear");
         if (newYear != null) {
             int newYear1 = Integer.parseInt(newYear);
-            advertService.editYearByIdAdvert(idAdvert, currentUser.getId(), newYear1);
+            if (req.getSession().getAttribute("admin") != null) {
+                advertService.editYear(idAdvert, newYear1);
+            } else {
+                advertService.editYearByIdAdvert(idAdvert, currentUser.getId(), newYear1);
+            }
             resp.sendRedirect("/editAdvert?id=" + idAdvert);
         } else {
             getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);

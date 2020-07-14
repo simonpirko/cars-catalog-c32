@@ -1,9 +1,12 @@
 package by.catalog.storage;
 
 
+import by.catalog.domain.Admin;
 import by.catalog.domain.User;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserStorage {
 
@@ -26,7 +29,7 @@ public class UserStorage {
             e.printStackTrace();
         }
     }
-
+  
     public void addUser(User user) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
@@ -87,6 +90,31 @@ public class UserStorage {
         return null;
     }
 
+    public List<User> getAllUsers() {
+        List<User> list = new ArrayList<>();
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from userscarcatalog");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                long id = resultSet.getLong(1);
+                String name = resultSet.getString(2);
+                String lastName = resultSet.getString(3);
+                String login = resultSet.getString(4);
+                String password = resultSet.getString(5);
+                String phone = resultSet.getString(6);
+                User user = new User(id, name, lastName, login, password, phone);
+                list.add(user);
+            }
+            connection.close();
+            return list;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public boolean checkByLogin(String login) {
         try {
             connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
@@ -103,6 +131,17 @@ public class UserStorage {
         return false;
     }
 
+    public void removeUser(long idAdvert) {
+        try {
+            connection = DriverManager.getConnection(URL_TABLES, LOGIN_TABLES, PASS_TABLES);
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from userscarcatalog where id = ? ");
+            preparedStatement.setLong(1, idAdvert);
+            preparedStatement.executeQuery();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void updateUserById(long id, User user) {
         try {

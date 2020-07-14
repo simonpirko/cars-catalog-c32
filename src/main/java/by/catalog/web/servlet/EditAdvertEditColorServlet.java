@@ -29,11 +29,13 @@ public class EditAdvertEditColorServlet extends HttpServlet {
             req.setAttribute("choiceColor", true);
         }
         String newColor = req.getParameter("newColor");
-        if (newColor != null) {
+        if (req.getSession().getAttribute("admin") != null && newColor != null) {
+            advertService.editColor(idAdvert, newColor);
+        } else if (newColor != null) {
             advertService.editColorByIdAdvert(idAdvert, currentUser.getId(), newColor);
-            resp.sendRedirect("/editAdvert?id=" + idAdvert);
         } else {
             getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);
         }
+        resp.sendRedirect("/editAdvert?id=" + idAdvert);
     }
 }

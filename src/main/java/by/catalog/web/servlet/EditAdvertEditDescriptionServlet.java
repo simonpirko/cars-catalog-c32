@@ -27,12 +27,14 @@ public class EditAdvertEditDescriptionServlet extends HttpServlet {
             req.setAttribute("choiceDescription", true);
         }
         String specificationAdvert = req.getParameter("specificationAdvert");
-        if (specificationAdvert != null) {
+        if (req.getSession().getAttribute("admin") != null && specificationAdvert != null) {
+            advertService.editSpecification(idAdvert, specificationAdvert);
+        } else if (specificationAdvert != null) {
             advertService.editSpecificationByIdAdvert(idAdvert, currentUser.getId(), specificationAdvert);
-            resp.sendRedirect("/editAdvert?id=" + idAdvert);
-        } else {
+            } else {
             getServletContext().getRequestDispatcher("/pages/editAdvert.jsp").forward(req, resp);
         }
+        resp.sendRedirect("/editAdvert?id=" + idAdvert);
     }
 
 }
